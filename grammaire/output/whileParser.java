@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g 2022-12-05 10:16:56
+// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g 2022-12-05 10:44:45
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -347,7 +347,7 @@ public class whileParser extends Parser {
 
 			stream_output.add(output14.getTree());
 			// AST REWRITE
-			// elements: output, commands, input
+			// elements: output, input, commands
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -555,7 +555,7 @@ public class whileParser extends Parser {
 			}
 
 			// AST REWRITE
-			// elements: VARIABLE, inputsub
+			// elements: inputsub, VARIABLE
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1181,7 +1181,7 @@ public class whileParser extends Parser {
 					}
 
 					// AST REWRITE
-					// elements: vars, exprs
+					// elements: exprs, vars
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1343,7 +1343,7 @@ public class whileParser extends Parser {
 					}
 
 					// AST REWRITE
-					// elements: commands, expression
+					// elements: expression, commands
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1489,7 +1489,7 @@ public class whileParser extends Parser {
 					}
 
 					// AST REWRITE
-					// elements: commands, expression, VARIABLE
+					// elements: VARIABLE, expression, commands
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1992,7 +1992,7 @@ public class whileParser extends Parser {
 					}
 
 					// AST REWRITE
-					// elements: SYMBOL, lexpr
+					// elements: lexpr, SYMBOL
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 

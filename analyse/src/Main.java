@@ -27,9 +27,9 @@ public class Main {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         whileParser parser = new whileParser(tokens);
         System.out.println(parser.program());
-/*
+
         Tree ast = (Tree) parser.program().getTree();
         Visitor v = new Visitor(ast);
-        v.analyse();*/
+        v.analyse();
     }
 }

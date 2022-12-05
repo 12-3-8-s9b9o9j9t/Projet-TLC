@@ -9,7 +9,7 @@ public class Visitor {
     }
 
     public void analyse() {
-        System.out.println("prout");
+        System.out.println("slt");
         System.out.println(ast.getChildCount());
     }    
 }
