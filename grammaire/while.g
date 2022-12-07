@@ -19,7 +19,7 @@ definition
     ;
 
 input
-    : inputsub?->^(INPUT inputsub)
+    : inputsub?->^(INPUT inputsub?)
     ;
 
 inputsub
@@ -45,7 +45,9 @@ exprs
 command
     :	'nop'->'nil'
     |	(vars ':=' exprs)-> ^(ASSIGNMENT vars exprs)
-    |	('if' expression 'then' commands ('else' commands)? 'fi')-> ^(IF_BLOCK ^(EXPR expression) ^(BODY commands) (^(ELSE commands))?)
+    |	('if' expression 'then' c1=commands ('else' c2=commands  ->^(IF_BLOCK ^(EXPR expression) ^(BODY $c1) ^(ELSE $c2)) 
+    								| ->^(IF_BLOCK ^(EXPR expression) ^(BODY $c1)))
+    	'fi')
     |	('while' expression 'do' commands 'od')-> ^(WHILE_BLOCK ^(EXPR expression) ^(BODY commands))
     |	('for' expression 'do' commands 'od')-> ^(FOR_BLOCK ^(EXPR expression) ^(BODY commands))
     |	('foreach' VARIABLE 'in' expression 'do' commands 'od')-> ^(FOREACH_BLOCK VARIABLE ^(EXPR expression) ^(BODY commands))
@@ -55,11 +57,11 @@ exprbase
     :	'nil'->'nil'
     |	VARIABLE->VARIABLE
     |	SYMBOL->SYMBOL
-    |	('(' 'cons' lexpr ')')->^(CONSTRUCT_TREE  lexpr)
-    |	('(' 'list' lexpr ')')->^(CONSTRUCT_LIST lexpr)
+    |	('(' 'cons' lexpr ')')->^(CONSTRUCT_TREE lexpr?)
+    |	('(' 'list' lexpr ')')->^(CONSTRUCT_LIST lexpr?)
     |	('(' 'hd' exprbase ')')->^(HEAD exprbase)
     |	('(' 'tl' exprbase ')')->^(TAIL exprbase)
-    |	('(' SYMBOL lexpr ')') ->^(LOGICAL_EXPR SYMBOL lexpr)
+    |	('(' SYMBOL lexpr ')')->^(LOGICAL_EXPR ^(FUNCTION_NAME SYMBOL) lexpr?)
     ;
 
 expression
@@ -67,7 +69,7 @@ expression
     ;
 
 lexpr
-    :	(exprbase lexpr)?
+    :	exprbase*
     ;
 
 VARIABLE
