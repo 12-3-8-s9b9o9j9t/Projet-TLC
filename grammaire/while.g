@@ -2,16 +2,16 @@ grammar while;
 
 options{ output=AST; }
 
-tokens{ FUNCTION; FUNCTION_NAME; DEFINITION; INPUT; COMMANDS; OUTPUT; LOGICAL_EXPR;
-ASSIGNMENT; IF_BLOCK; EXPRESSION; EXPR; BODY; ELSE; WHILE_BLOCK; FOR_BLOCK; FOREACH_BLOCK;
-CONSTRUCT_TREE; CONSTRUCT_LIST; HEAD; TAIL;}
+tokens{ FUNCTION; FUNC_NAME; DEFINITION; INPUT; COMMANDS; OUTPUT; CALL;
+ASSIGN; BODY; IF; THEN; ELSE; WHILE; FOR; FOREACH;
+CONS; LIST; HD; TL; NIL; COND; NOP;}
 
 program
     :	function program? EOF!
     ;
 
 function
-    :	'function' SYMBOL ':' definition->^(FUNCTION ^(FUNCTION_NAME SYMBOL) definition)
+    :	'function' SYMBOL ':' definition->^(FUNCTION ^(FUNC_NAME SYMBOL) definition)
     ;
 
 definition
@@ -19,7 +19,7 @@ definition
     ;
 
 input
-    : inputsub?->^(INPUT inputsub)
+    : inputsub?->^(INPUT inputsub?)
     ;
 
 inputsub
@@ -39,27 +39,29 @@ vars
     ;
 
 exprs
-    :	expression (',' exprs)?-> ^(EXPRESSION expression exprs?)
+    :	expression (',' exprs)?-> expression exprs?
     ;
 
 command
-    :	'nop'->'nil'
-    |	(vars ':=' exprs)-> ^(ASSIGNMENT vars exprs)
-    |	('if' expression 'then' commands ('else' commands)? 'fi')-> ^(IF_BLOCK ^(EXPR expression) ^(BODY commands) (^(ELSE commands))?)
-    |	('while' expression 'do' commands 'od')-> ^(WHILE_BLOCK ^(EXPR expression) ^(BODY commands))
-    |	('for' expression 'do' commands 'od')-> ^(FOR_BLOCK ^(EXPR expression) ^(BODY commands))
-    |	('foreach' VARIABLE 'in' expression 'do' commands 'od')-> ^(FOREACH_BLOCK VARIABLE ^(EXPR expression) ^(BODY commands))
+    :	'nop'-> NOP
+    |	(vars ':=' exprs)-> ^(ASSIGN vars exprs)
+    |	('if' expression 'then' c1=commands ('else' c2=commands  ->^(IF ^(COND expression) ^(THEN $c1) ^(ELSE $c2)) 
+    								| ->^(IF ^(COND expression) ^(THEN $c1)))
+    	'fi')
+    |	('while' expression 'do' commands 'od')-> ^(WHILE ^(COND expression) ^(BODY commands))
+    |	('for' expression 'do' commands 'od')-> ^(FOR ^(COND expression) ^(BODY commands))
+    |	('foreach' VARIABLE 'in' expression 'do' commands 'od')-> ^(FOREACH VARIABLE ^(COND expression) ^(BODY commands))
     ;
 
 exprbase
-    :	'nil'->'nil'
+    :	'nil'->NIL
     |	VARIABLE->VARIABLE
     |	SYMBOL->SYMBOL
-    |	('(' 'cons' lexpr ')')->^(CONSTRUCT_TREE  lexpr)
-    |	('(' 'list' lexpr ')')->^(CONSTRUCT_LIST lexpr)
-    |	('(' 'hd' exprbase ')')->^(HEAD exprbase)
-    |	('(' 'tl' exprbase ')')->^(TAIL exprbase)
-    |	('(' SYMBOL lexpr ')') ->^(LOGICAL_EXPR SYMBOL lexpr)
+    |	('(' 'cons' lexpr ')')->^(CONS lexpr?)
+    |	('(' 'list' lexpr ')')->^(LIST lexpr?)
+    |	('(' 'hd' exprbase ')')->^(HD exprbase)
+    |	('(' 'tl' exprbase ')')->^(TL exprbase)
+    |	('(' SYMBOL lexpr ')')->^(CALL SYMBOL lexpr?)
     ;
 
 expression
@@ -67,7 +69,7 @@ expression
     ;
 
 lexpr
-    :	(exprbase lexpr)?
+    :	exprbase*
     ;
 
 VARIABLE
