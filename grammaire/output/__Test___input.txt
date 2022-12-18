@@ -1,0 +1,6 @@
+function testDecLong :
+read
+%
+    Result := Tlc99876388785269409876409043237890843
+%
+write Result
