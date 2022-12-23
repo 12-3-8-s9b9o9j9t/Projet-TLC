@@ -4,10 +4,10 @@ options{ output=AST; }
 
 tokens{ FUNCTION; FUNC_NAME; DEFINITION; INPUT; COMMANDS; OUTPUT; CALL;
 ASSIGN; BODY; IF; THEN; ELSE; WHILE; FOR; FOREACH;
-CONS; LIST; HD; TL; NIL; COND; NOP;}
+CONS; LIST; HD; TL; NIL; COND; NOP; VARIABLES; EXPRESSIONS;}
 
 program
-    :	function program? EOF!
+    :	function (program? | EOF!)
     ;
 
 function
@@ -44,7 +44,7 @@ exprs
 
 command
     :	'nop'-> NOP
-    |	(vars ':=' exprs)-> ^(ASSIGN vars exprs)
+    |	(vars ':=' exprs)-> ^(ASSIGN ^(VARIABLES vars) ^(EXPRESSIONS exprs))
     |	('if' expression 'then' c1=commands ('else' c2=commands  ->^(IF ^(COND expression) ^(THEN $c1) ^(ELSE $c2)) 
     								| ->^(IF ^(COND expression) ^(THEN $c1)))
     	'fi')
