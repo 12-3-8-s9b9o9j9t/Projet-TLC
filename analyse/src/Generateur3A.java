@@ -27,6 +27,7 @@ public class Generateur3A {
         String res = "";
         int chcnt = ast.getChildCount();
         int curlab = labcnt;
+        int curreg = regcnt;
         switch (txt) {
             case "FUNCTION":
                 res += "func begin " + generateRec(ast.getChild(0)) + "\n"; // name
@@ -93,14 +94,35 @@ public class Generateur3A {
                 }
                 break;
             case "THEN":
-                res += generateRec(ast.getChild(0));
+                for (int i = 0; i < chcnt; i++) {
+                    res += generateRec(ast.getChild(i));
+                }
                 break;
             case "ELSE":
-                res += generateRec(ast.getChild(0));
+                for (int i = 0; i < chcnt; i++) {
+                    res += generateRec(ast.getChild(i));
+                }
                 break;
             case "WHILE":
+                res += lab("while", curlab - labcnt) + ":\n";
+                labcnt++;
+                res += generateRec(ast.getChild(0)); // cond
+                res += "\tifz " + reg(-1) + " goto " + lab("end_while", curlab - labcnt + 1) + "\n";
+                labcnt++;
+                res += generateRec(ast.getChild(1)); // body
+                res += "\tgoto " + lab("while", curlab - labcnt) + "\n";
+                res += lab("end_while", curlab - labcnt + 1) + ":\n";
                 break;
             case "FOR":
+                res += generateRec(ast.getChild(0)); // cond
+                res += lab("for", curlab - labcnt) + ":\n";
+                labcnt++;
+                res += "\tifz " + reg(-1) + " goto " + lab("end_for", curlab - labcnt + 1) + "\n";
+                labcnt++;
+                res += generateRec(ast.getChild(1)); // body
+                res += "\t" + reg(curreg - regcnt) + " = tl " + reg(curreg - regcnt) + "\n";
+                res += "\tgoto " + lab("for", curlab - labcnt) + "\n";
+                res += lab("end_for", curlab - labcnt + 1) + ":\n";
                 break;
             case "FOREACH":
                 break;
@@ -108,8 +130,12 @@ public class Generateur3A {
                 res += generateRec(ast.getChild(0)); // expression
                 break;
             case "BODY":
+                for (int i = 0; i < chcnt; i++) {
+                    res += generateRec(ast.getChild(i));
+                }
                 break;
             case "NOP":
+                res += "\tnop\n";
                 break;
             case "CALL":
                 // TODO: besoin du nombre d'outputs grâce à la table des symboles 
