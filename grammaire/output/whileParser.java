@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g 2022-12-24 00:08:24
+// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g 2022-12-24 01:00:44
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -91,9 +91,9 @@ public class whileParser extends DebugParser {
 
 
 	public static final String[] ruleNames = new String[] {
-		"invalidRule", "command", "expression", "inputsub", "exprs", "commands", 
-		"program", "exprbase", "lexpr", "function", "output", "input", "definition", 
-		"vars"
+		"invalidRule", "vars", "command", "commands", "definition", "output", 
+		"exprs", "program", "input", "lexpr", "inputsub", "exprbase", "function", 
+		"expression"
 	};
 
 	public static final boolean[] decisionCanBacktrack = new boolean[] {
@@ -352,7 +352,7 @@ public class whileParser extends DebugParser {
 
 			stream_definition.add(definition7.getTree());
 			// AST REWRITE
-			// elements: SYMBOL, definition
+			// elements: definition, SYMBOL
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -494,7 +494,7 @@ public class whileParser extends DebugParser {
 
 			stream_output.add(output14.getTree());
 			// AST REWRITE
-			// elements: input, output, commands
+			// elements: commands, output, input
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -770,7 +770,7 @@ public class whileParser extends DebugParser {
 			} finally {dbg.exitSubRule(4);}
 
 			// AST REWRITE
-			// elements: VARIABLE, inputsub
+			// elements: inputsub, VARIABLE
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1029,7 +1029,7 @@ public class whileParser extends DebugParser {
 			} finally {dbg.exitSubRule(6);}
 
 			// AST REWRITE
-			// elements: command, commands
+			// elements: commands, command
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1647,7 +1647,7 @@ public class whileParser extends DebugParser {
 
 							stream_commands.add(c2.getTree());
 							// AST REWRITE
-							// elements: expression, c1, c2
+							// elements: c2, expression, c1
 							// token labels: 
 							// rule labels: c1, retval, c2
 							// token list labels: 
@@ -1714,7 +1714,7 @@ public class whileParser extends DebugParser {
 							// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:49:15: 
 							{
 							// AST REWRITE
-							// elements: c1, expression
+							// elements: expression, c1
 							// token labels: 
 							// rule labels: c1, retval
 							// token list labels: 
@@ -1809,7 +1809,7 @@ public class whileParser extends DebugParser {
 					}
 
 					// AST REWRITE
-					// elements: expression, commands
+					// elements: commands, expression
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1981,7 +1981,7 @@ public class whileParser extends DebugParser {
 					}
 
 					// AST REWRITE
-					// elements: commands, expression, VARIABLE
+					// elements: expression, commands, VARIABLE
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2577,7 +2577,7 @@ public class whileParser extends DebugParser {
 					}
 
 					// AST REWRITE
-					// elements: SYMBOL, lexpr
+					// elements: lexpr, SYMBOL
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 

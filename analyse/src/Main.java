@@ -9,13 +9,13 @@ public class Main {
             "%\n"+
             " Res, Res2 := (cons nil nil), nil\n"+
             "%\n"+
-            "write Result"
+            "write Res, Res2"
         );
         whileLexer lexer = new whileLexer(in);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         whileParser parser = new whileParser(tokens);
         whileParser.program_return pReturn = parser.program();
-
+        
         Tree ast = (Tree) pReturn.getTree();
         Generateur3A g = new Generateur3A(ast);
         g.generate();

@@ -1,9 +1,14 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 import org.antlr.runtime.tree.Tree;
 
 public class Generateur3A {
 
     private int regcnt = 0;
     private Tree ast;
+
+    private Queue<String> unused = new LinkedList<>();
 
     public Generateur3A(Tree ast) {
         this.ast = ast;
@@ -47,9 +52,19 @@ public class Generateur3A {
                 }
                 break;
             case "ASSIGN":
-                res += generateRec(ast.getChild(1));
-                res += generateRec(ast.getChild(0)) + " = " + reg(-1) + "\n";
-                regcnt++;
+                res += generateRec(ast.getChild(1)); // expressions
+                res += generateRec(ast.getChild(0)); // variables
+                break;
+            case "EXPRESSIONS":
+                for (int i = 0; i < ast.getChildCount(); i++) {
+                    res += generateRec(ast.getChild(i));
+                    unused.add(reg(-1));
+                }
+                break;
+            case "VARIABLES":
+                for (int i = 0; i < ast.getChildCount(); i++) {
+                    res += generateRec(ast.getChild(i)) + " = " + unused.poll() + "\n";
+                }
                 break;
             case "CONS":
                 int chcnt = ast.getChildCount();

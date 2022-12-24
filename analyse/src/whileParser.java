@@ -1,17 +1,15 @@
-// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g 2022-12-22 19:52:03
+// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g 2022-12-24 00:37:41
 
 import org.antlr.runtime.*;
 import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.antlr.runtime.debug.*;
-import java.io.IOException;
 import org.antlr.runtime.tree.*;
 
 
 @SuppressWarnings("all")
-public class whileParser extends DebugParser {
+public class whileParser extends Parser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ASSIGN", "BODY", "CALL", "COMMANDS", 
 		"COMMENT", "COND", "CONS", "DEC", "DEFINITION", "ELSE", "EXPRESSIONS", 
@@ -90,62 +88,21 @@ public class whileParser extends DebugParser {
 	// delegators
 
 
-	public static final String[] ruleNames = new String[] {
-		"invalidRule", "function", "input", "output", "vars", "program", "exprbase", 
-		"exprs", "definition", "commands", "command", "lexpr", "inputsub", "expression"
-	};
-
-	public static final boolean[] decisionCanBacktrack = new boolean[] {
-		false, // invalid decision
-		false, false, false, false, false, false, false, false, false, false, 
-		    false, false, false
-	};
-
- 
-	public int ruleLevel = 0;
-	public int getRuleLevel() { return ruleLevel; }
-	public void incRuleLevel() { ruleLevel++; }
-	public void decRuleLevel() { ruleLevel--; }
 	public whileParser(TokenStream input) {
-		this(input, DebugEventSocketProxy.DEFAULT_DEBUGGER_PORT, new RecognizerSharedState());
+		this(input, new RecognizerSharedState());
 	}
-	public whileParser(TokenStream input, int port, RecognizerSharedState state) {
+	public whileParser(TokenStream input, RecognizerSharedState state) {
 		super(input, state);
-		DebugEventSocketProxy proxy =
-			new DebugEventSocketProxy(this,port,adaptor);
-		setDebugListener(proxy);
-		setTokenStream(new DebugTokenStream(input,proxy));
-		try {
-			proxy.handshake();
-		}
-		catch (IOException ioe) {
-			reportError(ioe);
-		}
-		TreeAdaptor adap = new CommonTreeAdaptor();
-		setTreeAdaptor(adap);
-		proxy.setTreeAdaptor(adap);
 	}
 
-	public whileParser(TokenStream input, DebugEventListener dbg) {
-		super(input, dbg);
-		 
-		TreeAdaptor adap = new CommonTreeAdaptor();
-		setTreeAdaptor(adap);
+	protected TreeAdaptor adaptor = new CommonTreeAdaptor();
 
+	public void setTreeAdaptor(TreeAdaptor adaptor) {
+		this.adaptor = adaptor;
 	}
-
-	protected boolean evalPredicate(boolean result, String predicate) {
-		dbg.semanticPredicate(result, predicate);
-		return result;
+	public TreeAdaptor getTreeAdaptor() {
+		return adaptor;
 	}
-
-		protected DebugTreeAdaptor adaptor;
-		public void setTreeAdaptor(TreeAdaptor adaptor) {
-			this.adaptor = new DebugTreeAdaptor(dbg,adaptor);
-		}
-		public TreeAdaptor getTreeAdaptor() {
-			return adaptor;
-		}
 	@Override public String[] getTokenNames() { return whileParser.tokenNames; }
 	@Override public String getGrammarFileName() { return "C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g"; }
 
@@ -171,32 +128,21 @@ public class whileParser extends DebugParser {
 
 		Object EOF3_tree=null;
 
-		try { dbg.enterRule(getGrammarFileName(), "program");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(9, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:10:5: ( function ( ( program )? | EOF !) )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:10:7: function ( ( program )? | EOF !)
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			dbg.location(10,7);
 			pushFollow(FOLLOW_function_in_program100);
 			function1=function();
 			state._fsp--;
 
 			adaptor.addChild(root_0, function1.getTree());
-			dbg.location(10,16);
+
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:10:16: ( ( program )? | EOF !)
 			int alt2=2;
-			try { dbg.enterSubRule(2);
-			try { dbg.enterDecision(2, decisionCanBacktrack[2]);
-
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0==49) ) {
 				alt2=1;
@@ -208,37 +154,23 @@ public class whileParser extends DebugParser {
 			else {
 				NoViableAltException nvae =
 					new NoViableAltException("", 2, 0, input);
-				dbg.recognitionException(nvae);
 				throw nvae;
 			}
 
-			} finally {dbg.exitDecision(2);}
-
 			switch (alt2) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:10:17: ( program )?
 					{
-					dbg.location(10,17);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:10:17: ( program )?
 					int alt1=2;
-					try { dbg.enterSubRule(1);
-					try { dbg.enterDecision(1, decisionCanBacktrack[1]);
-
 					int LA1_0 = input.LA(1);
 					if ( (LA1_0==49) ) {
 						alt1=1;
 					}
-					} finally {dbg.exitDecision(1);}
-
 					switch (alt1) {
 						case 1 :
-							dbg.enterAlt(1);
-
 							// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:10:17: program
 							{
-							dbg.location(10,17);
 							pushFollow(FOLLOW_program_in_program103);
 							program2=program();
 							state._fsp--;
@@ -249,22 +181,17 @@ public class whileParser extends DebugParser {
 							break;
 
 					}
-					} finally {dbg.exitSubRule(1);}
 
 					}
 					break;
 				case 2 :
-					dbg.enterAlt(2);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:10:28: EOF !
 					{
-					dbg.location(10,31);
 					EOF3=(Token)match(input,EOF,FOLLOW_EOF_in_program108); 
 					}
 					break;
 
 			}
-			} finally {dbg.exitSubRule(2);}
 
 			}
 
@@ -282,15 +209,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(11, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "program");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "program"
@@ -324,27 +242,19 @@ public class whileParser extends DebugParser {
 		RewriteRuleTokenStream stream_39=new RewriteRuleTokenStream(adaptor,"token 39");
 		RewriteRuleSubtreeStream stream_definition=new RewriteRuleSubtreeStream(adaptor,"rule definition");
 
-		try { dbg.enterRule(getGrammarFileName(), "function");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(13, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:14:5: ( 'function' SYMBOL ':' definition -> ^( FUNCTION ^( FUNC_NAME SYMBOL ) definition ) )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:14:7: 'function' SYMBOL ':' definition
 			{
-			dbg.location(14,7);
 			string_literal4=(Token)match(input,49,FOLLOW_49_in_function127);  
 			stream_49.add(string_literal4);
-			dbg.location(14,18);
+
 			SYMBOL5=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_function129);  
 			stream_SYMBOL.add(SYMBOL5);
-			dbg.location(14,25);
+
 			char_literal6=(Token)match(input,39,FOLLOW_39_in_function131);  
 			stream_39.add(char_literal6);
-			dbg.location(14,29);
+
 			pushFollow(FOLLOW_definition_in_function133);
 			definition7=definition();
 			state._fsp--;
@@ -363,23 +273,18 @@ public class whileParser extends DebugParser {
 			root_0 = (Object)adaptor.nil();
 			// 14:39: -> ^( FUNCTION ^( FUNC_NAME SYMBOL ) definition )
 			{
-				dbg.location(14,41);
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:14:41: ^( FUNCTION ^( FUNC_NAME SYMBOL ) definition )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(14,43);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNCTION, "FUNCTION"), root_1);
-				dbg.location(14,52);
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:14:52: ^( FUNC_NAME SYMBOL )
 				{
 				Object root_2 = (Object)adaptor.nil();
-				dbg.location(14,54);
 				root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNC_NAME, "FUNC_NAME"), root_2);
-				dbg.location(14,64);
 				adaptor.addChild(root_2, stream_SYMBOL.nextNode());
 				adaptor.addChild(root_1, root_2);
 				}
-				dbg.location(14,72);
+
 				adaptor.addChild(root_1, stream_definition.nextTree());
 				adaptor.addChild(root_0, root_1);
 				}
@@ -405,15 +310,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(15, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "function");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "function"
@@ -453,47 +349,39 @@ public class whileParser extends DebugParser {
 		RewriteRuleSubtreeStream stream_input=new RewriteRuleSubtreeStream(adaptor,"rule input");
 		RewriteRuleSubtreeStream stream_commands=new RewriteRuleSubtreeStream(adaptor,"rule commands");
 
-		try { dbg.enterRule(getGrammarFileName(), "definition");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(17, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:18:5: ( 'read' input '%' commands '%' 'write' output -> ^( DEFINITION input ^( COMMANDS commands ) ^( OUTPUT output ) ) )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:18:7: 'read' input '%' commands '%' 'write' output
 			{
-			dbg.location(18,7);
 			string_literal8=(Token)match(input,57,FOLLOW_57_in_definition162);  
 			stream_57.add(string_literal8);
-			dbg.location(18,14);
+
 			pushFollow(FOLLOW_input_in_definition164);
 			input9=input();
 			state._fsp--;
 
-			stream_input.add(input9.getTree());dbg.location(18,20);
+			stream_input.add(input9.getTree());
 			char_literal10=(Token)match(input,35,FOLLOW_35_in_definition166);  
 			stream_35.add(char_literal10);
-			dbg.location(18,24);
+
 			pushFollow(FOLLOW_commands_in_definition168);
 			commands11=commands();
 			state._fsp--;
 
-			stream_commands.add(commands11.getTree());dbg.location(18,33);
+			stream_commands.add(commands11.getTree());
 			char_literal12=(Token)match(input,35,FOLLOW_35_in_definition170);  
 			stream_35.add(char_literal12);
-			dbg.location(18,37);
+
 			string_literal13=(Token)match(input,61,FOLLOW_61_in_definition172);  
 			stream_61.add(string_literal13);
-			dbg.location(18,45);
+
 			pushFollow(FOLLOW_output_in_definition174);
 			output14=output();
 			state._fsp--;
 
 			stream_output.add(output14.getTree());
 			// AST REWRITE
-			// elements: commands, output, input
+			// elements: input, commands, output
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -505,30 +393,23 @@ public class whileParser extends DebugParser {
 			root_0 = (Object)adaptor.nil();
 			// 18:51: -> ^( DEFINITION input ^( COMMANDS commands ) ^( OUTPUT output ) )
 			{
-				dbg.location(18,53);
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:18:53: ^( DEFINITION input ^( COMMANDS commands ) ^( OUTPUT output ) )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(18,55);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(DEFINITION, "DEFINITION"), root_1);
-				dbg.location(18,66);
-				adaptor.addChild(root_1, stream_input.nextTree());dbg.location(18,72);
+				adaptor.addChild(root_1, stream_input.nextTree());
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:18:72: ^( COMMANDS commands )
 				{
 				Object root_2 = (Object)adaptor.nil();
-				dbg.location(18,74);
 				root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COMMANDS, "COMMANDS"), root_2);
-				dbg.location(18,83);
 				adaptor.addChild(root_2, stream_commands.nextTree());
 				adaptor.addChild(root_1, root_2);
 				}
-				dbg.location(18,93);
+
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:18:93: ^( OUTPUT output )
 				{
 				Object root_2 = (Object)adaptor.nil();
-				dbg.location(18,95);
 				root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(OUTPUT, "OUTPUT"), root_2);
-				dbg.location(18,102);
 				adaptor.addChild(root_2, stream_output.nextTree());
 				adaptor.addChild(root_1, root_2);
 				}
@@ -557,15 +438,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(19, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "definition");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "definition"
@@ -590,36 +462,20 @@ public class whileParser extends DebugParser {
 
 		RewriteRuleSubtreeStream stream_inputsub=new RewriteRuleSubtreeStream(adaptor,"rule inputsub");
 
-		try { dbg.enterRule(getGrammarFileName(), "input");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(21, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:22:5: ( ( inputsub )? -> ^( INPUT ( inputsub )? ) )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:22:7: ( inputsub )?
 			{
-			dbg.location(22,7);
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:22:7: ( inputsub )?
 			int alt3=2;
-			try { dbg.enterSubRule(3);
-			try { dbg.enterDecision(3, decisionCanBacktrack[3]);
-
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0==VARIABLE) ) {
 				alt3=1;
 			}
-			} finally {dbg.exitDecision(3);}
-
 			switch (alt3) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:22:7: inputsub
 					{
-					dbg.location(22,7);
 					pushFollow(FOLLOW_inputsub_in_input209);
 					inputsub15=inputsub();
 					state._fsp--;
@@ -629,7 +485,6 @@ public class whileParser extends DebugParser {
 					break;
 
 			}
-			} finally {dbg.exitSubRule(3);}
 
 			// AST REWRITE
 			// elements: inputsub
@@ -644,16 +499,12 @@ public class whileParser extends DebugParser {
 			root_0 = (Object)adaptor.nil();
 			// 22:16: -> ^( INPUT ( inputsub )? )
 			{
-				dbg.location(22,18);
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:22:18: ^( INPUT ( inputsub )? )
 				{
 				Object root_1 = (Object)adaptor.nil();
-				dbg.location(22,20);
 				root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(INPUT, "INPUT"), root_1);
-				dbg.location(22,26);
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:22:26: ( inputsub )?
 				if ( stream_inputsub.hasNext() ) {
-					dbg.location(22,26);
 					adaptor.addChild(root_1, stream_inputsub.nextTree());
 				}
 				stream_inputsub.reset();
@@ -682,15 +533,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(23, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "input");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "input"
@@ -721,42 +563,26 @@ public class whileParser extends DebugParser {
 		RewriteRuleTokenStream stream_VARIABLE=new RewriteRuleTokenStream(adaptor,"token VARIABLE");
 		RewriteRuleSubtreeStream stream_inputsub=new RewriteRuleSubtreeStream(adaptor,"rule inputsub");
 
-		try { dbg.enterRule(getGrammarFileName(), "inputsub");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(25, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:26:5: ( VARIABLE ( ',' inputsub )? -> VARIABLE ( inputsub )? )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:26:7: VARIABLE ( ',' inputsub )?
 			{
-			dbg.location(26,7);
 			VARIABLE16=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_inputsub234);  
 			stream_VARIABLE.add(VARIABLE16);
-			dbg.location(26,16);
+
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:26:16: ( ',' inputsub )?
 			int alt4=2;
-			try { dbg.enterSubRule(4);
-			try { dbg.enterDecision(4, decisionCanBacktrack[4]);
-
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0==38) ) {
 				alt4=1;
 			}
-			} finally {dbg.exitDecision(4);}
-
 			switch (alt4) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:26:17: ',' inputsub
 					{
-					dbg.location(26,17);
 					char_literal17=(Token)match(input,38,FOLLOW_38_in_inputsub237);  
 					stream_38.add(char_literal17);
-					dbg.location(26,21);
+
 					pushFollow(FOLLOW_inputsub_in_inputsub239);
 					inputsub18=inputsub();
 					state._fsp--;
@@ -766,10 +592,9 @@ public class whileParser extends DebugParser {
 					break;
 
 			}
-			} finally {dbg.exitSubRule(4);}
 
 			// AST REWRITE
-			// elements: inputsub, VARIABLE
+			// elements: VARIABLE, inputsub
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -781,11 +606,9 @@ public class whileParser extends DebugParser {
 			root_0 = (Object)adaptor.nil();
 			// 26:31: -> VARIABLE ( inputsub )?
 			{
-				dbg.location(26,33);
-				adaptor.addChild(root_0, stream_VARIABLE.nextNode());dbg.location(26,42);
+				adaptor.addChild(root_0, stream_VARIABLE.nextNode());
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:26:42: ( inputsub )?
 				if ( stream_inputsub.hasNext() ) {
-					dbg.location(26,42);
 					adaptor.addChild(root_0, stream_inputsub.nextTree());
 				}
 				stream_inputsub.reset();
@@ -811,15 +634,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(27, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "inputsub");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "inputsub"
@@ -850,42 +664,26 @@ public class whileParser extends DebugParser {
 		RewriteRuleTokenStream stream_VARIABLE=new RewriteRuleTokenStream(adaptor,"token VARIABLE");
 		RewriteRuleSubtreeStream stream_output=new RewriteRuleSubtreeStream(adaptor,"rule output");
 
-		try { dbg.enterRule(getGrammarFileName(), "output");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(29, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:30:5: ( VARIABLE ( ',' output )? -> VARIABLE ( output )? )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:30:7: VARIABLE ( ',' output )?
 			{
-			dbg.location(30,7);
 			VARIABLE19=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_output263);  
 			stream_VARIABLE.add(VARIABLE19);
-			dbg.location(30,16);
+
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:30:16: ( ',' output )?
 			int alt5=2;
-			try { dbg.enterSubRule(5);
-			try { dbg.enterDecision(5, decisionCanBacktrack[5]);
-
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0==38) ) {
 				alt5=1;
 			}
-			} finally {dbg.exitDecision(5);}
-
 			switch (alt5) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:30:17: ',' output
 					{
-					dbg.location(30,17);
 					char_literal20=(Token)match(input,38,FOLLOW_38_in_output266);  
 					stream_38.add(char_literal20);
-					dbg.location(30,21);
+
 					pushFollow(FOLLOW_output_in_output268);
 					output21=output();
 					state._fsp--;
@@ -895,7 +693,6 @@ public class whileParser extends DebugParser {
 					break;
 
 			}
-			} finally {dbg.exitSubRule(5);}
 
 			// AST REWRITE
 			// elements: VARIABLE, output
@@ -910,11 +707,9 @@ public class whileParser extends DebugParser {
 			root_0 = (Object)adaptor.nil();
 			// 30:29: -> VARIABLE ( output )?
 			{
-				dbg.location(30,31);
-				adaptor.addChild(root_0, stream_VARIABLE.nextNode());dbg.location(30,40);
+				adaptor.addChild(root_0, stream_VARIABLE.nextNode());
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:30:40: ( output )?
 				if ( stream_output.hasNext() ) {
-					dbg.location(30,40);
 					adaptor.addChild(root_0, stream_output.nextTree());
 				}
 				stream_output.reset();
@@ -940,15 +735,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(31, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "output");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "output"
@@ -978,44 +764,28 @@ public class whileParser extends DebugParser {
 		RewriteRuleSubtreeStream stream_command=new RewriteRuleSubtreeStream(adaptor,"rule command");
 		RewriteRuleSubtreeStream stream_commands=new RewriteRuleSubtreeStream(adaptor,"rule commands");
 
-		try { dbg.enterRule(getGrammarFileName(), "commands");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(33, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:34:5: ( command ( ';' commands )? -> command ( commands )? )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:34:7: command ( ';' commands )?
 			{
-			dbg.location(34,7);
 			pushFollow(FOLLOW_command_in_commands292);
 			command22=command();
 			state._fsp--;
 
-			stream_command.add(command22.getTree());dbg.location(34,15);
+			stream_command.add(command22.getTree());
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:34:15: ( ';' commands )?
 			int alt6=2;
-			try { dbg.enterSubRule(6);
-			try { dbg.enterDecision(6, decisionCanBacktrack[6]);
-
 			int LA6_0 = input.LA(1);
 			if ( (LA6_0==41) ) {
 				alt6=1;
 			}
-			} finally {dbg.exitDecision(6);}
-
 			switch (alt6) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:34:16: ';' commands
 					{
-					dbg.location(34,16);
 					char_literal23=(Token)match(input,41,FOLLOW_41_in_commands295);  
 					stream_41.add(char_literal23);
-					dbg.location(34,20);
+
 					pushFollow(FOLLOW_commands_in_commands297);
 					commands24=commands();
 					state._fsp--;
@@ -1025,7 +795,6 @@ public class whileParser extends DebugParser {
 					break;
 
 			}
-			} finally {dbg.exitSubRule(6);}
 
 			// AST REWRITE
 			// elements: commands, command
@@ -1040,11 +809,9 @@ public class whileParser extends DebugParser {
 			root_0 = (Object)adaptor.nil();
 			// 34:30: -> command ( commands )?
 			{
-				dbg.location(34,32);
-				adaptor.addChild(root_0, stream_command.nextTree());dbg.location(34,40);
+				adaptor.addChild(root_0, stream_command.nextTree());
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:34:40: ( commands )?
 				if ( stream_commands.hasNext() ) {
-					dbg.location(34,40);
 					adaptor.addChild(root_0, stream_commands.nextTree());
 				}
 				stream_commands.reset();
@@ -1070,15 +837,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(35, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "commands");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "commands"
@@ -1109,42 +867,26 @@ public class whileParser extends DebugParser {
 		RewriteRuleTokenStream stream_VARIABLE=new RewriteRuleTokenStream(adaptor,"token VARIABLE");
 		RewriteRuleSubtreeStream stream_vars=new RewriteRuleSubtreeStream(adaptor,"rule vars");
 
-		try { dbg.enterRule(getGrammarFileName(), "vars");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(37, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:38:5: ( VARIABLE ( ',' vars )? -> VARIABLE ( vars )? )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:38:7: VARIABLE ( ',' vars )?
 			{
-			dbg.location(38,7);
 			VARIABLE25=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_vars321);  
 			stream_VARIABLE.add(VARIABLE25);
-			dbg.location(38,16);
+
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:38:16: ( ',' vars )?
 			int alt7=2;
-			try { dbg.enterSubRule(7);
-			try { dbg.enterDecision(7, decisionCanBacktrack[7]);
-
 			int LA7_0 = input.LA(1);
 			if ( (LA7_0==38) ) {
 				alt7=1;
 			}
-			} finally {dbg.exitDecision(7);}
-
 			switch (alt7) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:38:17: ',' vars
 					{
-					dbg.location(38,17);
 					char_literal26=(Token)match(input,38,FOLLOW_38_in_vars324);  
 					stream_38.add(char_literal26);
-					dbg.location(38,21);
+
 					pushFollow(FOLLOW_vars_in_vars326);
 					vars27=vars();
 					state._fsp--;
@@ -1154,7 +896,6 @@ public class whileParser extends DebugParser {
 					break;
 
 			}
-			} finally {dbg.exitSubRule(7);}
 
 			// AST REWRITE
 			// elements: VARIABLE, vars
@@ -1169,11 +910,9 @@ public class whileParser extends DebugParser {
 			root_0 = (Object)adaptor.nil();
 			// 38:27: -> VARIABLE ( vars )?
 			{
-				dbg.location(38,29);
-				adaptor.addChild(root_0, stream_VARIABLE.nextNode());dbg.location(38,38);
+				adaptor.addChild(root_0, stream_VARIABLE.nextNode());
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:38:38: ( vars )?
 				if ( stream_vars.hasNext() ) {
-					dbg.location(38,38);
 					adaptor.addChild(root_0, stream_vars.nextTree());
 				}
 				stream_vars.reset();
@@ -1199,15 +938,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(39, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "vars");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "vars"
@@ -1237,44 +967,28 @@ public class whileParser extends DebugParser {
 		RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
 		RewriteRuleSubtreeStream stream_exprs=new RewriteRuleSubtreeStream(adaptor,"rule exprs");
 
-		try { dbg.enterRule(getGrammarFileName(), "exprs");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(41, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:42:5: ( expression ( ',' exprs )? -> expression ( exprs )? )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:42:7: expression ( ',' exprs )?
 			{
-			dbg.location(42,7);
 			pushFollow(FOLLOW_expression_in_exprs350);
 			expression28=expression();
 			state._fsp--;
 
-			stream_expression.add(expression28.getTree());dbg.location(42,18);
+			stream_expression.add(expression28.getTree());
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:42:18: ( ',' exprs )?
 			int alt8=2;
-			try { dbg.enterSubRule(8);
-			try { dbg.enterDecision(8, decisionCanBacktrack[8]);
-
 			int LA8_0 = input.LA(1);
 			if ( (LA8_0==38) ) {
 				alt8=1;
 			}
-			} finally {dbg.exitDecision(8);}
-
 			switch (alt8) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:42:19: ',' exprs
 					{
-					dbg.location(42,19);
 					char_literal29=(Token)match(input,38,FOLLOW_38_in_exprs353);  
 					stream_38.add(char_literal29);
-					dbg.location(42,23);
+
 					pushFollow(FOLLOW_exprs_in_exprs355);
 					exprs30=exprs();
 					state._fsp--;
@@ -1284,7 +998,6 @@ public class whileParser extends DebugParser {
 					break;
 
 			}
-			} finally {dbg.exitSubRule(8);}
 
 			// AST REWRITE
 			// elements: expression, exprs
@@ -1299,11 +1012,9 @@ public class whileParser extends DebugParser {
 			root_0 = (Object)adaptor.nil();
 			// 42:30: -> expression ( exprs )?
 			{
-				dbg.location(42,33);
-				adaptor.addChild(root_0, stream_expression.nextTree());dbg.location(42,44);
+				adaptor.addChild(root_0, stream_expression.nextTree());
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:42:44: ( exprs )?
 				if ( stream_exprs.hasNext() ) {
-					dbg.location(42,44);
 					adaptor.addChild(root_0, stream_exprs.nextTree());
 				}
 				stream_exprs.reset();
@@ -1329,15 +1040,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(43, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "exprs");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "exprs"
@@ -1422,16 +1124,9 @@ public class whileParser extends DebugParser {
 		RewriteRuleSubtreeStream stream_vars=new RewriteRuleSubtreeStream(adaptor,"rule vars");
 		RewriteRuleSubtreeStream stream_commands=new RewriteRuleSubtreeStream(adaptor,"rule commands");
 
-		try { dbg.enterRule(getGrammarFileName(), "command");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(45, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:46:5: ( 'nop' -> NOP | ( vars ':=' exprs ) -> ^( ASSIGN ^( VARIABLES vars ) ^( EXPRESSIONS exprs ) ) | ( 'if' expression 'then' c1= commands ( 'else' c2= commands -> ^( IF ^( COND expression ) ^( THEN $c1) ^( ELSE $c2) ) | -> ^( IF ^( COND expression ) ^( THEN $c1) ) ) 'fi' ) | ( 'while' expression 'do' commands 'od' ) -> ^( WHILE ^( COND expression ) ^( BODY commands ) ) | ( 'for' expression 'do' commands 'od' ) -> ^( FOR ^( COND expression ) ^( BODY commands ) ) | ( 'foreach' VARIABLE 'in' expression 'do' commands 'od' ) -> ^( FOREACH VARIABLE ^( COND expression ) ^( BODY commands ) ) )
 			int alt10=6;
-			try { dbg.enterDecision(10, decisionCanBacktrack[10]);
-
 			switch ( input.LA(1) ) {
 			case 55:
 				{
@@ -1466,18 +1161,12 @@ public class whileParser extends DebugParser {
 			default:
 				NoViableAltException nvae =
 					new NoViableAltException("", 10, 0, input);
-				dbg.recognitionException(nvae);
 				throw nvae;
 			}
-			} finally {dbg.exitDecision(10);}
-
 			switch (alt10) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:46:7: 'nop'
 					{
-					dbg.location(46,7);
 					string_literal31=(Token)match(input,55,FOLLOW_55_in_command380);  
 					stream_55.add(string_literal31);
 
@@ -1494,7 +1183,6 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 46:12: -> NOP
 					{
-						dbg.location(46,15);
 						adaptor.addChild(root_0, (Object)adaptor.create(NOP, "NOP"));
 					}
 
@@ -1504,25 +1192,19 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 2 :
-					dbg.enterAlt(2);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:47:7: ( vars ':=' exprs )
 					{
-					dbg.location(47,7);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:47:7: ( vars ':=' exprs )
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:47:8: vars ':=' exprs
 					{
-					dbg.location(47,8);
 					pushFollow(FOLLOW_vars_in_command392);
 					vars32=vars();
 					state._fsp--;
 
-					stream_vars.add(vars32.getTree());dbg.location(47,13);
+					stream_vars.add(vars32.getTree());
 					string_literal33=(Token)match(input,40,FOLLOW_40_in_command394);  
 					stream_40.add(string_literal33);
-					dbg.location(47,18);
+
 					pushFollow(FOLLOW_exprs_in_command396);
 					exprs34=exprs();
 					state._fsp--;
@@ -1543,29 +1225,22 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 47:24: -> ^( ASSIGN ^( VARIABLES vars ) ^( EXPRESSIONS exprs ) )
 					{
-						dbg.location(47,27);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:47:27: ^( ASSIGN ^( VARIABLES vars ) ^( EXPRESSIONS exprs ) )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(47,29);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ASSIGN, "ASSIGN"), root_1);
-						dbg.location(47,36);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:47:36: ^( VARIABLES vars )
 						{
 						Object root_2 = (Object)adaptor.nil();
-						dbg.location(47,38);
 						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(VARIABLES, "VARIABLES"), root_2);
-						dbg.location(47,48);
 						adaptor.addChild(root_2, stream_vars.nextTree());
 						adaptor.addChild(root_1, root_2);
 						}
-						dbg.location(47,54);
+
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:47:54: ^( EXPRESSIONS exprs )
 						{
 						Object root_2 = (Object)adaptor.nil();
-						dbg.location(47,56);
 						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(EXPRESSIONS, "EXPRESSIONS"), root_2);
-						dbg.location(47,68);
 						adaptor.addChild(root_2, stream_exprs.nextTree());
 						adaptor.addChild(root_1, root_2);
 						}
@@ -1581,38 +1256,29 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 3 :
-					dbg.enterAlt(3);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:48:7: ( 'if' expression 'then' c1= commands ( 'else' c2= commands -> ^( IF ^( COND expression ) ^( THEN $c1) ^( ELSE $c2) ) | -> ^( IF ^( COND expression ) ^( THEN $c1) ) ) 'fi' )
 					{
-					dbg.location(48,7);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:48:7: ( 'if' expression 'then' c1= commands ( 'else' c2= commands -> ^( IF ^( COND expression ) ^( THEN $c1) ^( ELSE $c2) ) | -> ^( IF ^( COND expression ) ^( THEN $c1) ) ) 'fi' )
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:48:8: 'if' expression 'then' c1= commands ( 'else' c2= commands -> ^( IF ^( COND expression ) ^( THEN $c1) ^( ELSE $c2) ) | -> ^( IF ^( COND expression ) ^( THEN $c1) ) ) 'fi'
 					{
-					dbg.location(48,8);
 					string_literal35=(Token)match(input,51,FOLLOW_51_in_command423);  
 					stream_51.add(string_literal35);
-					dbg.location(48,13);
+
 					pushFollow(FOLLOW_expression_in_command425);
 					expression36=expression();
 					state._fsp--;
 
-					stream_expression.add(expression36.getTree());dbg.location(48,24);
+					stream_expression.add(expression36.getTree());
 					string_literal37=(Token)match(input,58,FOLLOW_58_in_command427);  
 					stream_58.add(string_literal37);
-					dbg.location(48,33);
+
 					pushFollow(FOLLOW_commands_in_command431);
 					c1=commands();
 					state._fsp--;
 
-					stream_commands.add(c1.getTree());dbg.location(48,43);
+					stream_commands.add(c1.getTree());
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:48:43: ( 'else' c2= commands -> ^( IF ^( COND expression ) ^( THEN $c1) ^( ELSE $c2) ) | -> ^( IF ^( COND expression ) ^( THEN $c1) ) )
 					int alt9=2;
-					try { dbg.enterSubRule(9);
-					try { dbg.enterDecision(9, decisionCanBacktrack[9]);
-
 					int LA9_0 = input.LA(1);
 					if ( (LA9_0==45) ) {
 						alt9=1;
@@ -1624,29 +1290,23 @@ public class whileParser extends DebugParser {
 					else {
 						NoViableAltException nvae =
 							new NoViableAltException("", 9, 0, input);
-						dbg.recognitionException(nvae);
 						throw nvae;
 					}
 
-					} finally {dbg.exitDecision(9);}
-
 					switch (alt9) {
 						case 1 :
-							dbg.enterAlt(1);
-
 							// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:48:44: 'else' c2= commands
 							{
-							dbg.location(48,44);
 							string_literal38=(Token)match(input,45,FOLLOW_45_in_command434);  
 							stream_45.add(string_literal38);
-							dbg.location(48,53);
+
 							pushFollow(FOLLOW_commands_in_command438);
 							c2=commands();
 							state._fsp--;
 
 							stream_commands.add(c2.getTree());
 							// AST REWRITE
-							// elements: expression, c1, c2
+							// elements: c1, c2, expression
 							// token labels: 
 							// rule labels: c1, retval, c2
 							// token list labels: 
@@ -1660,39 +1320,30 @@ public class whileParser extends DebugParser {
 							root_0 = (Object)adaptor.nil();
 							// 48:64: -> ^( IF ^( COND expression ) ^( THEN $c1) ^( ELSE $c2) )
 							{
-								dbg.location(48,66);
 								// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:48:66: ^( IF ^( COND expression ) ^( THEN $c1) ^( ELSE $c2) )
 								{
 								Object root_1 = (Object)adaptor.nil();
-								dbg.location(48,68);
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(IF, "IF"), root_1);
-								dbg.location(48,71);
 								// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:48:71: ^( COND expression )
 								{
 								Object root_2 = (Object)adaptor.nil();
-								dbg.location(48,73);
 								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COND, "COND"), root_2);
-								dbg.location(48,78);
 								adaptor.addChild(root_2, stream_expression.nextTree());
 								adaptor.addChild(root_1, root_2);
 								}
-								dbg.location(48,90);
+
 								// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:48:90: ^( THEN $c1)
 								{
 								Object root_2 = (Object)adaptor.nil();
-								dbg.location(48,92);
 								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(THEN, "THEN"), root_2);
-								dbg.location(48,98);
 								adaptor.addChild(root_2, stream_c1.nextTree());
 								adaptor.addChild(root_1, root_2);
 								}
-								dbg.location(48,102);
+
 								// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:48:102: ^( ELSE $c2)
 								{
 								Object root_2 = (Object)adaptor.nil();
-								dbg.location(48,104);
 								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(ELSE, "ELSE"), root_2);
-								dbg.location(48,110);
 								adaptor.addChild(root_2, stream_c2.nextTree());
 								adaptor.addChild(root_1, root_2);
 								}
@@ -1708,8 +1359,6 @@ public class whileParser extends DebugParser {
 							}
 							break;
 						case 2 :
-							dbg.enterAlt(2);
-
 							// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:49:15: 
 							{
 							// AST REWRITE
@@ -1726,29 +1375,22 @@ public class whileParser extends DebugParser {
 							root_0 = (Object)adaptor.nil();
 							// 49:15: -> ^( IF ^( COND expression ) ^( THEN $c1) )
 							{
-								dbg.location(49,17);
 								// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:49:17: ^( IF ^( COND expression ) ^( THEN $c1) )
 								{
 								Object root_1 = (Object)adaptor.nil();
-								dbg.location(49,19);
 								root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(IF, "IF"), root_1);
-								dbg.location(49,22);
 								// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:49:22: ^( COND expression )
 								{
 								Object root_2 = (Object)adaptor.nil();
-								dbg.location(49,24);
 								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COND, "COND"), root_2);
-								dbg.location(49,29);
 								adaptor.addChild(root_2, stream_expression.nextTree());
 								adaptor.addChild(root_1, root_2);
 								}
-								dbg.location(49,41);
+
 								// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:49:41: ^( THEN $c1)
 								{
 								Object root_2 = (Object)adaptor.nil();
-								dbg.location(49,43);
 								root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(THEN, "THEN"), root_2);
-								dbg.location(49,49);
 								adaptor.addChild(root_2, stream_c1.nextTree());
 								adaptor.addChild(root_1, root_2);
 								}
@@ -1765,8 +1407,7 @@ public class whileParser extends DebugParser {
 							break;
 
 					}
-					} finally {dbg.exitSubRule(9);}
-					dbg.location(50,6);
+
 					string_literal39=(Token)match(input,46,FOLLOW_46_in_command505);  
 					stream_46.add(string_literal39);
 
@@ -1775,40 +1416,34 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 4 :
-					dbg.enterAlt(4);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:51:7: ( 'while' expression 'do' commands 'od' )
 					{
-					dbg.location(51,7);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:51:7: ( 'while' expression 'do' commands 'od' )
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:51:8: 'while' expression 'do' commands 'od'
 					{
-					dbg.location(51,8);
 					string_literal40=(Token)match(input,60,FOLLOW_60_in_command515);  
 					stream_60.add(string_literal40);
-					dbg.location(51,16);
+
 					pushFollow(FOLLOW_expression_in_command517);
 					expression41=expression();
 					state._fsp--;
 
-					stream_expression.add(expression41.getTree());dbg.location(51,27);
+					stream_expression.add(expression41.getTree());
 					string_literal42=(Token)match(input,44,FOLLOW_44_in_command519);  
 					stream_44.add(string_literal42);
-					dbg.location(51,32);
+
 					pushFollow(FOLLOW_commands_in_command521);
 					commands43=commands();
 					state._fsp--;
 
-					stream_commands.add(commands43.getTree());dbg.location(51,41);
+					stream_commands.add(commands43.getTree());
 					string_literal44=(Token)match(input,56,FOLLOW_56_in_command523);  
 					stream_56.add(string_literal44);
 
 					}
 
 					// AST REWRITE
-					// elements: expression, commands
+					// elements: commands, expression
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1820,29 +1455,22 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 51:46: -> ^( WHILE ^( COND expression ) ^( BODY commands ) )
 					{
-						dbg.location(51,49);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:51:49: ^( WHILE ^( COND expression ) ^( BODY commands ) )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(51,51);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(WHILE, "WHILE"), root_1);
-						dbg.location(51,57);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:51:57: ^( COND expression )
 						{
 						Object root_2 = (Object)adaptor.nil();
-						dbg.location(51,59);
 						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COND, "COND"), root_2);
-						dbg.location(51,64);
 						adaptor.addChild(root_2, stream_expression.nextTree());
 						adaptor.addChild(root_1, root_2);
 						}
-						dbg.location(51,76);
+
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:51:76: ^( BODY commands )
 						{
 						Object root_2 = (Object)adaptor.nil();
-						dbg.location(51,78);
 						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(BODY, "BODY"), root_2);
-						dbg.location(51,83);
 						adaptor.addChild(root_2, stream_commands.nextTree());
 						adaptor.addChild(root_1, root_2);
 						}
@@ -1858,33 +1486,27 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 5 :
-					dbg.enterAlt(5);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:52:7: ( 'for' expression 'do' commands 'od' )
 					{
-					dbg.location(52,7);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:52:7: ( 'for' expression 'do' commands 'od' )
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:52:8: 'for' expression 'do' commands 'od'
 					{
-					dbg.location(52,8);
 					string_literal45=(Token)match(input,47,FOLLOW_47_in_command550);  
 					stream_47.add(string_literal45);
-					dbg.location(52,14);
+
 					pushFollow(FOLLOW_expression_in_command552);
 					expression46=expression();
 					state._fsp--;
 
-					stream_expression.add(expression46.getTree());dbg.location(52,25);
+					stream_expression.add(expression46.getTree());
 					string_literal47=(Token)match(input,44,FOLLOW_44_in_command554);  
 					stream_44.add(string_literal47);
-					dbg.location(52,30);
+
 					pushFollow(FOLLOW_commands_in_command556);
 					commands48=commands();
 					state._fsp--;
 
-					stream_commands.add(commands48.getTree());dbg.location(52,39);
+					stream_commands.add(commands48.getTree());
 					string_literal49=(Token)match(input,56,FOLLOW_56_in_command558);  
 					stream_56.add(string_literal49);
 
@@ -1903,29 +1525,22 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 52:44: -> ^( FOR ^( COND expression ) ^( BODY commands ) )
 					{
-						dbg.location(52,47);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:52:47: ^( FOR ^( COND expression ) ^( BODY commands ) )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(52,49);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FOR, "FOR"), root_1);
-						dbg.location(52,53);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:52:53: ^( COND expression )
 						{
 						Object root_2 = (Object)adaptor.nil();
-						dbg.location(52,55);
 						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COND, "COND"), root_2);
-						dbg.location(52,60);
 						adaptor.addChild(root_2, stream_expression.nextTree());
 						adaptor.addChild(root_1, root_2);
 						}
-						dbg.location(52,72);
+
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:52:72: ^( BODY commands )
 						{
 						Object root_2 = (Object)adaptor.nil();
-						dbg.location(52,74);
 						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(BODY, "BODY"), root_2);
-						dbg.location(52,79);
 						adaptor.addChild(root_2, stream_commands.nextTree());
 						adaptor.addChild(root_1, root_2);
 						}
@@ -1941,46 +1556,40 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 6 :
-					dbg.enterAlt(6);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:53:7: ( 'foreach' VARIABLE 'in' expression 'do' commands 'od' )
 					{
-					dbg.location(53,7);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:53:7: ( 'foreach' VARIABLE 'in' expression 'do' commands 'od' )
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:53:8: 'foreach' VARIABLE 'in' expression 'do' commands 'od'
 					{
-					dbg.location(53,8);
 					string_literal50=(Token)match(input,48,FOLLOW_48_in_command585);  
 					stream_48.add(string_literal50);
-					dbg.location(53,18);
+
 					VARIABLE51=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_command587);  
 					stream_VARIABLE.add(VARIABLE51);
-					dbg.location(53,27);
+
 					string_literal52=(Token)match(input,52,FOLLOW_52_in_command589);  
 					stream_52.add(string_literal52);
-					dbg.location(53,32);
+
 					pushFollow(FOLLOW_expression_in_command591);
 					expression53=expression();
 					state._fsp--;
 
-					stream_expression.add(expression53.getTree());dbg.location(53,43);
+					stream_expression.add(expression53.getTree());
 					string_literal54=(Token)match(input,44,FOLLOW_44_in_command593);  
 					stream_44.add(string_literal54);
-					dbg.location(53,48);
+
 					pushFollow(FOLLOW_commands_in_command595);
 					commands55=commands();
 					state._fsp--;
 
-					stream_commands.add(commands55.getTree());dbg.location(53,57);
+					stream_commands.add(commands55.getTree());
 					string_literal56=(Token)match(input,56,FOLLOW_56_in_command597);  
 					stream_56.add(string_literal56);
 
 					}
 
 					// AST REWRITE
-					// elements: expression, VARIABLE, commands
+					// elements: commands, VARIABLE, expression
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1992,30 +1601,23 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 53:62: -> ^( FOREACH VARIABLE ^( COND expression ) ^( BODY commands ) )
 					{
-						dbg.location(53,65);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:53:65: ^( FOREACH VARIABLE ^( COND expression ) ^( BODY commands ) )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(53,67);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FOREACH, "FOREACH"), root_1);
-						dbg.location(53,75);
-						adaptor.addChild(root_1, stream_VARIABLE.nextNode());dbg.location(53,84);
+						adaptor.addChild(root_1, stream_VARIABLE.nextNode());
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:53:84: ^( COND expression )
 						{
 						Object root_2 = (Object)adaptor.nil();
-						dbg.location(53,86);
 						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(COND, "COND"), root_2);
-						dbg.location(53,91);
 						adaptor.addChild(root_2, stream_expression.nextTree());
 						adaptor.addChild(root_1, root_2);
 						}
-						dbg.location(53,103);
+
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:53:103: ^( BODY commands )
 						{
 						Object root_2 = (Object)adaptor.nil();
-						dbg.location(53,105);
 						root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(BODY, "BODY"), root_2);
-						dbg.location(53,110);
 						adaptor.addChild(root_2, stream_commands.nextTree());
 						adaptor.addChild(root_1, root_2);
 						}
@@ -2046,15 +1648,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(54, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "command");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "command"
@@ -2129,16 +1722,9 @@ public class whileParser extends DebugParser {
 		RewriteRuleSubtreeStream stream_lexpr=new RewriteRuleSubtreeStream(adaptor,"rule lexpr");
 		RewriteRuleSubtreeStream stream_exprbase=new RewriteRuleSubtreeStream(adaptor,"rule exprbase");
 
-		try { dbg.enterRule(getGrammarFileName(), "exprbase");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(56, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:57:5: ( 'nil' -> NIL | VARIABLE -> VARIABLE | SYMBOL -> SYMBOL | ( '(' 'cons' lexpr ')' ) -> ^( CONS ( lexpr )? ) | ( '(' 'list' lexpr ')' ) -> ^( LIST ( lexpr )? ) | ( '(' 'hd' exprbase ')' ) -> ^( HD exprbase ) | ( '(' 'tl' exprbase ')' ) -> ^( TL exprbase ) | ( '(' SYMBOL lexpr ')' ) -> ^( CALL SYMBOL ( lexpr )? ) )
 			int alt11=8;
-			try { dbg.enterDecision(11, decisionCanBacktrack[11]);
-
 			switch ( input.LA(1) ) {
 			case 54:
 				{
@@ -2189,7 +1775,6 @@ public class whileParser extends DebugParser {
 						input.consume();
 						NoViableAltException nvae =
 							new NoViableAltException("", 11, 4, input);
-						dbg.recognitionException(nvae);
 						throw nvae;
 					} finally {
 						input.rewind(nvaeMark);
@@ -2200,18 +1785,12 @@ public class whileParser extends DebugParser {
 			default:
 				NoViableAltException nvae =
 					new NoViableAltException("", 11, 0, input);
-				dbg.recognitionException(nvae);
 				throw nvae;
 			}
-			} finally {dbg.exitDecision(11);}
-
 			switch (alt11) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:57:7: 'nil'
 					{
-					dbg.location(57,7);
 					string_literal57=(Token)match(input,54,FOLLOW_54_in_exprbase634);  
 					stream_54.add(string_literal57);
 
@@ -2228,7 +1807,6 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 57:12: -> NIL
 					{
-						dbg.location(57,14);
 						adaptor.addChild(root_0, (Object)adaptor.create(NIL, "NIL"));
 					}
 
@@ -2238,11 +1816,8 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 2 :
-					dbg.enterAlt(2);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:58:7: VARIABLE
 					{
-					dbg.location(58,7);
 					VARIABLE58=(Token)match(input,VARIABLE,FOLLOW_VARIABLE_in_exprbase644);  
 					stream_VARIABLE.add(VARIABLE58);
 
@@ -2259,7 +1834,6 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 58:15: -> VARIABLE
 					{
-						dbg.location(58,17);
 						adaptor.addChild(root_0, stream_VARIABLE.nextNode());
 					}
 
@@ -2269,11 +1843,8 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 3 :
-					dbg.enterAlt(3);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:59:7: SYMBOL
 					{
-					dbg.location(59,7);
 					SYMBOL59=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_exprbase654);  
 					stream_SYMBOL.add(SYMBOL59);
 
@@ -2290,7 +1861,6 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 59:13: -> SYMBOL
 					{
-						dbg.location(59,15);
 						adaptor.addChild(root_0, stream_SYMBOL.nextNode());
 					}
 
@@ -2300,28 +1870,22 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 4 :
-					dbg.enterAlt(4);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:60:7: ( '(' 'cons' lexpr ')' )
 					{
-					dbg.location(60,7);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:60:7: ( '(' 'cons' lexpr ')' )
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:60:8: '(' 'cons' lexpr ')'
 					{
-					dbg.location(60,8);
 					char_literal60=(Token)match(input,36,FOLLOW_36_in_exprbase665);  
 					stream_36.add(char_literal60);
-					dbg.location(60,12);
+
 					string_literal61=(Token)match(input,43,FOLLOW_43_in_exprbase667);  
 					stream_43.add(string_literal61);
-					dbg.location(60,19);
+
 					pushFollow(FOLLOW_lexpr_in_exprbase669);
 					lexpr62=lexpr();
 					state._fsp--;
 
-					stream_lexpr.add(lexpr62.getTree());dbg.location(60,25);
+					stream_lexpr.add(lexpr62.getTree());
 					char_literal63=(Token)match(input,37,FOLLOW_37_in_exprbase671);  
 					stream_37.add(char_literal63);
 
@@ -2340,16 +1904,12 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 60:29: -> ^( CONS ( lexpr )? )
 					{
-						dbg.location(60,31);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:60:31: ^( CONS ( lexpr )? )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(60,33);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CONS, "CONS"), root_1);
-						dbg.location(60,38);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:60:38: ( lexpr )?
 						if ( stream_lexpr.hasNext() ) {
-							dbg.location(60,38);
 							adaptor.addChild(root_1, stream_lexpr.nextTree());
 						}
 						stream_lexpr.reset();
@@ -2365,28 +1925,22 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 5 :
-					dbg.enterAlt(5);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:61:7: ( '(' 'list' lexpr ')' )
 					{
-					dbg.location(61,7);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:61:7: ( '(' 'list' lexpr ')' )
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:61:8: '(' 'list' lexpr ')'
 					{
-					dbg.location(61,8);
 					char_literal64=(Token)match(input,36,FOLLOW_36_in_exprbase688);  
 					stream_36.add(char_literal64);
-					dbg.location(61,12);
+
 					string_literal65=(Token)match(input,53,FOLLOW_53_in_exprbase690);  
 					stream_53.add(string_literal65);
-					dbg.location(61,19);
+
 					pushFollow(FOLLOW_lexpr_in_exprbase692);
 					lexpr66=lexpr();
 					state._fsp--;
 
-					stream_lexpr.add(lexpr66.getTree());dbg.location(61,25);
+					stream_lexpr.add(lexpr66.getTree());
 					char_literal67=(Token)match(input,37,FOLLOW_37_in_exprbase694);  
 					stream_37.add(char_literal67);
 
@@ -2405,16 +1959,12 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 61:29: -> ^( LIST ( lexpr )? )
 					{
-						dbg.location(61,31);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:61:31: ^( LIST ( lexpr )? )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(61,33);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(LIST, "LIST"), root_1);
-						dbg.location(61,38);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:61:38: ( lexpr )?
 						if ( stream_lexpr.hasNext() ) {
-							dbg.location(61,38);
 							adaptor.addChild(root_1, stream_lexpr.nextTree());
 						}
 						stream_lexpr.reset();
@@ -2430,28 +1980,22 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 6 :
-					dbg.enterAlt(6);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:62:7: ( '(' 'hd' exprbase ')' )
 					{
-					dbg.location(62,7);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:62:7: ( '(' 'hd' exprbase ')' )
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:62:8: '(' 'hd' exprbase ')'
 					{
-					dbg.location(62,8);
 					char_literal68=(Token)match(input,36,FOLLOW_36_in_exprbase711);  
 					stream_36.add(char_literal68);
-					dbg.location(62,12);
+
 					string_literal69=(Token)match(input,50,FOLLOW_50_in_exprbase713);  
 					stream_50.add(string_literal69);
-					dbg.location(62,17);
+
 					pushFollow(FOLLOW_exprbase_in_exprbase715);
 					exprbase70=exprbase();
 					state._fsp--;
 
-					stream_exprbase.add(exprbase70.getTree());dbg.location(62,26);
+					stream_exprbase.add(exprbase70.getTree());
 					char_literal71=(Token)match(input,37,FOLLOW_37_in_exprbase717);  
 					stream_37.add(char_literal71);
 
@@ -2470,13 +2014,10 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 62:30: -> ^( HD exprbase )
 					{
-						dbg.location(62,32);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:62:32: ^( HD exprbase )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(62,34);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(HD, "HD"), root_1);
-						dbg.location(62,37);
 						adaptor.addChild(root_1, stream_exprbase.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -2489,28 +2030,22 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 7 :
-					dbg.enterAlt(7);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:63:7: ( '(' 'tl' exprbase ')' )
 					{
-					dbg.location(63,7);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:63:7: ( '(' 'tl' exprbase ')' )
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:63:8: '(' 'tl' exprbase ')'
 					{
-					dbg.location(63,8);
 					char_literal72=(Token)match(input,36,FOLLOW_36_in_exprbase733);  
 					stream_36.add(char_literal72);
-					dbg.location(63,12);
+
 					string_literal73=(Token)match(input,59,FOLLOW_59_in_exprbase735);  
 					stream_59.add(string_literal73);
-					dbg.location(63,17);
+
 					pushFollow(FOLLOW_exprbase_in_exprbase737);
 					exprbase74=exprbase();
 					state._fsp--;
 
-					stream_exprbase.add(exprbase74.getTree());dbg.location(63,26);
+					stream_exprbase.add(exprbase74.getTree());
 					char_literal75=(Token)match(input,37,FOLLOW_37_in_exprbase739);  
 					stream_37.add(char_literal75);
 
@@ -2529,13 +2064,10 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 63:30: -> ^( TL exprbase )
 					{
-						dbg.location(63,32);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:63:32: ^( TL exprbase )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(63,34);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(TL, "TL"), root_1);
-						dbg.location(63,37);
 						adaptor.addChild(root_1, stream_exprbase.nextTree());
 						adaptor.addChild(root_0, root_1);
 						}
@@ -2548,28 +2080,22 @@ public class whileParser extends DebugParser {
 					}
 					break;
 				case 8 :
-					dbg.enterAlt(8);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:64:7: ( '(' SYMBOL lexpr ')' )
 					{
-					dbg.location(64,7);
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:64:7: ( '(' SYMBOL lexpr ')' )
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:64:8: '(' SYMBOL lexpr ')'
 					{
-					dbg.location(64,8);
 					char_literal76=(Token)match(input,36,FOLLOW_36_in_exprbase755);  
 					stream_36.add(char_literal76);
-					dbg.location(64,12);
+
 					SYMBOL77=(Token)match(input,SYMBOL,FOLLOW_SYMBOL_in_exprbase757);  
 					stream_SYMBOL.add(SYMBOL77);
-					dbg.location(64,19);
+
 					pushFollow(FOLLOW_lexpr_in_exprbase759);
 					lexpr78=lexpr();
 					state._fsp--;
 
-					stream_lexpr.add(lexpr78.getTree());dbg.location(64,25);
+					stream_lexpr.add(lexpr78.getTree());
 					char_literal79=(Token)match(input,37,FOLLOW_37_in_exprbase761);  
 					stream_37.add(char_literal79);
 
@@ -2588,17 +2114,13 @@ public class whileParser extends DebugParser {
 					root_0 = (Object)adaptor.nil();
 					// 64:29: -> ^( CALL SYMBOL ( lexpr )? )
 					{
-						dbg.location(64,31);
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:64:31: ^( CALL SYMBOL ( lexpr )? )
 						{
 						Object root_1 = (Object)adaptor.nil();
-						dbg.location(64,33);
 						root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CALL, "CALL"), root_1);
-						dbg.location(64,38);
-						adaptor.addChild(root_1, stream_SYMBOL.nextNode());dbg.location(64,45);
+						adaptor.addChild(root_1, stream_SYMBOL.nextNode());
 						// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:64:45: ( lexpr )?
 						if ( stream_lexpr.hasNext() ) {
-							dbg.location(64,45);
 							adaptor.addChild(root_1, stream_lexpr.nextTree());
 						}
 						stream_lexpr.reset();
@@ -2629,15 +2151,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(65, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "exprbase");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "exprbase"
@@ -2666,44 +2179,28 @@ public class whileParser extends DebugParser {
 		RewriteRuleTokenStream stream_42=new RewriteRuleTokenStream(adaptor,"token 42");
 		RewriteRuleSubtreeStream stream_exprbase=new RewriteRuleSubtreeStream(adaptor,"rule exprbase");
 
-		try { dbg.enterRule(getGrammarFileName(), "expression");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(67, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:68:5: ( exprbase ( '=?' exprbase )? -> exprbase ( exprbase )? )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:68:7: exprbase ( '=?' exprbase )?
 			{
-			dbg.location(68,7);
 			pushFollow(FOLLOW_exprbase_in_expression788);
 			exprbase80=exprbase();
 			state._fsp--;
 
-			stream_exprbase.add(exprbase80.getTree());dbg.location(68,16);
+			stream_exprbase.add(exprbase80.getTree());
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:68:16: ( '=?' exprbase )?
 			int alt12=2;
-			try { dbg.enterSubRule(12);
-			try { dbg.enterDecision(12, decisionCanBacktrack[12]);
-
 			int LA12_0 = input.LA(1);
 			if ( (LA12_0==42) ) {
 				alt12=1;
 			}
-			} finally {dbg.exitDecision(12);}
-
 			switch (alt12) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:68:17: '=?' exprbase
 					{
-					dbg.location(68,17);
 					string_literal81=(Token)match(input,42,FOLLOW_42_in_expression791);  
 					stream_42.add(string_literal81);
-					dbg.location(68,22);
+
 					pushFollow(FOLLOW_exprbase_in_expression793);
 					exprbase82=exprbase();
 					state._fsp--;
@@ -2713,7 +2210,6 @@ public class whileParser extends DebugParser {
 					break;
 
 			}
-			} finally {dbg.exitSubRule(12);}
 
 			// AST REWRITE
 			// elements: exprbase, exprbase
@@ -2728,11 +2224,9 @@ public class whileParser extends DebugParser {
 			root_0 = (Object)adaptor.nil();
 			// 68:32: -> exprbase ( exprbase )?
 			{
-				dbg.location(68,34);
-				adaptor.addChild(root_0, stream_exprbase.nextTree());dbg.location(68,43);
+				adaptor.addChild(root_0, stream_exprbase.nextTree());
 				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:68:43: ( exprbase )?
 				if ( stream_exprbase.hasNext() ) {
-					dbg.location(68,43);
 					adaptor.addChild(root_0, stream_exprbase.nextTree());
 				}
 				stream_exprbase.reset();
@@ -2758,15 +2252,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(69, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "expression");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "expression"
@@ -2790,43 +2275,26 @@ public class whileParser extends DebugParser {
 		ParserRuleReturnScope exprbase83 =null;
 
 
-		try { dbg.enterRule(getGrammarFileName(), "lexpr");
-		if ( getRuleLevel()==0 ) {dbg.commence();}
-		incRuleLevel();
-		dbg.location(71, 0);
-
 		try {
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:72:5: ( ( exprbase )* )
-			dbg.enterAlt(1);
-
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:72:7: ( exprbase )*
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			dbg.location(72,7);
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:72:7: ( exprbase )*
-			try { dbg.enterSubRule(13);
-
 			loop13:
 			while (true) {
 				int alt13=2;
-				try { dbg.enterDecision(13, decisionCanBacktrack[13]);
-
 				int LA13_0 = input.LA(1);
 				if ( (LA13_0==SYMBOL||LA13_0==VARIABLE||LA13_0==36||LA13_0==54) ) {
 					alt13=1;
 				}
 
-				} finally {dbg.exitDecision(13);}
-
 				switch (alt13) {
 				case 1 :
-					dbg.enterAlt(1);
-
 					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\grammaire\\while.g:72:7: exprbase
 					{
-					dbg.location(72,7);
 					pushFollow(FOLLOW_exprbase_in_lexpr817);
 					exprbase83=exprbase();
 					state._fsp--;
@@ -2840,7 +2308,6 @@ public class whileParser extends DebugParser {
 					break loop13;
 				}
 			}
-			} finally {dbg.exitSubRule(13);}
 
 			}
 
@@ -2858,15 +2325,6 @@ public class whileParser extends DebugParser {
 		finally {
 			// do for sure before leaving
 		}
-		dbg.location(73, 4);
-
-		}
-		finally {
-			dbg.exitRule(getGrammarFileName(), "lexpr");
-			decRuleLevel();
-			if ( getRuleLevel()==0 ) {dbg.terminate();}
-		}
-
 		return retval;
 	}
 	// $ANTLR end "lexpr"
