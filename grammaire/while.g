@@ -2,9 +2,9 @@ grammar while;
 
 options{ output=AST; }
 
-tokens{ FUNCTION; FUNC_NAME; DEFINITION; INPUT; COMMANDS; OUTPUT; CALL;
-ASSIGN; BODY; IF; THEN; ELSE; WHILE; FOR; FOREACH;
-CONS; LIST; HD; TL; NIL; COND; NOP; VARIABLES; EXPRESSIONS;}
+tokens{ FUNCTION; FUNC_NAME; DEFINITION; INPUT; COMMANDS; OUTPUT;
+ASSIGN; VARIABLES; EXPRESSIONS; IF; THEN; ELSE; WHILE; FOR; FOREACH;
+COND; BODY; NOP; CALL; CONS; LIST; HD; TL; NIL; VAR; SYM; }
 
 program
     :	function (program? | EOF!)
@@ -55,8 +55,8 @@ command
 
 exprbase
     :	'nil'->NIL
-    |	VARIABLE->VARIABLE
-    |	SYMBOL->SYMBOL
+    |	VARIABLE-> ^(VAR VARIABLE)
+    |	SYMBOL-> ^(SYM SYMBOL)
     |	('(' 'cons' lexpr ')')->^(CONS lexpr?)
     |	('(' 'list' lexpr ')')->^(LIST lexpr?)
     |	('(' 'hd' exprbase ')')->^(HD exprbase)
