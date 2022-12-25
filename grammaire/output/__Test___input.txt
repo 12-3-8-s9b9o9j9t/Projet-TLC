@@ -1,6 +1,6 @@
 function true :
 read
 %
-   Res, Res2 := (cons nil nil), nil
+   A := nil
 %
-write Res, Res2
+write A

@@ -1,10 +1,7 @@
-// Addition of two numbers
-function add :
+// Multiplication
+function equals :
 read Op1, Op2
 %
- Result := Op1 ;
-while Op2 do
- Result := ( cons nil Result );Op2 := ( tl OP2 )
-od
+ Res := Op1 =? Op2
 %
-write Result 
+write Res

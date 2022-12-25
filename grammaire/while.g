@@ -3,8 +3,8 @@ grammar while;
 options{ output=AST; }
 
 tokens{ FUNCTION; FUNC_NAME; DEFINITION; INPUT; COMMANDS; OUTPUT;
-ASSIGN; VARIABLES; EXPRESSIONS; IF; THEN; ELSE; WHILE; FOR; FOREACH;
-COND; BODY; NOP; CALL; CONS; LIST; HD; TL; NIL; VAR; SYM; }
+ASSIGN; VARIABLES; EXPRESSIONS; EQU; IF; THEN; ELSE; WHILE; FOR; FOREACH;
+COND; ITER; BODY; NOP; CALL; CONS; LIST; HD; TL; NIL; VAR; SYM; }
 
 program
     :	function (program? | EOF!)
@@ -49,8 +49,8 @@ command
     								| ->^(IF ^(COND expression) ^(THEN $c1)))
     	'fi')
     |	('while' expression 'do' commands 'od')-> ^(WHILE ^(COND expression) ^(BODY commands))
-    |	('for' expression 'do' commands 'od')-> ^(FOR ^(COND expression) ^(BODY commands))
-    |	('foreach' VARIABLE 'in' expression 'do' commands 'od')-> ^(FOREACH VARIABLE ^(COND expression) ^(BODY commands))
+    |	('for' expression 'do' commands 'od')-> ^(FOR ^(ITER expression) ^(BODY commands))
+    |	('foreach' VARIABLE 'in' expression 'do' commands 'od')-> ^(FOREACH VARIABLE ^(ITER expression) ^(BODY commands))
     ;
 
 exprbase
@@ -65,7 +65,7 @@ exprbase
     ;
 
 expression
-    :	exprbase ('=?' exprbase)?->exprbase exprbase?
+    :	e1=exprbase ('=?' e2=exprbase -> ^(EQU $e1 $e2) | -> $e1)
     ;
 
 lexpr
