@@ -1,11 +1,15 @@
 package whilestd;
 
+import whilestd.output.inputLexer;
+import whilestd.output.inputParser;
+import org.antlr.runtime.*;
+
 public class Utils {
     
     private Utils() {
     }
 
-    public static BinTree Nil() {
+    public static BinTree nil() {
         return new Node();
     }
 
@@ -48,22 +52,37 @@ public class Utils {
     public static BinTree[] parse(String[] args) {
         BinTree[] trees = new BinTree[args.length];
         for (int i = 0; i < args.length; i++) {
+            ANTLRStringStream in = new ANTLRStringStream(args[i]);
+            inputLexer lexer = new inputLexer(in);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            inputParser parser = new inputParser(tokens);
             try {
-                int val = Integer.parseInt(args[i]);
-                trees[i] = toTree(val);
-            } catch (NumberFormatException e) {
-                
+                trees[i] = parser.parse();
+            }
+            catch (RecognitionException e) {
+                System.out.println("Input " + i + " is not valid");
+                return null;
             }
         }
         return trees;
     }
 
-    private static BinTree toTree(int val) {
-        BinTree t = Nil();
+    public static BinTree toTree(int val) {
+        BinTree t = nil();
         for (int j = 0; j < val; j++) {
-            t = cons(Nil(), t);
+            t = cons(nil(), t);
         }
         return t;
+    }
+
+    public static void main(String[] args) {
+        BinTree[] trees = parse(args);
+        if (trees == null) {
+            return;
+        }
+        for (BinTree t : trees) {
+            pp(t);
+        }
     }
 
 }

@@ -1,6 +1,6 @@
 package whilestd;
 
-import static whilestd.Utils.Nil;
+import static whilestd.Utils.nil;
 
 public class Node extends BinTree {
 
@@ -16,33 +16,33 @@ public class Node extends BinTree {
 
     @Override
     protected int toInt() {
-        return this.right != null ? 1 + this.right.toInt() : 0;
+        return this.isNil() ? 0 : 1 + this.right.toInt();
     }
 
     @Override
     protected boolean toBool() {
-        return this.right != null;
+        return !this.isNil();
     }
 
     @Override
     public String toString() {
-        return this.left.toString() + this.right.toString();
+        return this.isNil() ? "nil" : this.left.toString() + this.right.toString();
     }
 
     @Override
     protected BinTree hd() {
-        return this.left != null ? this.left.clone() : Nil();
+        return this.isNil() ? nil() : this.left.clone();
     }
 
     @Override
     protected BinTree tl() {
-        return this.right != null ? this.right.clone() : Nil();
+        return this.isNil() ? nil() : this.right.clone();
     }
 
 
     @Override
     public BinTree clone() {
-        return new Node(left.clone(), right.clone());
+        return this.isNil() ? nil() : new Node(this.left, this.right);
     }
 
 
@@ -50,14 +50,19 @@ public class Node extends BinTree {
     public boolean equals(Object other) {
         if (other instanceof Node) {
             Node otherNode = (Node) other;
-            return this.left.equals(otherNode.left) && this.right.equals(otherNode.right);
+            if (this.isNil()) {
+                return otherNode.isNil();
+            }
+            else {
+                return !otherNode.isNil() && this.left.equals(otherNode.left) && this.right.equals(otherNode.right);
+            }
         }
         return false;
     }
 
     @Override
     protected void prettyPrint() {
-        if ( this.left == null && this.right == null ) {
+        if (this.isNil()) {
             System.out.print("nil");
         } else if (this.left.toString().equals("int")) {
             System.out.print(this.right.toInt());
@@ -72,5 +77,9 @@ public class Node extends BinTree {
             this.right.prettyPrint();
             System.out.print(")");
         }
+    }
+
+    private boolean isNil() {
+        return this.left == null && this.right == null;
     }
 }

@@ -1,6 +1,6 @@
 package whilestd;
 
-import static whilestd.Utils.Nil;
+import static whilestd.Utils.nil;
 
 public class Leaf extends BinTree {
 
@@ -27,12 +27,12 @@ public class Leaf extends BinTree {
 
     @Override
     protected BinTree hd() {
-        return Nil();
+        return nil();
     }
 
     @Override
     protected BinTree tl() {
-        return Nil();
+        return nil();
     }
 
     @Override
