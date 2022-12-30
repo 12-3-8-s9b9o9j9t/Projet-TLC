@@ -1,7 +1,0 @@
-// Multiplication
-function equals :
-read Op1, Op2
-%
- Res := Op1 =? Op2
-%
-write Res
