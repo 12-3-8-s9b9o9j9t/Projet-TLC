@@ -1,0 +1,10 @@
+// Test Symbol
+// Symbol : Expression qui commence par une minuscule
+
+function testNop :
+read
+%
+	result := "test"
+%
+write result
+//Answer expected : `Result<EOF>`

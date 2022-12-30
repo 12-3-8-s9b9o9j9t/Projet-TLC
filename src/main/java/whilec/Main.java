@@ -37,7 +37,10 @@ public class Main {
         whileParser.program_return pReturn = parser.program();
         
         Tree ast = (Tree) pReturn.getTree();
-        System.out.println(ast.toStringTree());
+
+        Visitor v = new Visitor(ast);
+        v.analyse();
+
         Generateur3A g = new Generateur3A(ast);
         g.generate();
     }
