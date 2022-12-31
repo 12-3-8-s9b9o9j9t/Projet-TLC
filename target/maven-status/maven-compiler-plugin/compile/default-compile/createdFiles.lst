@@ -1,3 +1,4 @@
+whilestd/output/inputParser.class
 whilec/output/whileParser$command_return.class
 whilec/Visitor.class
 whilec/output/whileLexer.class
@@ -8,6 +9,7 @@ whilec/output/whileParser$input_return.class
 whilestd/Node.class
 whilec/Code3AToJava.class
 whilec/output/whileParser.class
+whilestd/output/inputLexer.class
 whilec/output/whileParser$vars_return.class
 whilec/Main.class
 whilec/output/whileParser$inputsub_return.class
