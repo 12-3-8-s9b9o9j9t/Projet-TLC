@@ -1,0 +1,2 @@
+/usr/bin/ar qc libLeaf.a CMakeFiles/Leaf.dir/src/Leaf.cpp.o
+/usr/bin/ranlib libLeaf.a
