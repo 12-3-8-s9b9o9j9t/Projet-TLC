@@ -55,10 +55,8 @@ BinTreePtr Parser::consParse(const std::string& input) {
 
 BinTreePtr Parser::consParseRec(const std::deque<std::string>& tokens) {
     BinTreePtr t = nullptr;
-    if (tokens.size() == 1) {
-        
-    }
-    else if ((tokens.size() >= 3) && (tokens.front() == "(" && tokens[1] == "cons" && tokens.back() == ")")) {
+    
+    if ((tokens.size() >= 3) && (tokens.front() == "(" && tokens[1] == "cons" && tokens.back() == ")")) {
         std::deque<BinTreePtr> list;
 
         auto it = tokens.begin() + 2;

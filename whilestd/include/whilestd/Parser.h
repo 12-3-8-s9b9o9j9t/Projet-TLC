@@ -10,6 +10,7 @@ namespace whilestd {
 
 class Parser {
 public:
+    Parser() = delete;
     
     static BinTreePtr parse(const std::string& input);
 

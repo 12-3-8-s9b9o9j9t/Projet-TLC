@@ -1,5 +1,5 @@
-#ifndef PARSer_TEST_H
-#define PARSer_TEST_H
+#ifndef TEST_PARSER_H
+#define TEST_PARSER_H
 
 #include <gtest/gtest.h>
 #include "whilestd/Parser.h"
