@@ -206,12 +206,16 @@ CMakeFiles/whilestd.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/backward/auto_ptr.h \
   /usr/include/c++/11/pstl/glue_memory_defs.h \
   /usr/include/c++/11/pstl/execution_defs.h \
-  ../include/BinTree.h \
-  ../include/Node.h \
-  ../include/BinTree.h
+  ../include/whilestd/BinTree.h \
+  ../include/whilestd/Parser.h \
+  /usr/include/c++/11/deque \
+  /usr/include/c++/11/bits/stl_deque.h \
+  /usr/include/c++/11/bits/deque.tcc
 
 
-../include/BinTree.h:
+/usr/include/c++/11/bits/stl_deque.h:
+
+../include/whilestd/BinTree.h:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
@@ -383,6 +387,8 @@ CMakeFiles/whilestd.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
 
+../include/whilestd/Parser.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
@@ -408,6 +414,8 @@ CMakeFiles/whilestd.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/pstl/execution_defs.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/c++/11/deque:
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
@@ -484,8 +492,6 @@ CMakeFiles/whilestd.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
-
-../include/Node.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
@@ -606,6 +612,8 @@ CMakeFiles/whilestd.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/bits/locale_classes.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
+
+/usr/include/c++/11/bits/deque.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
 

@@ -1,5 +1,5 @@
-#include "Leaf.h"
-#include "Node.h"
+#include "whilestd/Leaf.h"
+#include "whilestd/Node.h"
 #include <memory>
 #include <string>
 #include <iostream>
@@ -32,15 +32,15 @@ std::unique_ptr<BinTree> Leaf::clone() const {
     return std::make_unique<Leaf>(symbol);
 }
 
+std::ostream& Leaf::pp(std::ostream& os) const {
+    return os << symbol;
+}
+
 bool Leaf::equals(const std::unique_ptr<BinTree>& other) const {
     if (auto otherLeaf = dynamic_cast<Leaf*>(other.get())) {
         return symbol == otherLeaf->symbol;
     }
     return false;
-}
-
-std::ostream& Leaf::pp(std::ostream& os) const {
-    return os << symbol;
 }
 
 }

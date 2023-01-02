@@ -60,7 +60,7 @@
 //
 // </TechnicalDetails>
 
-#include "sample3-inl.h"
+#include "whilestd/sample3-inl.h"
 #include "gtest/gtest.h"
 namespace {
 // To use a test fixture, derive a class from testing::Test.

@@ -39,7 +39,7 @@
 //
 // Don't forget gtest.h, which declares the testing framework.
 
-#include "sample1.h"
+#include "whilestd/sample1.h"
 
 #include <limits.h>
 

@@ -1,6 +1,6 @@
 #include "testLeaf.h"
 #include "testNode.h"
-#include "testParsing.h"
+#include "testParser.h"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

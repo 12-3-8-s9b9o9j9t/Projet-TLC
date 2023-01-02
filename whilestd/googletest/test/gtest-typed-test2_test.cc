@@ -30,7 +30,7 @@
 #include <vector>
 
 #include "gtest/gtest.h"
-#include "test/gtest-typed-test_test.h"
+#include "whilestd/test/gtest-typed-test_test.h"
 
 // Tests that the same type-parameterized test case can be
 // instantiated in different translation units linked together.

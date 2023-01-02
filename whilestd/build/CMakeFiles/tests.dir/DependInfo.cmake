@@ -16,7 +16,7 @@ set(CMAKE_TARGET_LINKED_INFO_FILES
   "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/googletest/CMakeFiles/gtest.dir/DependInfo.cmake"
   "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Leaf.dir/DependInfo.cmake"
   "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Node.dir/DependInfo.cmake"
-  "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Parsing.dir/DependInfo.cmake"
+  "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Parser.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

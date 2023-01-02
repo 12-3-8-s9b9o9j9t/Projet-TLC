@@ -27,7 +27,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "test/gtest-typed-test_test.h"
+#include "whilestd/test/gtest-typed-test_test.h"
 
 #include <set>
 #include <type_traits>

@@ -65,7 +65,7 @@ CMAKE_BINARY_DIR = /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build
 # The main recursive "all" target.
 all: CMakeFiles/Leaf.dir/all
 all: CMakeFiles/Node.dir/all
-all: CMakeFiles/Parsing.dir/all
+all: CMakeFiles/Parser.dir/all
 all: CMakeFiles/whilestd.dir/all
 all: CMakeFiles/tests.dir/all
 all: googletest/all
@@ -78,7 +78,7 @@ preinstall: googletest/preinstall
 # The main recursive "clean" target.
 clean: CMakeFiles/Leaf.dir/clean
 clean: CMakeFiles/Node.dir/clean
-clean: CMakeFiles/Parsing.dir/clean
+clean: CMakeFiles/Parser.dir/clean
 clean: CMakeFiles/whilestd.dir/clean
 clean: CMakeFiles/tests.dir/clean
 clean: googletest/clean
@@ -154,38 +154,38 @@ CMakeFiles/Node.dir/clean:
 .PHONY : CMakeFiles/Node.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Parsing.dir
+# Target rules for target CMakeFiles/Parser.dir
 
 # All Build rule for target.
-CMakeFiles/Parsing.dir/all: CMakeFiles/Leaf.dir/all
-CMakeFiles/Parsing.dir/all: CMakeFiles/Node.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parsing.dir/build.make CMakeFiles/Parsing.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parsing.dir/build.make CMakeFiles/Parsing.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles --progress-num=5,6 "Built target Parsing"
-.PHONY : CMakeFiles/Parsing.dir/all
+CMakeFiles/Parser.dir/all: CMakeFiles/Leaf.dir/all
+CMakeFiles/Parser.dir/all: CMakeFiles/Node.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles --progress-num=5,6 "Built target Parser"
+.PHONY : CMakeFiles/Parser.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Parsing.dir/rule: cmake_check_build_system
+CMakeFiles/Parser.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles 6
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Parsing.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Parser.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles 0
-.PHONY : CMakeFiles/Parsing.dir/rule
+.PHONY : CMakeFiles/Parser.dir/rule
 
 # Convenience name for target.
-Parsing: CMakeFiles/Parsing.dir/rule
-.PHONY : Parsing
+Parser: CMakeFiles/Parser.dir/rule
+.PHONY : Parser
 
 # clean rule for target.
-CMakeFiles/Parsing.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parsing.dir/build.make CMakeFiles/Parsing.dir/clean
-.PHONY : CMakeFiles/Parsing.dir/clean
+CMakeFiles/Parser.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/clean
+.PHONY : CMakeFiles/Parser.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/whilestd.dir
 
 # All Build rule for target.
-CMakeFiles/whilestd.dir/all: CMakeFiles/Parsing.dir/all
 CMakeFiles/whilestd.dir/all: CMakeFiles/Leaf.dir/all
+CMakeFiles/whilestd.dir/all: CMakeFiles/Parser.dir/all
 CMakeFiles/whilestd.dir/all: CMakeFiles/Node.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/build
@@ -212,10 +212,10 @@ CMakeFiles/whilestd.dir/clean:
 # Target rules for target CMakeFiles/tests.dir
 
 # All Build rule for target.
-CMakeFiles/tests.dir/all: CMakeFiles/Parsing.dir/all
-CMakeFiles/tests.dir/all: CMakeFiles/Leaf.dir/all
-CMakeFiles/tests.dir/all: CMakeFiles/Node.dir/all
 CMakeFiles/tests.dir/all: googletest/CMakeFiles/gtest.dir/all
+CMakeFiles/tests.dir/all: CMakeFiles/Leaf.dir/all
+CMakeFiles/tests.dir/all: CMakeFiles/Parser.dir/all
+CMakeFiles/tests.dir/all: CMakeFiles/Node.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles --progress-num=11,12 "Built target tests"

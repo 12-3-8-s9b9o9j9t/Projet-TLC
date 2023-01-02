@@ -37,7 +37,7 @@
 // your tests organized.  You may also throw in additional tests as
 // needed.
 
-#include "sample2.h"
+#include "whilestd/sample2.h"
 
 #include "gtest/gtest.h"
 namespace {

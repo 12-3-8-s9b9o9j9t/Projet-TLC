@@ -2,8 +2,8 @@
 #define TEST_NODE_H
 
 #include <gtest/gtest.h>
-#include "Node.h"
-#include "Leaf.h"
+#include "whilestd/Node.h"
+#include "whilestd/Leaf.h"
 
 using namespace whilestd;
 
@@ -53,7 +53,7 @@ TEST(node, operator_string2) {
 TEST(node, equals_nil1) {
     auto nil1 = std::make_unique<Node>();
     auto nil2 = std::make_unique<Node>();
-    EXPECT_TRUE(nil1->equals(nil2->clone()));
+    EXPECT_TRUE(nil1->equals(std::move(nil2->clone())));
     EXPECT_FALSE(nil2 == nullptr);
 }
 
@@ -62,14 +62,14 @@ TEST(node, equals_nil2) {
     auto node = std::make_unique<Node>(
         std::make_unique<Node>(),
         std::make_unique<Node>());
-    EXPECT_FALSE(nil->equals(node->clone()));
+    EXPECT_FALSE(nil->equals(std::move(node->clone())));
     EXPECT_FALSE(node == nullptr);
 }
 
 TEST(node, equals_nil3) {
     auto nil = std::make_unique<Node>();
     auto leaf = std::make_unique<Leaf>("a");
-    EXPECT_FALSE(nil->equals(leaf->clone()));
+    EXPECT_FALSE(nil->equals(std::move(leaf->clone())));
     EXPECT_FALSE(leaf == nullptr);
 }
 
@@ -80,7 +80,7 @@ TEST(node, equals1) {
     auto node2 = std::make_unique<Node>(
         std::make_unique<Leaf>("a"),
         std::make_unique<Leaf>("b"));
-    EXPECT_TRUE(node1->equals(node2->clone()));
+    EXPECT_TRUE(node1->equals(std::move(node2->clone())));
     EXPECT_FALSE(node2 == nullptr);
 }
 
@@ -91,7 +91,7 @@ TEST(node, equals2) {
     auto node2 = std::make_unique<Node>(
         std::make_unique<Leaf>("b"),
         std::make_unique<Node>());
-    EXPECT_FALSE(node1->equals(node2->clone()));
+    EXPECT_FALSE(node1->equals(std::move(node2->clone())));
     EXPECT_FALSE(node2 == nullptr);
 }
 
@@ -131,6 +131,49 @@ TEST(node, clone) {
     EXPECT_TRUE(node->clone()->equals(std::make_unique<Node>(
         std::make_unique<Leaf>("a"),
         std::make_unique<Leaf>("b"))));
+}
+
+TEST(node, pp_nil) {
+    auto nil = std::make_unique<Node>();
+    std::stringstream ss;
+    nil->pp(ss);
+    EXPECT_EQ("nil", ss.str());
+}
+
+TEST(node, pp_int) {
+    auto node = std::make_unique<Node>(
+        std::make_unique<Leaf>("int"),
+        std::make_unique<Node>());
+    std::stringstream ss;
+    node->pp(ss);
+    EXPECT_EQ("0", ss.str());
+}
+
+TEST(node, pp_bool) {
+    auto node = std::make_unique<Node>(
+        std::make_unique<Leaf>("bool"),
+        std::make_unique<Node>());
+    std::stringstream ss;
+    node->pp(ss);
+    EXPECT_EQ("false", ss.str());
+}
+
+TEST(node, pp_string) {
+    auto node = std::make_unique<Node>(
+        std::make_unique<Leaf>("string"),
+        std::make_unique<Leaf>("abc"));
+    std::stringstream ss;
+    node->pp(ss);
+    EXPECT_EQ("abc", ss.str());
+}
+
+TEST(node, pp_default) {
+    auto node = std::make_unique<Node>(
+        std::make_unique<Node>(),
+        std::make_unique<Node>());
+    std::stringstream ss;
+    node->pp(ss);
+    EXPECT_EQ("(cons nil nil)", ss.str());
 }
 
 #endif

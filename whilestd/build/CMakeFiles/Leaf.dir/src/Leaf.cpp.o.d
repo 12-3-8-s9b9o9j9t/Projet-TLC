@@ -1,8 +1,8 @@
 CMakeFiles/Leaf.dir/src/Leaf.cpp.o: \
  /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Leaf.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/Leaf.h \
- /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/BinTree.h \
+ /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/whilestd/Leaf.h \
+ /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/whilestd/BinTree.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -168,4 +168,4 @@ CMakeFiles/Leaf.dir/src/Leaf.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/Node.h
+ /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/whilestd/Node.h

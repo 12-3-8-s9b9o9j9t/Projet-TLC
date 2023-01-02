@@ -95,7 +95,7 @@ tests: CMakeFiles/tests.dir/build.make
 tests: lib/libgtest.a
 tests: libLeaf.a
 tests: libNode.a
-tests: libParsing.a
+tests: libParser.a
 tests: libLeaf.a
 tests: libNode.a
 tests: CMakeFiles/tests.dir/link.txt

@@ -1,6 +1,6 @@
 /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Leaf.dir
 /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Node.dir
-/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Parsing.dir
+/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Parser.dir
 /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/whilestd.dir
 /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/tests.dir
 /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/edit_cache.dir

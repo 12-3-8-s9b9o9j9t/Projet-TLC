@@ -143,17 +143,17 @@ Node/fast:
 .PHONY : Node/fast
 
 #=============================================================================
-# Target rules for targets named Parsing
+# Target rules for targets named Parser
 
 # Build rule for target.
-Parsing: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Parsing
-.PHONY : Parsing
+Parser: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Parser
+.PHONY : Parser
 
 # fast build rule for target.
-Parsing/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parsing.dir/build.make CMakeFiles/Parsing.dir/build
-.PHONY : Parsing/fast
+Parser/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/build
+.PHONY : Parser/fast
 
 #=============================================================================
 # Target rules for targets named whilestd
@@ -255,29 +255,29 @@ src/Node.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Node.dir/build.make CMakeFiles/Node.dir/src/Node.cpp.s
 .PHONY : src/Node.cpp.s
 
-src/Parsing.o: src/Parsing.cpp.o
-.PHONY : src/Parsing.o
+src/Parser.o: src/Parser.cpp.o
+.PHONY : src/Parser.o
 
 # target to build an object file
-src/Parsing.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parsing.dir/build.make CMakeFiles/Parsing.dir/src/Parsing.cpp.o
-.PHONY : src/Parsing.cpp.o
+src/Parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/src/Parser.cpp.o
+.PHONY : src/Parser.cpp.o
 
-src/Parsing.i: src/Parsing.cpp.i
-.PHONY : src/Parsing.i
+src/Parser.i: src/Parser.cpp.i
+.PHONY : src/Parser.i
 
 # target to preprocess a source file
-src/Parsing.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parsing.dir/build.make CMakeFiles/Parsing.dir/src/Parsing.cpp.i
-.PHONY : src/Parsing.cpp.i
+src/Parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/src/Parser.cpp.i
+.PHONY : src/Parser.cpp.i
 
-src/Parsing.s: src/Parsing.cpp.s
-.PHONY : src/Parsing.s
+src/Parser.s: src/Parser.cpp.s
+.PHONY : src/Parser.s
 
 # target to generate assembly for a file
-src/Parsing.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parsing.dir/build.make CMakeFiles/Parsing.dir/src/Parsing.cpp.s
-.PHONY : src/Parsing.cpp.s
+src/Parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/src/Parser.cpp.s
+.PHONY : src/Parser.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -337,7 +337,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Leaf"
 	@echo "... Node"
-	@echo "... Parsing"
+	@echo "... Parser"
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... tests"
@@ -348,9 +348,9 @@ help:
 	@echo "... src/Node.o"
 	@echo "... src/Node.i"
 	@echo "... src/Node.s"
-	@echo "... src/Parsing.o"
-	@echo "... src/Parsing.i"
-	@echo "... src/Parsing.s"
+	@echo "... src/Parser.o"
+	@echo "... src/Parser.i"
+	@echo "... src/Parser.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

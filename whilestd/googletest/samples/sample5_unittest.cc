@@ -45,8 +45,8 @@
 #include <limits.h>
 #include <time.h>
 
-#include "sample1.h"
-#include "sample3-inl.h"
+#include "whilestd/sample1.h"
+#include "whilestd/sample3-inl.h"
 #include "gtest/gtest.h"
 namespace {
 // In this sample, we want to ensure that every test finishes within

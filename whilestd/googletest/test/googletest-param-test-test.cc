@@ -32,7 +32,7 @@
 // generators objects produce correct parameter sequences and that
 // Google Test runtime instantiates correct tests from those sequences.
 
-#include "test/googletest-param-test-test.h"
+#include "whilestd/test/googletest-param-test-test.h"
 
 #include <algorithm>
 #include <iostream>

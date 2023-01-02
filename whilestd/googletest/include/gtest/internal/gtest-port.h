@@ -290,9 +290,9 @@
 #include "gtest/internal/gtest-port-arch.h"
 
 #if GTEST_HAS_ABSL
-#include "absl/flags/declare.h"
-#include "absl/flags/flag.h"
-#include "absl/flags/reflection.h"
+#include "whilestd/absl/flags/declare.h"
+#include "whilestd/absl/flags/flag.h"
+#include "whilestd/absl/flags/reflection.h"
 #endif
 
 #if !defined(GTEST_DEV_EMAIL_)
@@ -395,8 +395,8 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 // Select the regular expression implementation.
 #if GTEST_HAS_ABSL
 // When using Abseil, RE2 is required.
-#include "absl/strings/string_view.h"
-#include "re2/re2.h"
+#include "whilestd/absl/strings/string_view.h"
+#include "whilestd/re2/re2.h"
 #define GTEST_USES_RE2 1
 #elif GTEST_HAS_POSIX_RE
 #include <regex.h>  // NOLINT
@@ -2330,7 +2330,7 @@ const char* StringFromGTestEnv(const char* flag, const char* default_val);
 // Always use absl::any for UniversalPrinter<> specializations if googletest
 // is built with absl support.
 #define GTEST_INTERNAL_HAS_ANY 1
-#include "absl/types/any.h"
+#include "whilestd/absl/types/any.h"
 namespace testing {
 namespace internal {
 using Any = ::absl::any;
@@ -2358,7 +2358,7 @@ using Any = ::std::any;
 // Always use absl::optional for UniversalPrinter<> specializations if
 // googletest is built with absl support.
 #define GTEST_INTERNAL_HAS_OPTIONAL 1
-#include "absl/types/optional.h"
+#include "whilestd/absl/types/optional.h"
 namespace testing {
 namespace internal {
 template <typename T>
@@ -2390,7 +2390,7 @@ inline ::std::nullopt_t Nullopt() { return ::std::nullopt; }
 // Always use absl::string_view for Matcher<> specializations if googletest
 // is built with absl support.
 #define GTEST_INTERNAL_HAS_STRING_VIEW 1
-#include "absl/strings/string_view.h"
+#include "whilestd/absl/strings/string_view.h"
 namespace testing {
 namespace internal {
 using StringView = ::absl::string_view;
@@ -2418,7 +2418,7 @@ using StringView = ::std::string_view;
 // Always use absl::variant for UniversalPrinter<> specializations if googletest
 // is built with absl support.
 #define GTEST_INTERNAL_HAS_VARIANT 1
-#include "absl/types/variant.h"
+#include "whilestd/absl/types/variant.h"
 namespace testing {
 namespace internal {
 template <typename... T>

@@ -1,17 +1,22 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include "BinTree.h"
-#include "Node.h"
+#include "whilestd/BinTree.h"
+#include "whilestd/Parser.h"
 
 using namespace whilestd;
 
 int main(int argc, char const *argv[]) {
     /* code */
-    auto tree = std::make_unique<Node>();
 
-    std::cout<<tree.get();
-    
+    try {
+        auto tree = Parser::parse("(cons a b c d (cons)(cons nil nil nil) )");
+        tree->pp(std::cout);
+    }
+    catch (const std::invalid_argument& e) {
+        std::cerr << e.what() << std::endl;
+    }
+
     return 0;
 }
 

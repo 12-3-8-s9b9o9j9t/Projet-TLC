@@ -135,13 +135,13 @@
 #endif
 
 #if GTEST_HAS_ABSL
-#include "absl/debugging/failure_signal_handler.h"
-#include "absl/debugging/stacktrace.h"
-#include "absl/debugging/symbolize.h"
-#include "absl/flags/parse.h"
-#include "absl/flags/usage.h"
-#include "absl/strings/str_cat.h"
-#include "absl/strings/str_replace.h"
+#include "whilestd/absl/debugging/failure_signal_handler.h"
+#include "whilestd/absl/debugging/stacktrace.h"
+#include "whilestd/absl/debugging/symbolize.h"
+#include "whilestd/absl/flags/parse.h"
+#include "whilestd/absl/flags/usage.h"
+#include "whilestd/absl/strings/str_cat.h"
+#include "whilestd/absl/strings/str_replace.h"
 #endif  // GTEST_HAS_ABSL
 
 // Checks builtin compiler feature |x| while avoiding an extra layer of #ifdefs

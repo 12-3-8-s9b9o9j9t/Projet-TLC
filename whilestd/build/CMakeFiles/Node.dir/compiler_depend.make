@@ -3,8 +3,8 @@
 
 CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
   /usr/include/stdc-predef.h \
-  ../include/Node.h \
-  ../include/BinTree.h \
+  ../include/whilestd/Node.h \
+  ../include/whilestd/BinTree.h \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_algobase.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -208,7 +208,7 @@ CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
-  ../include/Leaf.h
+  ../include/whilestd/Leaf.h
 
 
 /usr/include/c++/11/bits/istream.tcc:
@@ -343,33 +343,17 @@ CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
 
 ../src/Node.cpp:
 
+/usr/include/c++/11/bits/stl_tempbuf.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
 /usr/include/c++/11/bits/predefined_ops.h:
-
-/usr/include/c++/11/bits/uses_allocator.h:
-
-/usr/include/features.h:
-
-/usr/include/c++/11/bits/atomic_base.h:
-
-/usr/include/c++/11/ext/numeric_traits.h:
-
-../include/Leaf.h:
-
-/usr/include/errno.h:
-
-/usr/include/c++/11/utility:
-
-/usr/include/c++/11/memory:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
-
-/usr/include/x86_64-linux-gnu/sys/select.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
 /usr/include/stdint.h:
 
@@ -411,6 +395,30 @@ CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
 
+/usr/include/c++/11/bits/uses_allocator.h:
+
+/usr/include/features.h:
+
+/usr/include/c++/11/bits/atomic_base.h:
+
+/usr/include/c++/11/ext/numeric_traits.h:
+
+/usr/include/errno.h:
+
+/usr/include/c++/11/utility:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
+
+/usr/include/c++/11/memory:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
 /usr/include/c++/11/bits/alloc_traits.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
@@ -419,23 +427,27 @@ CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
-../include/BinTree.h:
+../include/whilestd/BinTree.h:
 
-/usr/include/c++/11/bits/stl_tempbuf.h:
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+/usr/include/x86_64-linux-gnu/bits/types.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
+/usr/include/c++/11/bits/shared_ptr.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+/usr/include/c++/11/cstdlib:
 
-/usr/include/c++/11/ext/new_allocator.h:
+/usr/include/c++/11/bits/stl_iterator_base_types.h:
 
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+/usr/include/c++/11/bit:
+
+/usr/include/c++/11/bits/stl_construct.h:
 
 /usr/include/c++/11/debug/assertions.h:
+
+../include/whilestd/Node.h:
 
 /usr/include/c++/11/pstl/execution_defs.h:
 
@@ -453,35 +465,21 @@ CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
 
 /usr/include/c++/11/type_traits:
 
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/c++/11/bits/move.h:
+
 /usr/include/c++/11/ostream:
 
 /usr/include/c++/11/bits/unique_ptr.h:
 
 /usr/include/c++/11/bits/stl_relops.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-/usr/include/x86_64-linux-gnu/bits/types.h:
-
-/usr/include/c++/11/bits/move.h:
-
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
-
-/usr/include/x86_64-linux-gnu/bits/byteswap.h:
-
-/usr/include/c++/11/bits/shared_ptr.h:
-
-/usr/include/c++/11/cstdlib:
-
-/usr/include/c++/11/bits/stl_iterator_base_types.h:
-
-/usr/include/c++/11/bit:
-
-/usr/include/c++/11/bits/stl_construct.h:
-
 /usr/include/c++/11/bits/exception_defines.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
+
+../include/whilestd/Leaf.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
 
@@ -492,10 +490,6 @@ CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
 /usr/include/stdc-predef.h:
 
 /usr/include/c++/11/bits/stl_function.h:
-
-/usr/include/c++/11/bits/allocated_ptr.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
 /usr/include/c++/11/iostream:
 
@@ -517,9 +511,9 @@ CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
-/usr/include/c++/11/bits/stl_algobase.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
+
+/usr/include/c++/11/bits/stl_algobase.h:
 
 /usr/include/c++/11/cwchar:
 
@@ -536,8 +530,6 @@ CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
-
-../include/Node.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
@@ -566,6 +558,14 @@ CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
 /usr/include/c++/11/ios:
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/c++/11/ext/new_allocator.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/c++/11/bits/allocated_ptr.h:
 
 /usr/include/c++/11/bits/refwrap.h:
 
@@ -615,9 +615,9 @@ CMakeFiles/Node.dir/src/Node.cpp.o: ../src/Node.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
-/usr/include/c++/11/pstl/pstl_config.h:
-
 /usr/include/c++/11/bits/allocator.h:
+
+/usr/include/c++/11/pstl/pstl_config.h:
 
 /usr/include/x86_64-linux-gnu/sys/single_threaded.h:
 

@@ -31,7 +31,7 @@
 // implementations of the same interface (aka interface tests).
 
 // The interface and its implementations are in this header.
-#include "prime_tables.h"
+#include "whilestd/prime_tables.h"
 #include "gtest/gtest.h"
 namespace {
 // First, we define some factory functions for creating instances of

@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/whilestd.dir/src/main.cpp.o -o whilestd  libLeaf.a libNode.a libParsing.a libLeaf.a libNode.a 
+/usr/bin/c++ CMakeFiles/whilestd.dir/src/main.cpp.o -o whilestd  libLeaf.a libNode.a libParser.a libLeaf.a libNode.a 

@@ -94,7 +94,7 @@ whilestd: CMakeFiles/whilestd.dir/src/main.cpp.o
 whilestd: CMakeFiles/whilestd.dir/build.make
 whilestd: libLeaf.a
 whilestd: libNode.a
-whilestd: libParsing.a
+whilestd: libParser.a
 whilestd: libLeaf.a
 whilestd: libNode.a
 whilestd: CMakeFiles/whilestd.dir/link.txt

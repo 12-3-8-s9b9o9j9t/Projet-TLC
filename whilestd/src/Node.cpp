@@ -1,5 +1,5 @@
-#include "Node.h"
-#include "Leaf.h"
+#include "whilestd/Node.h"
+#include "whilestd/Leaf.h"
 #include <memory>
 #include <string>
 #include <iostream>
@@ -31,21 +31,21 @@ std::unique_ptr<BinTree> Node::hd() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
-    return left->clone();
+    return std::move(left->clone());
 }
 
 std::unique_ptr<BinTree> Node::tl() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
-    return right->clone();
+    return std::move(right->clone());
 }
 
 std::unique_ptr<BinTree> Node::clone() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
-    return std::make_unique<Node>(left->clone(), right->clone());
+    return std::make_unique<Node>(std::move(left->clone()), std::move(right->clone()));
 }
 
 bool Node::equals(const std::unique_ptr<BinTree>& other) const {
@@ -54,28 +54,36 @@ bool Node::equals(const std::unique_ptr<BinTree>& other) const {
             return otherNode->isNil();
         }
         return !otherNode->isNil()
-            && left->equals(otherNode->left->clone())
-            && right->equals(otherNode->right->clone());
+            && left->equals(otherNode->left)
+            && right->equals(otherNode->right);
     }
     return false;
 }
 
 std::ostream& Node::pp(std::ostream& os) const {
+    bool printed = false;
     if(isNil()) {
-        return os << "nil";
+        os << "nil";
+        printed = true;
     }
     else if (auto leftLeaf = dynamic_cast<Leaf*>(left.get())) {
         if (static_cast<std::string>(*leftLeaf) == "int") {
             return os << static_cast<int>(*right);
+            printed = true;
         }
         else if (static_cast<std::string>(*leftLeaf) == "bool") {
-            return os << static_cast<bool>(*right);
+            return os << std::boolalpha << static_cast<bool>(*right);
+            printed = true;
         }
         else if (static_cast<std::string>(*leftLeaf) == "string") {
             return os << static_cast<std::string>(*right);
+            printed = true;
         }
     }
-    return os << "(cons " << left << " " << right << ")";
+    if (!printed) {
+        right->pp(left->pp(os << "(cons ") << " ") << ")";
+    }
+    return os;
 }
 
 bool Node::isNil() const {
