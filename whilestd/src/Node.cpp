@@ -6,7 +6,7 @@
 
 namespace whilestd {
 
-Node::Node(std::unique_ptr<BinTree> left, std::unique_ptr<BinTree> right)
+Node::Node(BinTreePtr left, BinTreePtr right)
     : left(std::move(left)), right(std::move(right)) {}
 
 Node::operator int() const {
@@ -27,35 +27,35 @@ Node::operator std::string() const {
     return static_cast<std::string>(*left) + static_cast<std::string>(*right);
 }
 
-std::unique_ptr<BinTree> Node::hd() const {
+BinTreePtr Node::hd() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
     return std::move(left->clone());
 }
 
-std::unique_ptr<BinTree> Node::tl() const {
+BinTreePtr Node::tl() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
     return std::move(right->clone());
 }
 
-std::unique_ptr<BinTree> Node::clone() const {
+BinTreePtr Node::clone() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
     return std::make_unique<Node>(std::move(left->clone()), std::move(right->clone()));
 }
 
-bool Node::equals(const std::unique_ptr<BinTree>& other) const {
+bool Node::equals(const BinTreePtr& other) const {
     if (auto otherNode = dynamic_cast<Node*>(other.get())) {
         if (isNil()) {
             return otherNode->isNil();
         }
         return !otherNode->isNil()
-            && left->equals(otherNode->left)
-            && right->equals(otherNode->right);
+            && left == otherNode->left
+            && right == otherNode->right;
     }
     return false;
 }
@@ -81,7 +81,7 @@ std::ostream& Node::pp(std::ostream& os) const {
         }
     }
     if (!printed) {
-        right->pp(left->pp(os << "(cons ") << " ") << ")";
+        os << "(cons " << left << " "  << right << ")";
     }
     return os;
 }

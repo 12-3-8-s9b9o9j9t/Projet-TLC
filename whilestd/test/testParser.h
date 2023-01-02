@@ -9,29 +9,44 @@
 namespace whilestd {
 
 TEST(parser, parse_int) {
-    auto tree = Parser::parse("2");
-    auto node = std::make_unique<Node>(
+    BinTreePtr tree = Parser::parse("2");
+    BinTreePtr node = std::make_unique<Node>(
         std::make_unique<Node>(),
         std::make_unique<Node>(
             std::make_unique<Node>(),
             std::make_unique<Node>()
         )
     );
-    EXPECT_TRUE(tree->equals(std::move(node->clone())));
+    EXPECT_EQ(tree, node);
 }
 
 TEST(parser, parse_cons1) {
-    auto tree = Parser::parse("(cons)");
-    auto node = std::make_unique<Node>();
-    EXPECT_TRUE(tree->equals(std::move(node->clone())));
+    BinTreePtr tree = Parser::parse("(cons)");
+    BinTreePtr node = std::make_unique<Node>();
+    EXPECT_EQ(tree, node);
 }
 
-TEST(parser, parse_cons2) {
-    auto tree = Parser::parse("(cons nil nil)");
-    auto node = std::make_unique<Node>(
+TEST(parser, parse_cons2) {;
+    EXPECT_THROW(Parser::parse("(cons"), std::invalid_argument);
+}
+
+TEST(parser, parse_cons3) {
+    BinTreePtr tree = Parser::parse("(cons nil nil)");
+    BinTreePtr node = std::make_unique<Node>(
         std::make_unique<Node>(),
         std::make_unique<Node>());
-    EXPECT_TRUE(tree->equals(std::move(node->clone())));
+    EXPECT_EQ(tree, node);
+}
+
+TEST(parser, parse_cons4) {
+    BinTreePtr tree = Parser::parse("(cons int (cons nil nil))");
+    BinTreePtr node = std::make_unique<Node>(
+        std::make_unique<Leaf>("int"),
+        std::make_unique<Node>(
+            std::make_unique<Node>(),
+            std::make_unique<Node>()
+        ));
+    EXPECT_EQ(tree, node);
 }
 
 }

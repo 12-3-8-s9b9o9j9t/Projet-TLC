@@ -8,14 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/main.cpp" "CMakeFiles/whilestd.dir/src/main.cpp.o" "gcc" "CMakeFiles/whilestd.dir/src/main.cpp.o.d"
+  "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Leaf.cpp" "CMakeFiles/whilestd.dir/src/Leaf.cpp.o" "gcc" "CMakeFiles/whilestd.dir/src/Leaf.cpp.o.d"
+  "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Node.cpp" "CMakeFiles/whilestd.dir/src/Node.cpp.o" "gcc" "CMakeFiles/whilestd.dir/src/Node.cpp.o.d"
+  "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Parser.cpp" "CMakeFiles/whilestd.dir/src/Parser.cpp.o" "gcc" "CMakeFiles/whilestd.dir/src/Parser.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Leaf.dir/DependInfo.cmake"
-  "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Node.dir/DependInfo.cmake"
-  "/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/Parser.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

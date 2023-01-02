@@ -1,3 +1,3 @@
 file(REMOVE_RECURSE
-  "libNode.a"
+  "libwhilestd.a"
 )

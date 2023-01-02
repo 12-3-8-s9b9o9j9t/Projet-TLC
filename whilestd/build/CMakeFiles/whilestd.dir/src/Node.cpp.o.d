@@ -1,4 +1,4 @@
-CMakeFiles/Node.dir/src/Node.cpp.o: \
+CMakeFiles/whilestd.dir/src/Node.cpp.o: \
  /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Node.cpp \
  /usr/include/stdc-predef.h \
  /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/whilestd/Node.h \

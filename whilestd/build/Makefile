@@ -117,45 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Leaf
-
-# Build rule for target.
-Leaf: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Leaf
-.PHONY : Leaf
-
-# fast build rule for target.
-Leaf/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Leaf.dir/build.make CMakeFiles/Leaf.dir/build
-.PHONY : Leaf/fast
-
-#=============================================================================
-# Target rules for targets named Node
-
-# Build rule for target.
-Node: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Node
-.PHONY : Node
-
-# fast build rule for target.
-Node/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Node.dir/build.make CMakeFiles/Node.dir/build
-.PHONY : Node/fast
-
-#=============================================================================
-# Target rules for targets named Parser
-
-# Build rule for target.
-Parser: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Parser
-.PHONY : Parser
-
-# fast build rule for target.
-Parser/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/build
-.PHONY : Parser/fast
-
-#=============================================================================
 # Target rules for targets named whilestd
 
 # Build rule for target.
@@ -212,7 +173,7 @@ src/Leaf.o: src/Leaf.cpp.o
 
 # target to build an object file
 src/Leaf.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Leaf.dir/build.make CMakeFiles/Leaf.dir/src/Leaf.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/Leaf.cpp.o
 .PHONY : src/Leaf.cpp.o
 
 src/Leaf.i: src/Leaf.cpp.i
@@ -220,7 +181,7 @@ src/Leaf.i: src/Leaf.cpp.i
 
 # target to preprocess a source file
 src/Leaf.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Leaf.dir/build.make CMakeFiles/Leaf.dir/src/Leaf.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/Leaf.cpp.i
 .PHONY : src/Leaf.cpp.i
 
 src/Leaf.s: src/Leaf.cpp.s
@@ -228,7 +189,7 @@ src/Leaf.s: src/Leaf.cpp.s
 
 # target to generate assembly for a file
 src/Leaf.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Leaf.dir/build.make CMakeFiles/Leaf.dir/src/Leaf.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/Leaf.cpp.s
 .PHONY : src/Leaf.cpp.s
 
 src/Node.o: src/Node.cpp.o
@@ -236,7 +197,7 @@ src/Node.o: src/Node.cpp.o
 
 # target to build an object file
 src/Node.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Node.dir/build.make CMakeFiles/Node.dir/src/Node.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/Node.cpp.o
 .PHONY : src/Node.cpp.o
 
 src/Node.i: src/Node.cpp.i
@@ -244,7 +205,7 @@ src/Node.i: src/Node.cpp.i
 
 # target to preprocess a source file
 src/Node.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Node.dir/build.make CMakeFiles/Node.dir/src/Node.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/Node.cpp.i
 .PHONY : src/Node.cpp.i
 
 src/Node.s: src/Node.cpp.s
@@ -252,7 +213,7 @@ src/Node.s: src/Node.cpp.s
 
 # target to generate assembly for a file
 src/Node.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Node.dir/build.make CMakeFiles/Node.dir/src/Node.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/Node.cpp.s
 .PHONY : src/Node.cpp.s
 
 src/Parser.o: src/Parser.cpp.o
@@ -260,7 +221,7 @@ src/Parser.o: src/Parser.cpp.o
 
 # target to build an object file
 src/Parser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/src/Parser.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/Parser.cpp.o
 .PHONY : src/Parser.cpp.o
 
 src/Parser.i: src/Parser.cpp.i
@@ -268,7 +229,7 @@ src/Parser.i: src/Parser.cpp.i
 
 # target to preprocess a source file
 src/Parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/src/Parser.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/Parser.cpp.i
 .PHONY : src/Parser.cpp.i
 
 src/Parser.s: src/Parser.cpp.s
@@ -276,32 +237,8 @@ src/Parser.s: src/Parser.cpp.s
 
 # target to generate assembly for a file
 src/Parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parser.dir/build.make CMakeFiles/Parser.dir/src/Parser.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/Parser.cpp.s
 .PHONY : src/Parser.cpp.s
-
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
-
-# target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
-
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
-
-# target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
-
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
-
-# target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/whilestd.dir/build.make CMakeFiles/whilestd.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
 
 test/tests.o: test/tests.cpp.o
 .PHONY : test/tests.o
@@ -335,9 +272,6 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Leaf"
-	@echo "... Node"
-	@echo "... Parser"
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... tests"
@@ -351,9 +285,6 @@ help:
 	@echo "... src/Parser.o"
 	@echo "... src/Parser.i"
 	@echo "... src/Parser.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
 	@echo "... test/tests.o"
 	@echo "... test/tests.i"
 	@echo "... test/tests.s"

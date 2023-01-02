@@ -11,13 +11,13 @@ namespace whilestd {
 class Parser {
 public:
     
-    static std::unique_ptr<BinTree> parse(const std::string& input);
+    static BinTreePtr parse(const std::string& input);
 
 private:
-    static std::unique_ptr<BinTree> toTree(int i);
-    static std::unique_ptr<BinTree> consParse(const std::string& input);
-    static std::unique_ptr<BinTree> consParseRec(const std::deque<std::string>& tokens);
-    static std::unique_ptr<BinTree> consParseEnd(const std::string& token);
+    static BinTreePtr toTree(int i);
+    static BinTreePtr consParse(const std::string& input);
+    static BinTreePtr consParseRec(const std::deque<std::string>& tokens);
+    static BinTreePtr consParseEnd(const std::string& token);
 
 };
 

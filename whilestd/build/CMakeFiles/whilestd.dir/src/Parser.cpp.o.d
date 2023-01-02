@@ -1,4 +1,4 @@
-CMakeFiles/Parser.dir/src/Parser.cpp.o: \
+CMakeFiles/whilestd.dir/src/Parser.cpp.o: \
  /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Parser.cpp \
  /usr/include/stdc-predef.h \
  /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/whilestd/Parser.h \

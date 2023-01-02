@@ -19,10 +19,10 @@ public:
     operator bool() const override;
     operator std::string() const override;
 
-    std::unique_ptr<BinTree> hd() const override;
-    std::unique_ptr<BinTree> tl() const override;
-    std::unique_ptr<BinTree> clone() const override;
-    bool equals(const std::unique_ptr<BinTree>& other) const override;
+    BinTreePtr hd() const override;
+    BinTreePtr tl() const override;
+    BinTreePtr clone() const override;
+    bool equals(const BinTreePtr& other) const override;
     std::ostream& pp(std::ostream& os) const override;
 
 };

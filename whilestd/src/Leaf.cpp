@@ -20,15 +20,15 @@ Leaf::operator std::string() const {
     return symbol;
 }
 
-std::unique_ptr<BinTree> Leaf::hd() const {
+BinTreePtr Leaf::hd() const {
     return std::make_unique<Node>();
 }
 
-std::unique_ptr<BinTree> Leaf::tl() const {
+BinTreePtr Leaf::tl() const {
     return std::make_unique<Node>();
 }
 
-std::unique_ptr<BinTree> Leaf::clone() const {
+BinTreePtr Leaf::clone() const {
     return std::make_unique<Leaf>(symbol);
 }
 
@@ -36,7 +36,7 @@ std::ostream& Leaf::pp(std::ostream& os) const {
     return os << symbol;
 }
 
-bool Leaf::equals(const std::unique_ptr<BinTree>& other) const {
+bool Leaf::equals(const BinTreePtr& other) const {
     if (auto otherLeaf = dynamic_cast<Leaf*>(other.get())) {
         return symbol == otherLeaf->symbol;
     }

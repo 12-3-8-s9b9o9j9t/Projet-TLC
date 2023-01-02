@@ -18,7 +18,7 @@ std::regex rightparen("\\)");
 
 namespace whilestd {
 
-std::unique_ptr<BinTree> Parser::parse(const std::string& input) {
+BinTreePtr Parser::parse(const std::string& input) {
     int i = 0;
     if (sscanf(input.c_str(), "%d", &i) == 1) {
         return std::move(toTree(i));   
@@ -29,24 +29,23 @@ std::unique_ptr<BinTree> Parser::parse(const std::string& input) {
     throw std::invalid_argument("Invalid input");
 }
 
-std::unique_ptr<BinTree> Parser::toTree(int i) {
-    std::unique_ptr<BinTree> t = std::make_unique<Node>();
+BinTreePtr Parser::toTree(int i) {
+    BinTreePtr t = std::make_unique<Node>();
     for (int j = 0; j < i; j++) {
         t = std::make_unique<Node>(std::make_unique<Node>(), std::move(t));
     }
     return std::move(t);
 }
 
-std::unique_ptr<BinTree> Parser::consParse(const std::string& input) {
+BinTreePtr Parser::consParse(const std::string& input) {
     std::string format = std::regex_replace(input, leftparen, " ( ");
     format = std::regex_replace(format, rightparen, " ) ");
-    format.erase(format.begin(), std::find_if(format.begin(), format.end(), [](unsigned char ch) {
-        return !std::isspace(ch);
-    }));
 
     std::deque<std::string> tokens(
         std::sregex_token_iterator(format.begin(), format.end(), separator, -1),
         std::sregex_token_iterator());
+
+    tokens.pop_front();
 
     if (tokens.size() < 3) { // on a pas le minimum qu'est : '(' 'cons' ')'
         return nullptr;
@@ -54,13 +53,13 @@ std::unique_ptr<BinTree> Parser::consParse(const std::string& input) {
     return consParseRec(tokens);
 }
 
-std::unique_ptr<BinTree> Parser::consParseRec(const std::deque<std::string>& tokens) {
-    std::unique_ptr<BinTree> t = nullptr;
+BinTreePtr Parser::consParseRec(const std::deque<std::string>& tokens) {
+    BinTreePtr t = nullptr;
     if (tokens.size() == 1) {
         
     }
     else if ((tokens.size() >= 3) && (tokens.front() == "(" && tokens[1] == "cons" && tokens.back() == ")")) {
-        std::deque<std::unique_ptr<BinTree>> list;
+        std::deque<BinTreePtr> list;
 
         auto it = tokens.begin() + 2;
 
@@ -104,8 +103,8 @@ std::unique_ptr<BinTree> Parser::consParseRec(const std::deque<std::string>& tok
     return std::move(t);
 }
 
-std::unique_ptr<BinTree> Parser::consParseEnd(const std::string& token) {
-    std::unique_ptr<BinTree> t = nullptr;
+BinTreePtr Parser::consParseEnd(const std::string& token) {
+    BinTreePtr t = nullptr;
     if (token == "nil") {
         t = std::make_unique<Node>();
     }

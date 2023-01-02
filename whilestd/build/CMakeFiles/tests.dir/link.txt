@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/tests.dir/test/tests.cpp.o -o tests  lib/libgtest.a libLeaf.a libNode.a libParser.a libLeaf.a libNode.a 
+/usr/bin/c++ CMakeFiles/tests.dir/test/tests.cpp.o -o tests  lib/libgtest.a libwhilestd.a 
