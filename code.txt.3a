@@ -27,7 +27,7 @@ func begin main
   _R8 = Op2
   param _R8
   _R9 = call add 2
-  _R10 = _R8 cons _R9
+  _R10 = _R6 cons _R9
   Res = _R10
   return Res
 func end

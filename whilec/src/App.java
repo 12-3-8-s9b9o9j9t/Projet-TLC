@@ -43,7 +43,7 @@ public class App {
         Generateur3a g = new Generateur3a(ast);
         
         try {
-            g.generate(/*args[0]*/"../code" + ".3a");
+            g.generate(args[0] + ".3a");
         }
         catch (IOException e) {
             System.out.println("Error: Unable to write file containing 3-address code");
