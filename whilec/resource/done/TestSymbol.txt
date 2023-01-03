@@ -1,0 +1,53 @@
+// Test Symbol
+// Symbol : Expression qui commence par une minuscule
+// Min (Maj|Min|Dec)*(‘!’|’?’) ?
+// Meme tests que varariable qui commencent par une minuscule
+
+function testShortString :
+read
+%
+    Result := Min
+%
+write Result
+
+function testLongString :
+read
+%
+    Result := iletaitunefoisunpetitnavirequinesavaitpasnaviguer
+%
+write Result
+
+function testMultipleMaj :
+read
+%
+    Result := ilEtaitUneFoisUnPetitNavireQuiNeSavaitPasNaviguer
+%
+write Result
+
+function testDecShort :
+read
+%
+    Result := tLC1
+%
+write Result
+
+function testDecLong :
+read
+%
+    Result := tlc99876388785269409876409043237890843
+%
+write Result
+
+function testIntero :
+read
+%
+    Result := tlc?
+%
+write Result
+
+function testExclam :
+read
+%
+    Result := tlc!
+%
+write Result

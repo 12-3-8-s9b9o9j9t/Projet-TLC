@@ -7,5 +7,3 @@ read
 	nop
 %
 write A
-
-
