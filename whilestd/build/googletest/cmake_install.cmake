@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/googletest
+# Install script for directory: /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/googletest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

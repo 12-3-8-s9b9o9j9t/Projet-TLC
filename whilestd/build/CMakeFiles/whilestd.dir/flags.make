@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include -I/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/googletest/include
+CXX_INCLUDES = -I/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/include -I/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/googletest/include
 
 CXX_FLAGS = 
 

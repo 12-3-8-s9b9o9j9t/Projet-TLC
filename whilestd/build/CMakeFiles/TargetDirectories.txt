@@ -1,8 +1,8 @@
-/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/whilestd.dir
-/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/tests.dir
-/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/googletest/CMakeFiles/gtest.dir
-/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/googletest/CMakeFiles/gtest_main.dir
-/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/googletest/CMakeFiles/edit_cache.dir
-/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/googletest/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/CMakeFiles/whilestd.dir
+/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/CMakeFiles/tests.dir
+/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/googletest/CMakeFiles/gtest.dir
+/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/googletest/CMakeFiles/gtest_main.dir
+/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/googletest/CMakeFiles/edit_cache.dir
+/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/googletest/CMakeFiles/rebuild_cache.dir

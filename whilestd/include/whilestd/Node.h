@@ -25,8 +25,6 @@ public:
     BinTreePtr clone() const override;
     bool equals(const BinTreePtr& other) const override;
     std::ostream& pp(std::ostream& os) const override;
-
-private:
     bool isNil() const;
 
 };

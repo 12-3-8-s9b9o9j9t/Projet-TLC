@@ -1,8 +1,8 @@
 CMakeFiles/whilestd.dir/src/Parser.cpp.o: \
- /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Parser.cpp \
+ /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/src/Parser.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/whilestd/Parser.h \
- /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/whilestd/BinTree.h \
+ /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/include/whilestd/Parser.h \
+ /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/include/whilestd/BinTree.h \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -169,8 +169,8 @@ CMakeFiles/whilestd.dir/src/Parser.cpp.o: \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/deque \
  /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
- /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/whilestd/Leaf.h \
- /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/include/whilestd/Node.h \
+ /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/include/whilestd/Leaf.h \
+ /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/include/whilestd/Node.h \
  /usr/include/c++/11/regex /usr/include/c++/11/algorithm \
  /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \

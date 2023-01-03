@@ -1,0 +1,17 @@
+// Addition of two numbers
+function add :
+read Op1, Op2
+%
+ Result := Op1 ;
+for Op2 do
+ Result := ( cons nil Result )
+od
+%
+write Result
+
+function main :
+read Op1, Op2
+%
+Res := (cons int (add Op1 Op2))
+%
+write Res

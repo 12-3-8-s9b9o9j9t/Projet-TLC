@@ -176,4 +176,16 @@ TEST(node, pp_default) {
     EXPECT_EQ("(cons nil nil)", ss.str());
 }
 
+TEST(node, isnil_nil) {
+    auto nil = std::make_unique<Node>();
+    EXPECT_TRUE(nil->isNil());
+}
+
+TEST(node, isnil) {
+    auto node = std::make_unique<Node>(
+        std::make_unique<Node>(),
+        std::make_unique<Node>());
+    EXPECT_FALSE(node->isNil());
+}
+
 #endif

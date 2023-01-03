@@ -26,7 +26,7 @@ BinTreePtr Parser::parse(const std::string& input) {
     else if(auto tmp = consParse(input)){
         return std::move(tmp);
     }
-    throw std::invalid_argument("Invalid input");
+    throw std::invalid_argument("Invalid input: " + input);
 }
 
 BinTreePtr Parser::toTree(int i) {

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd
+CMAKE_SOURCE_DIR = /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build
+CMAKE_BINARY_DIR = /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/whilestd.dir/depend.make
@@ -72,44 +72,44 @@ include CMakeFiles/whilestd.dir/flags.make
 CMakeFiles/whilestd.dir/src/Leaf.cpp.o: CMakeFiles/whilestd.dir/flags.make
 CMakeFiles/whilestd.dir/src/Leaf.cpp.o: ../src/Leaf.cpp
 CMakeFiles/whilestd.dir/src/Leaf.cpp.o: CMakeFiles/whilestd.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/whilestd.dir/src/Leaf.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/whilestd.dir/src/Leaf.cpp.o -MF CMakeFiles/whilestd.dir/src/Leaf.cpp.o.d -o CMakeFiles/whilestd.dir/src/Leaf.cpp.o -c /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Leaf.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/whilestd.dir/src/Leaf.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/whilestd.dir/src/Leaf.cpp.o -MF CMakeFiles/whilestd.dir/src/Leaf.cpp.o.d -o CMakeFiles/whilestd.dir/src/Leaf.cpp.o -c /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/src/Leaf.cpp
 
 CMakeFiles/whilestd.dir/src/Leaf.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/whilestd.dir/src/Leaf.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Leaf.cpp > CMakeFiles/whilestd.dir/src/Leaf.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/src/Leaf.cpp > CMakeFiles/whilestd.dir/src/Leaf.cpp.i
 
 CMakeFiles/whilestd.dir/src/Leaf.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/whilestd.dir/src/Leaf.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Leaf.cpp -o CMakeFiles/whilestd.dir/src/Leaf.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/src/Leaf.cpp -o CMakeFiles/whilestd.dir/src/Leaf.cpp.s
 
 CMakeFiles/whilestd.dir/src/Node.cpp.o: CMakeFiles/whilestd.dir/flags.make
 CMakeFiles/whilestd.dir/src/Node.cpp.o: ../src/Node.cpp
 CMakeFiles/whilestd.dir/src/Node.cpp.o: CMakeFiles/whilestd.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/whilestd.dir/src/Node.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/whilestd.dir/src/Node.cpp.o -MF CMakeFiles/whilestd.dir/src/Node.cpp.o.d -o CMakeFiles/whilestd.dir/src/Node.cpp.o -c /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/whilestd.dir/src/Node.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/whilestd.dir/src/Node.cpp.o -MF CMakeFiles/whilestd.dir/src/Node.cpp.o.d -o CMakeFiles/whilestd.dir/src/Node.cpp.o -c /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/src/Node.cpp
 
 CMakeFiles/whilestd.dir/src/Node.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/whilestd.dir/src/Node.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Node.cpp > CMakeFiles/whilestd.dir/src/Node.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/src/Node.cpp > CMakeFiles/whilestd.dir/src/Node.cpp.i
 
 CMakeFiles/whilestd.dir/src/Node.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/whilestd.dir/src/Node.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Node.cpp -o CMakeFiles/whilestd.dir/src/Node.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/src/Node.cpp -o CMakeFiles/whilestd.dir/src/Node.cpp.s
 
 CMakeFiles/whilestd.dir/src/Parser.cpp.o: CMakeFiles/whilestd.dir/flags.make
 CMakeFiles/whilestd.dir/src/Parser.cpp.o: ../src/Parser.cpp
 CMakeFiles/whilestd.dir/src/Parser.cpp.o: CMakeFiles/whilestd.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/whilestd.dir/src/Parser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/whilestd.dir/src/Parser.cpp.o -MF CMakeFiles/whilestd.dir/src/Parser.cpp.o.d -o CMakeFiles/whilestd.dir/src/Parser.cpp.o -c /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/whilestd.dir/src/Parser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/whilestd.dir/src/Parser.cpp.o -MF CMakeFiles/whilestd.dir/src/Parser.cpp.o.d -o CMakeFiles/whilestd.dir/src/Parser.cpp.o -c /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/src/Parser.cpp
 
 CMakeFiles/whilestd.dir/src/Parser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/whilestd.dir/src/Parser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Parser.cpp > CMakeFiles/whilestd.dir/src/Parser.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/src/Parser.cpp > CMakeFiles/whilestd.dir/src/Parser.cpp.i
 
 CMakeFiles/whilestd.dir/src/Parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/whilestd.dir/src/Parser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/src/Parser.cpp -o CMakeFiles/whilestd.dir/src/Parser.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/src/Parser.cpp -o CMakeFiles/whilestd.dir/src/Parser.cpp.s
 
 # Object files for target whilestd
 whilestd_OBJECTS = \
@@ -125,7 +125,7 @@ libwhilestd.a: CMakeFiles/whilestd.dir/src/Node.cpp.o
 libwhilestd.a: CMakeFiles/whilestd.dir/src/Parser.cpp.o
 libwhilestd.a: CMakeFiles/whilestd.dir/build.make
 libwhilestd.a: CMakeFiles/whilestd.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libwhilestd.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libwhilestd.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/whilestd.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/whilestd.dir/link.txt --verbose=$(VERBOSE)
 
@@ -138,6 +138,6 @@ CMakeFiles/whilestd.dir/clean:
 .PHONY : CMakeFiles/whilestd.dir/clean
 
 CMakeFiles/whilestd.dir/depend:
-	cd /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build /mnt/c/Users/yanis/Desktop/TLC/Projet/whilec/whilestd/build/CMakeFiles/whilestd.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build /mnt/c/Users/yanis/Desktop/TLC/Projet/whilestd/build/CMakeFiles/whilestd.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/whilestd.dir/depend
 

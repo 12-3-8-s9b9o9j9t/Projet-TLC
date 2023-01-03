@@ -1,0 +1,34 @@
+func begin add
+  input Op2
+  input Op1
+  _R0 = Op1
+  Result = _R0
+  _R1 = Op2
+  _i0 = _R1
+for_L0:
+  ifz _i0 goto end_for_L1
+  _R2 = tl _i0
+  _i0 = _R2
+  _R3 = nil
+  _R4 = Result
+  _R5 = _R3 cons _R4
+  Result = _R5
+  goto for_L0
+end_for_L1:
+  return Result
+func end
+
+func begin main
+  input Op2
+  input Op1
+  _R6 = int
+  _R7 = Op1
+  param _R7
+  _R8 = Op2
+  param _R8
+  _R9 = call add 2
+  _R10 = _R8 cons _R9
+  Res = _R10
+  return Res
+func end
+
