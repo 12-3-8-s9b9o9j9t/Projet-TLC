@@ -87,7 +87,7 @@ public class Code3aToCpp {
 
     private StringBuilder generateFunction(String name) throws IOException {
         String space = "    ";
-        int nbspace = 1;
+        int nbspace = name.equals("main") ? 2 : 1;
         if (!name.equals("main") && functions.size() == 0) {
             headers.add("<stack>");
         }
@@ -202,8 +202,9 @@ public class Code3aToCpp {
         StringBuilder head = new StringBuilder();
 
         if (name.equals("main")) {
+            nbspace--;
             head.append("int main(int argc, char** argv) {\n");
-            head.append(space + "try {\n\n");
+            head.append(space.repeat(nbspace) + "try {\n\n");
             nbspace++;
         }
         else {
@@ -219,7 +220,7 @@ public class Code3aToCpp {
         }
 
         if (inputs.size() > 0) {
-            head.append(space +"// récupère les inputs\n");
+            head.append(space.repeat(nbspace) +"// récupère les inputs\n");
         }
 
         if (name.equals("main")) {
@@ -238,18 +239,18 @@ public class Code3aToCpp {
         }
         else {
             for (String input : inputs) {
-                head.append(space +"BinTreePtr " + input + " = std::move(_stack.top());\n");
-                head.append(space +"_stack.pop();\n");
+                head.append(space.repeat(nbspace) + "BinTreePtr " + input + " = std::move(_stack.top());\n");
+                head.append(space.repeat(nbspace) + "_stack.pop();\n");
             }
         }
         head.append("\n");
 
         if (locals.size() > 0) {
-            head.append(space +"// initialise les variables locales\n");
+            head.append(space.repeat(nbspace) + "// initialise les variables locales\n");
         }
 
         for (String local : locals) {
-            head.append(space +"BinTreePtr " + local + " = std::make_unique<Node>();\n");
+            head.append(space.repeat(nbspace) +"BinTreePtr " + local + " = std::make_unique<Node>();\n");
         }
 
         head.append("\n");
@@ -257,24 +258,24 @@ public class Code3aToCpp {
         head.append("\n");
 
         if (name.equals("main")) {
-            head.append(space +"// affiche les résultats\n");
+            head.append(space.repeat(nbspace) +"// affiche les résultats\n");
             for (String ret : returns) {
-                head.append(space +"std::cout << " + ret + " << std::endl;\n");
+                head.append(space.repeat(nbspace) +"std::cout << " + ret + " << std::endl;\n");
             }
-            head.append("\n    return 0;\n");
+            head.append("\n" + space.repeat(nbspace) + "return 0;\n");
         }
         else {
-            head.append(space +"// retourne les résultats\n");
+            head.append(space.repeat(nbspace) +"// retourne les résultats\n");
 
             if (returns.size() == 1) {
-                head.append(space +"return std::move(" + returns.get(0) + "->clone());\n");
+                head.append(space.repeat(nbspace) +"return std::move(" + returns.get(0) + "->clone());\n");
             }
             else if (returns.size() > 1) {
-                head.append(space +"std::vector<BinTreePtr> ret;\n");
+                head.append(space.repeat(nbspace) +"std::vector<BinTreePtr> ret;\n");
                 for (String ret : returns) {
-                    head.append(space +"ret.push_back(std::move(" + ret + "));\n");
+                    head.append(space.repeat(nbspace) +"ret.push_back(std::move(" + ret + "));\n");
                 }
-                head.append(space +"return std::move(ret);\n");
+                head.append(space.repeat(nbspace) +"return std::move(ret);\n");
             }
         }
 

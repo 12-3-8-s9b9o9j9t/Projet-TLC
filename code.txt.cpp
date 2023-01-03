@@ -46,7 +46,7 @@ BinTreePtr add_() {
 int main(int argc, char** argv) {
     try {
 
-    // récupère les inputs
+        // récupère les inputs
         if (argc < 3) {
             std::cerr << "Not enough arguments: " << (argc - 1) << " given, 2 needed" << std::endl;
             return 1;
@@ -58,22 +58,22 @@ int main(int argc, char** argv) {
         BinTreePtr Op2_ = std::move(Parser::parse(argv[1]));
         BinTreePtr Op1_ = std::move(Parser::parse(argv[2]));
 
-    // initialise les variables locales
-    BinTreePtr Res_ = std::make_unique<Node>();
+        // initialise les variables locales
+        BinTreePtr Res_ = std::make_unique<Node>();
 
-    BinTreePtr _R6 = std::make_unique<Leaf>("int");
-    auto _R7 = std::move(Op1_->clone());
-    _stack.push(std::move(_R7));
-    auto _R8 = std::move(Op2_->clone());
-    _stack.push(std::move(_R8));
-    auto _R9 = std::move(add_());
-    auto _R10 = std::make_unique<Node>(std::move(_R6), std::move(_R9));
-    Res_ = std::move(_R10);
+        BinTreePtr _R6 = std::make_unique<Leaf>("int");
+        auto _R7 = std::move(Op1_->clone());
+        _stack.push(std::move(_R7));
+        auto _R8 = std::move(Op2_->clone());
+        _stack.push(std::move(_R8));
+        auto _R9 = std::move(add_());
+        auto _R10 = std::make_unique<Node>(std::move(_R6), std::move(_R9));
+        Res_ = std::move(_R10);
 
-    // affiche les résultats
-    std::cout << Res_ << std::endl;
+        // affiche les résultats
+        std::cout << Res_ << std::endl;
 
-    return 0;
+        return 0;
     } catch (std::invalid_argument& e) {
         std::cerr << e.what() << std::endl;
         return 1;
