@@ -1,0 +1,222 @@
+// Test Command
+// List of command : if/else, while, for, forearch
+
+//###########################
+// Test simple if
+//###########################
+
+// Pass
+function testIfAlone1 :
+read Op1
+%
+if Op1 then Result := (false) fi
+%
+write Result
+
+// Don't pass : "fi"
+function testIfAlone2 :
+read Op1
+%
+if Op1 then Result := (false)
+%
+write Result
+
+// Pass
+function testIfAlone3 :
+read Op1
+%
+if Op1 then Result := symbol fi
+%
+write Result
+
+// Pass
+function testIfAlone3 :
+read Op1
+%
+if Op1 then Result := Variable fi
+%
+write Result
+
+
+//###########################
+// Test if and else
+//###########################
+
+// Pass
+// Basic : true or false
+function testIfAndElse1 :
+read Op1
+%
+if Op1 then Result := (false) else Result := (true) fi
+%
+write Result
+
+// Pass
+// Different return type
+function testIfAndElse2 :
+read Op1
+%
+if Op1 then Result := symbol else Result := Variable fi
+%
+write Result
+
+// Don't pass
+// No first command
+function testIfAndElse2 :
+read Op1
+%
+if Op1 else Result := Variable fi
+%
+write Result
+
+
+//###########################
+// Test imbricated if
+//###########################
+
+// Pass
+function testIfImbricated1 :
+read Op1, Op2
+%
+if Op1 then
+if Op2 then Result := (true) else Result := (true) fi
+fi
+%
+write Result
+
+// Don't pass
+// Format
+function testIfImbricated2 :
+read Op1, Op2
+%
+if Op1 then (if Op2 then Result := (true) else Result := (true) fi) fi
+%
+write Result
+
+
+//###########################
+// Test for
+//###########################
+
+// Pass
+// Basic
+function testFor1 :
+read Op1, Op2
+%
+Result := Op1 ;
+for Op2 do
+Result := ( cons nil Result )
+od
+%
+write Result
+
+// Pass
+// Basic
+function testFor2 :
+read Op1
+%
+for Op1 do
+Result := symbol
+od
+%
+write Result
+
+// Pass
+// Double imbricated for
+function testFor3 :
+read Op1, Op2
+%
+for Op1 do
+for Op2 do
+Result := symbol
+od
+od
+%
+write Result
+
+// Don't Pass
+// Forget "od"
+function testFor4 :
+read Op1
+%
+for Op1 do
+Result := symbol
+%
+write Result
+
+
+//###########################
+// Test while
+//###########################
+
+// Pass
+// Basic
+function testWhile1 :
+read Op1
+%
+while Op1 do
+Result := symbol
+od
+%
+write Result
+
+// Pass
+// Double imbricated while
+function testWhile2 :
+read Op1, Op2
+%
+while Op1 do
+while Op2 do 
+Result := symbol
+od
+od
+%
+write Result
+
+// Don't pass
+// Forget "od"
+function testWhile3 :
+read Op1
+%
+while Op1 do
+Result := symbol
+%
+write Result
+
+
+//###########################
+// Test foreach
+//###########################
+
+// Pass
+// Basic
+function testForeach1 :
+read Op1
+%
+foreach Op1 do
+Result := symbol
+od
+%
+write Result
+
+// Don't pass
+// Forget "od"
+function testForeach2 :
+read Op1
+%
+foreach Op1 do
+Result := symbol
+od
+%
+write Result
+
+// Don't pass
+// Use symbol instead of Variable
+function testForeach3 :
+read
+%
+foreach symbol do
+Result := Variable
+od
+%
+write Result
