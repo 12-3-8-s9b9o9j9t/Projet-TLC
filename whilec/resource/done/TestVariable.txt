@@ -1,7 +1,10 @@
+//#########################################################
 // Test Variable
 // Variable : Expression qui commence par une majuscule
 // Maj (Maj|Min|Dec)*(‘!’|’?’) ?
+//#########################################################
 
+// Pass
 function testShortString :
 read
 %
@@ -9,6 +12,7 @@ read
 %
 write Result
 
+// Pass
 function testLongString :
 read
 %
@@ -16,6 +20,7 @@ read
 %
 write Result
 
+// Pass
 function testMultipleMaj :
 read
 %
@@ -23,6 +28,7 @@ read
 %
 write Result
 
+// Pass
 function testDecShort :
 read
 %
@@ -30,6 +36,7 @@ read
 %
 write Result
 
+// Pass
 function testDecLong :
 read
 %
@@ -37,6 +44,7 @@ read
 %
 write Result
 
+// Pass
 function testIntero :
 read
 %
@@ -44,9 +52,18 @@ read
 %
 write Result
 
+// Pass
 function testExclam :
 read
 %
     Result := Tlc!
+%
+write Result
+
+// Don't pass
+function testDont :
+read
+%
+    Result := Tlc!noidea
 %
 write Result

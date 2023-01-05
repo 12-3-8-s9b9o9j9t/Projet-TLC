@@ -1,8 +1,11 @@
-// Test Symbol
+//#########################################################
+// Test symbol
 // Symbol : Expression qui commence par une minuscule
 // Min (Maj|Min|Dec)*(‘!’|’?’) ?
-// Meme tests que varariable qui commencent par une minuscule
+// Meme tests que variable qui commencent par une minuscule
+//#########################################################
 
+// Pass
 function testShortString :
 read
 %
@@ -10,6 +13,7 @@ read
 %
 write Result
 
+// Pass
 function testLongString :
 read
 %
@@ -17,6 +21,7 @@ read
 %
 write Result
 
+// Pass
 function testMultipleMaj :
 read
 %
@@ -24,6 +29,7 @@ read
 %
 write Result
 
+// Pass
 function testDecShort :
 read
 %
@@ -31,6 +37,7 @@ read
 %
 write Result
 
+// Pass
 function testDecLong :
 read
 %
@@ -38,6 +45,7 @@ read
 %
 write Result
 
+// Pass
 function testIntero :
 read
 %
@@ -45,9 +53,19 @@ read
 %
 write Result
 
+// Pass
 function testExclam :
 read
 %
     Result := tlc!
+%
+write Result
+
+
+// Don't pass
+function testExclam :
+read
+%
+    Result := tlc!ezjkiuhlez
 %
 write Result
