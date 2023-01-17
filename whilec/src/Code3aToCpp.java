@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -96,7 +97,7 @@ public class Code3aToCpp {
         List<String> inputs = new LinkedList<String>();
         List<String> locals = new LinkedList<String>();
         List<String> tmps = new LinkedList<String>();
-        List<String> returns = new LinkedList<String>();
+        Deque<String> returns = new LinkedList<String>();
 
         StringBuilder body = new StringBuilder();
         
@@ -268,12 +269,18 @@ public class Code3aToCpp {
             head.append(space.repeat(nbspace) +"// retourne les résultats\n");
 
             if (returns.size() == 1) {
-                head.append(space.repeat(nbspace) +"return std::move(" + returns.get(0) + "->clone());\n");
+                head.append(space.repeat(nbspace) +"return std::move(" + returns.pop() + ");\n");
             }
             else if (returns.size() > 1) {
                 head.append(space.repeat(nbspace) +"std::vector<BinTreePtr> ret;\n");
-                for (String ret : returns) {
-                    head.append(space.repeat(nbspace) +"ret.push_back(std::move(" + ret + "));\n");
+                while (!returns.isEmpty()) {
+                    String ret = returns.pop();
+                    if (returns.contains(ret)) {
+                        head.append(space.repeat(nbspace) +"ret.push_back(std::move(" + ret + "->clone()));\n");
+                    }
+                    else {
+                        head.append(space.repeat(nbspace) +"ret.push_back(std::move(" + ret + "));\n");
+                    }
                 }
                 head.append(space.repeat(nbspace) +"return std::move(ret);\n");
             }

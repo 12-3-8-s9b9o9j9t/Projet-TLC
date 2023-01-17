@@ -17,13 +17,13 @@ TEST(parser, parse_int) {
             std::make_unique<Node>()
         )
     );
-    EXPECT_EQ(tree, node);
+    EXPECT_TRUE(*(*tree == *node));
 }
 
 TEST(parser, parse_cons1) {
     BinTreePtr tree = Parser::parse("(cons)");
     BinTreePtr node = std::make_unique<Node>();
-    EXPECT_EQ(tree, node);
+    EXPECT_TRUE(*(*tree == *node));
 }
 
 TEST(parser, parse_cons2) {;
@@ -35,7 +35,7 @@ TEST(parser, parse_cons3) {
     BinTreePtr node = std::make_unique<Node>(
         std::make_unique<Node>(),
         std::make_unique<Node>());
-    EXPECT_EQ(tree, node);
+    EXPECT_TRUE(*(*tree == *node));
 }
 
 TEST(parser, parse_cons4) {
@@ -46,7 +46,7 @@ TEST(parser, parse_cons4) {
             std::make_unique<Node>(),
             std::make_unique<Node>()
         ));
-    EXPECT_EQ(tree, node);
+    EXPECT_TRUE(*(*tree == *node));
 }
 
 }
