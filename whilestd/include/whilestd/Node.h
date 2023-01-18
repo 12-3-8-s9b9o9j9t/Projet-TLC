@@ -14,20 +14,18 @@ private:
 
 public:
     Node(BinTreePtr left = nullptr, BinTreePtr right = nullptr);
-    ~Node() override = default;
+    virtual ~Node() = default;
 
     operator int() const override;
     operator bool() const override;
     operator std::string() const override;
-    virtual BinTreePtr operator ==(const BinTree& other) const override;
 
     BinTreePtr hd() const override;
     BinTreePtr tl() const override;
     BinTreePtr clone() const override;
+    bool equals(const BinTreePtr& other) const override;
     std::ostream& pp(std::ostream& os) const override;
-    inline bool isNil() const {
-        return !left && !right; 
-    };
+    bool isNil() const;
 
 };
 

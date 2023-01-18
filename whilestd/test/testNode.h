@@ -21,14 +21,14 @@ TEST(node, operator_int) {
 
 TEST(node, operator_bool_nil) {
     auto nil = std::make_unique<Node>();
-    EXPECT_FALSE(*nil);
+    EXPECT_FALSE(static_cast<bool>(*nil));
 }
 
 TEST(node, operator_bool) {
     auto node = std::make_unique<Node>(
         std::make_unique<Node>(),
         std::make_unique<Node>());
-    EXPECT_TRUE(*node);
+    EXPECT_TRUE(static_cast<bool>(*node));
 }
 
 TEST(node, operator_string_nil) {
@@ -50,88 +50,87 @@ TEST(node, operator_string2) {
     EXPECT_EQ("ab", static_cast<std::string>(*node));
 }
 
-TEST(node, operator_comp_nil1) {
+TEST(node, equals_nil1) {
     auto nil1 = std::make_unique<Node>();
     auto nil2 = std::make_unique<Node>();
-    EXPECT_TRUE(*(*nil1 == *nil2));
+    EXPECT_TRUE(nil1->equals(std::move(nil2->clone())));
+    EXPECT_FALSE(nil2 == nullptr);
 }
 
-TEST(node, operator_comp_nil2) {
+TEST(node, equals_nil2) {
     auto nil = std::make_unique<Node>();
     auto node = std::make_unique<Node>(
         std::make_unique<Node>(),
         std::make_unique<Node>());
-    EXPECT_FALSE(*(*nil == *node));
+    EXPECT_FALSE(nil->equals(std::move(node->clone())));
+    EXPECT_FALSE(node == nullptr);
 }
 
-TEST(node, operator_comp_nil3) {
+TEST(node, equals_nil3) {
     auto nil = std::make_unique<Node>();
     auto leaf = std::make_unique<Leaf>("a");
-    EXPECT_FALSE(*(*nil == *leaf));
+    EXPECT_FALSE(nil->equals(std::move(leaf->clone())));
+    EXPECT_FALSE(leaf == nullptr);
 }
 
-TEST(node, operator_comp1) {
+TEST(node, equals1) {
     auto node1 = std::make_unique<Node>(
         std::make_unique<Leaf>("a"),
         std::make_unique<Leaf>("b"));
     auto node2 = std::make_unique<Node>(
         std::make_unique<Leaf>("a"),
         std::make_unique<Leaf>("b"));
-    EXPECT_TRUE(*(*node1 == *node2));
+    EXPECT_TRUE(node1->equals(std::move(node2->clone())));
+    EXPECT_FALSE(node2 == nullptr);
 }
 
-TEST(node, operator_comp2) {
+TEST(node, equals2) {
     auto node1 = std::make_unique<Node>(
         std::make_unique<Node>(),
         std::make_unique<Leaf>("b"));
     auto node2 = std::make_unique<Node>(
         std::make_unique<Leaf>("b"),
         std::make_unique<Node>());
-    EXPECT_FALSE(*(*node1 == *node2));
+    EXPECT_FALSE(node1->equals(std::move(node2->clone())));
+    EXPECT_FALSE(node2 == nullptr);
 }
 
 TEST(node, hd_nil) {
     auto nil = std::make_unique<Node>();
-    auto nil2 = std::make_unique<Node>();
-    EXPECT_TRUE(*(*nil->hd() == *nil2));
+    EXPECT_TRUE(nil->hd()->equals(std::make_unique<Node>()));
 }
 
 TEST(node, hd) {
     auto node = std::make_unique<Node>(
         std::make_unique<Leaf>("a"),
         std::make_unique<Leaf>("b"));
-    auto leaf = std::make_unique<Leaf>("a");
-    EXPECT_TRUE(*(*node->hd() == *leaf));
+    EXPECT_TRUE(node->hd()->equals(std::make_unique<Leaf>("a")));
 }
 
 TEST(node, tl_nil) {
     auto nil = std::make_unique<Node>();
-    auto nil2 = std::make_unique<Node>();
-    EXPECT_TRUE(*(*nil->tl() == *nil2));
+    EXPECT_TRUE(nil->tl()->equals(std::make_unique<Node>()));
 }
 
 TEST(node, tl) {
     auto node = std::make_unique<Node>(
         std::make_unique<Leaf>("a"),
         std::make_unique<Leaf>("b"));
-    auto leaf = std::make_unique<Leaf>("b");
-    EXPECT_TRUE(*(*node->tl() == *leaf));
+    EXPECT_TRUE(node->tl()->equals(std::make_unique<Leaf>("b")));
 }
 
 TEST(node, clone_nil) {
     auto nil = std::make_unique<Node>();
-    auto nil2 = std::make_unique<Node>();
-    EXPECT_TRUE(*(*nil->clone() == *nil2));
+    EXPECT_TRUE(nil->clone()->equals(std::make_unique<Node>()));
 }
 
-TEST(node, clone1) {
+TEST(node, clone) {
     auto node = std::make_unique<Node>(
         std::make_unique<Leaf>("a"),
         std::make_unique<Leaf>("b"));
-    auto node2 = std::make_unique<Node>(
+    EXPECT_TRUE(node->clone()->equals(std::make_unique<Node>(
         std::make_unique<Leaf>("a"),
-        std::make_unique<Leaf>("b"));
-    EXPECT_TRUE(*(*node->clone() == *node2));
+        std::make_unique<Leaf>("b"))));
 }
 
 TEST(node, pp_nil) {
