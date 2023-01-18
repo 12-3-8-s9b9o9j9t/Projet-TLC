@@ -1,7 +1,3 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -10,28 +6,27 @@ import org.antlr.runtime.tree.Tree;
 public class Generateur3a {
 
     private final static String reg = "_R";
-    private final static String lab = "_L";
 
     private int regcnt = 0;
     private int labcnt = 0;
     private int tmpcnt = 0;
 
     private Tree ast;
-    private BufferedWriter writer = null;
 
     private Queue<String> to_assign = new LinkedList<>();
+
+    private LinkedList<String[]> code = new LinkedList<>();
 
     public Generateur3a(Tree ast) {
         this.ast = ast;
     }
 
-    public void generate(String outputName) throws IOException {
-        writer = new BufferedWriter(new FileWriter(outputName));
+    public LinkedList<String[]> generate() {
         generateRec(ast);
-        writer.close();
+        return code;
     }
 
-    private void generateRec(Tree ast) throws IOException {
+    private void generateRec(Tree ast) {
         String txt = ast.getText();
         int chcnt = ast.getChildCount();
         int curlab = labcnt;
@@ -42,13 +37,10 @@ public class Generateur3a {
                 }
                 break;
             case "FUNCTION":
-                writer.append("func begin ");
+                code.add(new String[] {"func", "begin", ""});
                 generateRec(ast.getChild(0)); // function name
-                writer.newLine();
                 generateRec(ast.getChild(1)); // definition
-                writer.append("func end");
-                writer.newLine();
-                writer.newLine();
+                code.add(new String[] {"func", "end"});
                 break;
             case "FUNC_NAME":
                 generateRec(ast.getChild(0));
@@ -59,10 +51,9 @@ public class Generateur3a {
                 generateRec(ast.getChild(2)); // output
                 break;
             case "INPUT":
-                for (int i = chcnt - 1; i >= 0; i--) {
-                    writer.append("  input ");
+                for (int i = 0; i < chcnt; i++) {
+                    code.add(new String[] {"input", ""});
                     generateRec(ast.getChild(i));
-                    writer.newLine();
                 }
                 break;
             case "COMMANDS":
@@ -72,30 +63,26 @@ public class Generateur3a {
                 break;
             case "OUTPUT":
                 for (int i = 0; i < chcnt; i++) {
-                    writer.append("  return ");
+                    code.add(new String[] {"return", ""});
                     generateRec(ast.getChild(i));
-                    writer.newLine();
                 }
                 break;
             case "ASSIGN":
                 generateRec(ast.getChild(1)); // expressions
                 generateRec(ast.getChild(0)); // variables
                 break;
-            case "VARIABLES":
+            case "VARIABLES": //TODO: handle function calls
                 if (to_assign.size() == chcnt) {
                     for (int i = 0; i < chcnt; i++) {
-                        writer.append("  ");
+                        code.add(new String[] {"store", "", to_assign.poll()});
                         generateRec(ast.getChild(i));
-                        writer.append(" = " + to_assign.poll());
-                        writer.newLine();
                     }
                 } else {
                     for (int i = 0; i < chcnt; i++) {
-                        writer.append("  ");
                         generateRec(ast.getChild(i));
-                        writer.append(" = " + reg(-1) + "[" + i + "]");
+                        String[] last = code.getLast();
+                        last[last.length - 1] = reg(-1) + "[" + i + "]";
                         to_assign.poll();
-                        writer.newLine();
                     }
                 }
                 break;
@@ -109,33 +96,24 @@ public class Generateur3a {
                 generateRec(ast.getChild(0)); // left
                 to_assign.add(reg(-1));
                 generateRec(ast.getChild(1)); // right
-                writer.append("  " + reg() + " = " + to_assign.poll() + " equ " + reg(-1));
-                writer.newLine();
+                code.add(new String[] {"equ", reg(), to_assign.poll(), reg(-1)});
                 regcnt++;
                 break;
             case "IF":
                 generateRec(ast.getChild(0)); // cond
                 if (chcnt == 2) {
-                    writer.append("  ifz " + reg(-1) + " goto " + lab("end_if"));
-                    writer.newLine();
+                    code.add(new String[] {"ifz", reg(-1), "end_if" + curlab});
                     labcnt++;
                     generateRec(ast.getChild(1)); // then
-                    writer.append(lab("end_if", curlab - labcnt) + ":");
-                    writer.newLine();
+                    code.add(new String[] {"label", "end_if" + curlab});
                 } else {
-                    writer.append("  ifz " + reg(-1) + " goto " + lab("false"));
-                    writer.newLine();
+                    code.add(new String[] {"ifz", reg(-1), "false" + curlab});
                     labcnt++;
                     generateRec(ast.getChild(1)); // then
-                    writer.append("  goto " + lab("end_if", curlab - labcnt + 1));
-                    writer.newLine();
-                    labcnt++;
-                    writer.append(lab("false", curlab - labcnt) + ":");
-                    writer.newLine();
+                    code.add(new String[] {"goto", "end_if" + curlab});
+                    code.add(new String[] {"label", "false" + curlab});
                     generateRec(ast.getChild(2)); // else
-                    writer.append(lab("end_if", curlab - labcnt + 1) + ":");
-                    writer.newLine();
-                    labcnt++;
+                    code.add(new String[] {"label", "end_if" + curlab});
                 }
                 break;
             case "THEN":
@@ -149,71 +127,48 @@ public class Generateur3a {
                 }
                 break;
             case "WHILE":
-                writer.append(lab("while") + ":");
-                writer.newLine();
+                code.add(new String[] {"label", "loop" + curlab});
                 labcnt++;
                 generateRec(ast.getChild(0)); // cond
-                writer.append("  ifz " + reg(-1) + " goto " + lab("end_while"));
-                writer.newLine();
-                labcnt++;
+                code.add(new String[] {"ifz", reg(-1), "end_loop" + curlab});
                 generateRec(ast.getChild(1)); // body
-                writer.append("  goto " + lab("while", curlab - labcnt));
-                writer.newLine();
-                writer.append(lab("end_while", curlab - labcnt + 1) + ":");
-                writer.newLine();
+                code.add(new String[] {"goto", "loop" + curlab});
+                code.add(new String[] {"label", "end_loop" + curlab});
                 break;
             case "FOR":
                 generateRec(ast.getChild(0)); // iter
-                writer.append(lab("for") + ":");
-                writer.newLine();
+                code.add(new String[] {"label", "loop" + curlab});
                 labcnt++;
-                writer.append("  ifz " + tmp("_i", -1) + " goto " + lab("end_for"));
-                writer.newLine();
-                labcnt++;
-                writer.append("  " + reg() + " = tl " + tmp("_i", -1));
+                code.add(new String[] {"ifz", tmp("_i", -1), "end_loop" + curlab});
+                code.add(new String[] {"tl", reg(), tmp("_i", -1)});
                 regcnt++;
-                writer.newLine();
-                writer.append("  " + tmp("_i", -1) + " = " + reg(-1));
-                writer.newLine();
+                code.add(new String[] {"store", tmp("_i", -1), reg(-1)});
                 generateRec(ast.getChild(1)); // body
-                writer.append("  goto " + lab("for", curlab - labcnt));
-                writer.newLine();
-                writer.append(lab("end_for", curlab - labcnt + 1) + ":");
-                writer.newLine();
+                code.add(new String[] {"goto", "loop" + curlab});
+                code.add(new String[] {"label", "end_loop" + curlab});
                 break;
             case "FOREACH":
                 generateRec(ast.getChild(1)); // iter
-                writer.append(lab("foreach") + ":");
-                writer.newLine();
+                code.add(new String[] {"label", "loop" + curlab});
                 labcnt++;
-                writer.append("  ifz " + tmp("_i", -1) + " goto " + lab("end_foreach"));
-                writer.newLine();
-                labcnt++;
-                writer.append("  " + reg() + " = hd " + tmp("_i", -1));
+                code.add(new String[] {"ifz", tmp("_i", -1), "end_loop" + curlab});
+                code.add(new String[] {"hd", reg(), tmp("_i", -1)});
                 regcnt++;
-                writer.newLine();
-                writer.append("  ");
+                code.add(new String[] {"store", "", reg(-1)});
                 generateRec(ast.getChild(0));
-                writer.append(" = " + reg(-1));
-                writer.newLine();
-                writer.append("  " + reg() + " = tl " + tmp("_i", -1));
+                code.add(new String[] {"tl", reg(), tmp("_i", -1)});
                 regcnt++;
-                writer.newLine();
-                writer.append("  " + tmp("_i", -1) + " = " + reg(-1));
-                writer.newLine();
+                code.add(new String[] {"store", tmp("_i", -1), reg(-1)});
                 generateRec(ast.getChild(2)); // body
-                writer.append("  goto " + lab("foreach", curlab - labcnt));
-                writer.newLine();
-                writer.append(lab("end_foreach", curlab - labcnt + 1) + ":");
-                writer.newLine();
+                code.add(new String[] {"goto", "loop" + curlab});
+                code.add(new String[] {"label", "end_loop" + curlab});
                 break;
             case "COND":
                 generateRec(ast.getChild(0)); // expression
                 break;
             case "ITER":
                 generateRec(ast.getChild(0)); // expression
-                writer.append("  " + tmp("_i") + " = " + reg(-1));
-                writer.newLine();
+                code.add(new String[] {"store", tmp("_i"), reg(-1)});
                 tmpcnt++;
                 break;
             case "BODY":
@@ -222,98 +177,95 @@ public class Generateur3a {
                 }
                 break;
             case "NOP":
-                writer.append("  nop");
-                writer.newLine();
+                code.add(new String[] {"nop"});
                 break;
             case "CALL":
                 for (int i = 1; i < chcnt; i++) {
                     generateRec(ast.getChild(i));
-                    writer.append("  param " + reg(-1));
-                    writer.newLine();
+                    code.add(new String[] {"param", reg(-1)});
                 }
-                writer.append("  " + reg() + " = call ");
+                code.add(new String[] {"call", reg(), "", ""+(chcnt - 1)});
                 generateRec(ast.getChild(0));
-                writer.append(" " + (chcnt - 1));
-                writer.newLine();
                 regcnt++;
                 break;
             case "CONS":
                 switch (chcnt) {
                     case 0:
-                        writer.append("  " + reg() + " = nil");
-                        writer.newLine();
+                        code.add(new String[] {"store", reg(), "nil"});
                         regcnt++;
                         break;
                     case 1:
                         generateRec(ast.getChild(0));
-                        writer.append("  " + reg() + " = cons " + reg(-1));
-                        writer.newLine();
-                        regcnt++;
-                        break;
-                    case 2:
-                        generateRec(ast.getChild(0));
-                        to_assign.add(reg(-1));
-                        generateRec(ast.getChild(1));
-                        writer.append("  " + reg() + " = " + to_assign.poll() + " cons " + reg(-1));
-                        writer.newLine();
+                        code.add(new String[] {"store", reg(), reg(-1)});
                         regcnt++;
                         break;
                     default:
                         generateRec(ast.getChild(chcnt - 1));
                         to_assign.add(reg(-1));
-                        for (int i = chcnt - 2; i >= 0; i--) {
+                        for (int i = chcnt - 2; i >= 1; i--) {
                             generateRec(ast.getChild(i));
-                            writer.append("  " + reg() + " = " + to_assign.poll() + " cons " + reg(-1));
+                            code.add(new String[] {"cons", reg(), reg(-1), to_assign.poll()});
                             to_assign.add(reg(-1));
-                            writer.newLine();
                             regcnt++;
                         }
-                        to_assign.poll();
+                        generateRec(ast.getChild(0));
+                        code.add(new String[] {"cons", reg(), reg(-1), to_assign.poll()});
+                        regcnt++;
                         break;
                 }
                 break;
             case "LIST":
-                writer.append("  " + reg() + " = nil");
-                writer.newLine();
-                regcnt++;
-                for (int i = chcnt - 1; i >= 0; i--) {
-                    generateRec(ast.getChild(i));
-                    writer.append("  " + reg() + " = " + reg(-2) + " cons " + reg(-1));
-                    writer.newLine();
-                    regcnt++;
+                switch (chcnt) {
+                    case 0:
+                        code.add(new String[] {"store", reg(), "nil"});
+                        regcnt++;
+                        break;
+                    default:
+                        to_assign.add("nil");
+                        for (int i = chcnt - 2; i >= 1; i--) {
+                            generateRec(ast.getChild(i));
+                            code.add(new String[] {"cons", reg(), reg(-1), to_assign.poll()});
+                            to_assign.add(reg(-1));
+                            regcnt++;
+                        }
+                        generateRec(ast.getChild(0));
+                        code.add(new String[] {"cons", reg(), reg(-1), to_assign.poll()});
+                        regcnt++;
+                        break;
                 }
                 break;
             case "HD":
                 generateRec(ast.getChild(0));
-                writer.append("  " + reg() + " = hd " + reg(-1));
-                writer.newLine();
+                code.add(new String[] {"hd", reg(), reg(-1)});
                 regcnt++;
                 break;
             case "TL":
                 generateRec(ast.getChild(0));
-                writer.append("  " + reg() + " = tl " + reg(-1));
-                writer.newLine();
+                code.add(new String[] {"tl", reg(), reg(-1)});
                 regcnt++;
                 break;
             case "NIL":
-                writer.append("  " + reg() + " = nil");
-                writer.newLine();
+                code.add(new String[] {"store", reg(), "nil"});
                 regcnt++;
                 break;
             case "VAR":
-                writer.append("  " + reg() + " = ");
+                code.add(new String[] {"store", reg(), ""});
                 generateRec(ast.getChild(0));
-                writer.newLine();
                 regcnt++;
                 break;
             case "SYM":
-                writer.append("  " + reg() + " = ");
+                code.add(new String[] {"store", reg(), ""});
                 generateRec(ast.getChild(0));
-                writer.newLine();
                 regcnt++;
                 break;
             default:
-                writer.append(txt);
+                String[] last = code.getLast();
+                for (int i = 0; i < last.length; i++) {
+                    if (last[i].equals("")) {
+                        last[i] = ast.getText();
+                        break;
+                    }
+                }
                 break;
         }
     }
@@ -324,14 +276,6 @@ public class Generateur3a {
 
     private String reg() {
         return reg + regcnt;
-    }
-
-    private String lab(String name, int off) {
-        return name + lab + (labcnt + off);
-    }
-
-    private String lab(String name) {
-        return name + lab + labcnt;
     }
 
     private String tmp(String name, int off) {

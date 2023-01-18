@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedList;
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.Tree;
@@ -9,11 +10,12 @@ import output.whileLexer;
 import output.whileParser;
 
 public class App {
-    public static void main(String[] args) throws Exception {
-        if (args.length == 0) {
+    public static void main(String[] args) {
+        /*if (args.length == 0) {
             System.out.println("Error: No file path provided");
             return;
-        }
+        }*/
+        args = new String[] {"../code.txt"};
 
         // Read the file into a string
         String content = "";
@@ -23,40 +25,44 @@ public class App {
             while ((line = reader.readLine()) != null) {
                 content += line + "\n";
             }
-            reader.close();
         } catch (IOException e) {
-            System.out.println("Error: Unable to read file");
-            return;
+            System.out.println("Error: Unable to read file " + e.getMessage());
+            System.exit(1);
         }
 
         ANTLRStringStream in = new ANTLRStringStream(content);
         whileLexer lexer = new whileLexer(in);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         whileParser parser = new whileParser(tokens);
-        whileParser.program_return pReturn = parser.program();
-        
-        Tree ast = (Tree) pReturn.getTree();
-
-        Visitor v = new Visitor(ast);
-        v.analyse();
-
-        Generateur3a g = new Generateur3a(ast);
         
         try {
-            g.generate(args[0] + ".3a");
-        }
-        catch (IOException e) {
-            System.out.println("Error: Unable to write file containing 3-address code");
-            return;
-        }
+            whileParser.program_return pReturn = parser.program();
+            Tree ast = (Tree) pReturn.getTree();
 
-        Code3aToCpp c = new Code3aToCpp();
-        try {
-            c.generate(args[0] + ".3a");
-        }
-        catch (IOException e) {
-            System.out.println("Error: Unable to write file containing C++ code");
-            return;
+            Visitor v = new Visitor(ast);
+            v.analyse();
+
+            Generateur3a g = new Generateur3a(ast);
+            LinkedList<String[]> code3a = g.generate();
+            
+            for (String[] line : code3a) {
+                for (String s : line) {
+                    System.out.print(s + " ");
+                }
+                System.out.println();
+            }
+
+            Code3aToCppOld c = new Code3aToCppOld();
+            try {
+                c.generate(args[0]);
+            }
+            catch (IOException e) {
+                System.out.println("Error: Unable to write output file " + e.getMessage());
+                System.exit(1);
+            }
+        } catch (RecognitionException e) {
+            System.out.println("Syntax error: " + e.getMessage());
+            System.exit(1);
         }
     }
 }

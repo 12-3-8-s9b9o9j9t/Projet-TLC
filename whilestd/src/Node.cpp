@@ -32,31 +32,31 @@ BinTreePtr Node::hd() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
-    return std::move(left->clone());
+    return left->clone();
 }
 
 BinTreePtr Node::tl() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
-    return std::move(right->clone());
+    return right->clone();
 }
 
 BinTreePtr Node::clone() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
-    return std::make_unique<Node>(std::move(left->clone()), std::move(right->clone()));
+    return std::make_unique<Node>(left->clone(), right->clone());
 }
 
 BinTreePtr Node::operator ==(const BinTree& other) const {
     if (auto otherNode = dynamic_cast<const Node*>(&other)) {
         if (isNil()) {
-            return std::move(Bool(otherNode->isNil()));
+            return Bool(otherNode->isNil());
         }
-        return std::move(Bool(!otherNode->isNil()
+        return Bool(!otherNode->isNil()
             && *(*left == *otherNode->left)
-            && *(*right == *otherNode->right)));
+            && *(*right == *otherNode->right));
     }
     return std::make_unique<Node>();
 }

@@ -22,7 +22,7 @@ namespace whilestd {
 BinTreePtr Parser::parse(const std::string& input) {
     int i = 0;
     if (std::sscanf(input.c_str(), "%d", &i) == 1 && i >= 0) {
-        return std::move(toTree(i));
+        return toTree(i);
     }
     else if(auto tmp = consParse(input)){
         return tmp;
@@ -69,11 +69,11 @@ BinTreePtr Parser::consParseRec(const std::deque<std::string>& tokens) {
                     list.push_front(nullptr);
                     break;
                 }
-                list.push_front(std::move(consParseRec(std::deque<std::string>(it, it2+1))));
+                list.push_front(consParseRec(std::deque<std::string>(it, it2+1)));
                 it = it2 + 1;
             }
             else {
-                list.push_front(std::move(consParseEnd(*it)));
+                list.push_front(consParseEnd(*it));
                 it++;
             }
         }

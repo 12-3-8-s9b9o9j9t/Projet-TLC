@@ -23,7 +23,7 @@ Leaf::operator std::string() const {
 
 BinTreePtr Leaf::operator ==(const BinTree& other) const {
     if (auto otherLeaf = dynamic_cast<const Leaf*>(&other)) {
-        return std::move(Bool(symbol == otherLeaf->symbol));
+        return Bool(symbol == otherLeaf->symbol);
     }
     return std::make_unique<Node>();
 }
