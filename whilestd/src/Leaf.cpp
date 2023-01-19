@@ -1,6 +1,5 @@
 #include "whilestd/Leaf.h"
 #include "whilestd/Node.h"
-#include "whilestd/Bool.h"
 #include <memory>
 #include <string>
 #include <iostream>
@@ -21,13 +20,6 @@ Leaf::operator std::string() const {
     return symbol;
 }
 
-BinTreePtr Leaf::operator ==(const BinTree& other) const {
-    if (auto otherLeaf = dynamic_cast<const Leaf*>(&other)) {
-        return std::move(Bool(symbol == otherLeaf->symbol));
-    }
-    return std::make_unique<Node>();
-}
-
 BinTreePtr Leaf::hd() const {
     return std::make_unique<Node>();
 }
@@ -42,6 +34,13 @@ BinTreePtr Leaf::clone() const {
 
 std::ostream& Leaf::pp(std::ostream& os) const {
     return os << symbol;
+}
+
+bool Leaf::equals(const BinTreePtr& other) const {
+    if (auto otherLeaf = dynamic_cast<Leaf*>(other.get())) {
+        return symbol == otherLeaf->symbol;
+    }
+    return false;
 }
 
 }

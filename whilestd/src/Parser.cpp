@@ -6,7 +6,6 @@
 #include <regex>
 #include <deque>
 #include <algorithm>
-#include <cstdio>
 
 namespace {
 
@@ -21,11 +20,11 @@ namespace whilestd {
 
 BinTreePtr Parser::parse(const std::string& input) {
     int i = 0;
-    if (std::sscanf(input.c_str(), "%d", &i) == 1 && i >= 0) {
-        return std::move(toTree(i));
+    if (sscanf(input.c_str(), "%d", &i) == 1) {
+        return std::move(toTree(i));   
     }
     else if(auto tmp = consParse(input)){
-        return tmp;
+        return std::move(tmp);
     }
     throw std::invalid_argument("Invalid input: " + input);
 }
@@ -35,7 +34,7 @@ BinTreePtr Parser::toTree(int i) {
     for (int j = 0; j < i; j++) {
         t = std::make_unique<Node>(std::make_unique<Node>(), std::move(t));
     }
-    return t;
+    return std::move(t);
 }
 
 BinTreePtr Parser::consParse(const std::string& input) {
@@ -99,7 +98,7 @@ BinTreePtr Parser::consParseRec(const std::deque<std::string>& tokens) {
             }
         }
     }
-    return t;
+    return std::move(t);
 }
 
 BinTreePtr Parser::consParseEnd(const std::string& token) {
@@ -110,7 +109,7 @@ BinTreePtr Parser::consParseEnd(const std::string& token) {
     else if (std::regex_match(token, symbol)) {
         t = std::make_unique<Leaf>(token);
     }
-    return t;
+    return std::move(t);
 }
 
 }
