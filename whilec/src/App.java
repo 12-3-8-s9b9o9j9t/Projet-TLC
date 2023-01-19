@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.Tree;
@@ -38,7 +40,7 @@ public class App {
         Tree ast = (Tree) pReturn.getTree();
 
         Visitor v = new Visitor(ast);
-        v.analyse();
+        Map<String, SpaghettiStack.Tuple<List<String>, List<String>, List<String>>>  table = v.analyse();
 
         Generateur3a g = new Generateur3a(ast);
         

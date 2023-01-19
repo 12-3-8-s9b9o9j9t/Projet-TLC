@@ -1,46 +1,53 @@
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class SpaghettiStack {
 
-    String name;
-    //List<SpaghettiStack> childBlocks;
-    Map<String, List<Integer>> symbols;
+    public class Tuple<S1, S2, S3> {
+        public S1 inputs;
+        public S2 declared;
+        public S3 outputs;
+    }
 
-    public SpaghettiStack(String name) {
-        this.name = name;
-        //this.childBlocks = new LinkedList<SpaghettiStack>();
-        this.symbols = new LinkedHashMap<String, List<Integer>>();
+    private Map<String, Tuple<List<String>, List<String>, List<String>>> symbols;
+
+    public SpaghettiStack() {
+        this.symbols = new LinkedHashMap<String, Tuple<List<String>, List<String>, List<String>>>();
     }
-    /*
-      public List<SpaghettiStack> getChildBlocks() {
-        return this.childBlocks;
-    }
-    */
-    public Map<String, List<Integer>> getSymbols() {
+    
+    public Map<String, Tuple<List<String>, List<String>, List<String>>> getSymbols() {
         return this.symbols;
     }
 
-    public boolean alreadyDeclared(String name) {
-        return symbols.containsKey(name);
+    public boolean alreadyDeclared(String name, String funcName) {
+        return this.symbols.get(funcName).declared.contains(name);
     }
 
-    public void addSymbolsToCurrentBlock(String name, int line) {
-        List<Integer> l = this.symbols.get(name);
+    public boolean alreadyDeclaredInput(String name, String funcName) {
+        return this.symbols.get(funcName).inputs.contains(name);
+    }
+
+    public boolean alreadyDeclaredOutput(String name, String funcName) {
+        return this.symbols.get(funcName).outputs.contains(name);
+    }
+
+    public void addInputsToCurrentBlock(String varName, int line, String funcName) {
+        Tuple<List<String>, List<String>, List<String>> l = this.symbols.get(funcName);
         if (l == null) {
-            l = new LinkedList<Integer>();
-            this.symbols.put(name, l);
+            l = new Tuple<List<String>, List<String>, List<String>>();
+            this.symbols.put(funcName, l);
         }
-        l.add(line);
+        l.inputs.add(varName);
     }
-    /* 
-    public void addChildToCurrentblock(SpaghettiStack stack) {
-        childBlocks.add(stack);
+
+    public void addOutputsToCurrentBlock(String varName, int line, String funcName) {
+        Tuple<List<String>, List<String>, List<String>> l = this.symbols.get(funcName);
+        l.outputs.add(varName);
     }
-    */
-    public String toString() {
-        return name;
+
+    public void addSymbolsToCurrentBlock(String varName, int line, String funcName) {
+        Tuple<List<String>, List<String>, List<String>> l = this.symbols.get(funcName);
+        l.declared.add(varName);
     }
 }
