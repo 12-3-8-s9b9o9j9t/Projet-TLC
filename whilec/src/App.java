@@ -42,8 +42,8 @@ public class App {
         
         Tree ast = (Tree) pReturn.getTree();
 
-        VisitorTmp v = new VisitorTmp(ast);
-        Map<String, SpaghettiStackTmp.Tuple<Set<String>, Set<String>, List<String>>>  table = v.analyse();
+        Visitor v = new Visitor(ast);
+        Map<String, SpaghettiStack.Tuple<Set<String>, Set<String>, List<String>>>  table = v.analyse();
 
         for (String key : table.keySet()) {
             System.out.println(key +":");
