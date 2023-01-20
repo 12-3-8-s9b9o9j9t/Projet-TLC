@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.Tree;
@@ -12,10 +13,12 @@ import output.whileParser;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        if (args.length == 0) {
+        /*if (args.length == 0) {
             System.out.println("Error: No file path provided");
             return;
-        }
+        }*/
+
+        args = new String[]{"../code.txt"};
 
         // Read the file into a string
         String content = "";
@@ -39,8 +42,29 @@ public class App {
         
         Tree ast = (Tree) pReturn.getTree();
 
-        Visitor v = new Visitor(ast);
-        Map<String, SpaghettiStack.Tuple<List<String>, List<String>, List<String>>>  table = v.analyse();
+        VisitorTmp v = new VisitorTmp(ast);
+        Map<String, SpaghettiStackTmp.Tuple<Set<String>, Set<String>, List<String>>>  table = v.analyse();
+
+        for (String key : table.keySet()) {
+            System.out.println(key +":");
+            Set<String> inputs = table.get(key).inputs;
+            System.out.println("  Inputs:");
+            for (String input : inputs) {
+                System.out.println("\t" + input);
+            }
+            Set<String> locals = table.get(key).locals;
+            System.out.println("  Locals:");
+            for (String local : locals) {
+                System.out.println("\t" + local);
+            }
+            List<String> outputs = table.get(key).outputs;
+            System.out.println("  Outputs:");
+            for (String output : outputs) {
+                System.out.println("\t" + output);
+            }
+            System.out.println("--------------------");
+        }
+
 
         Generateur3a g = new Generateur3a(ast);
         

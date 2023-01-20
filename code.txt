@@ -1,3 +1,13 @@
+function mul :
+read Op1, Op2
+%
+ Result := Op1 ;
+for Op2 do
+ Result, X := ( add (cons Slr Result) nil )
+od
+%
+write Result
+
 // Addition of two numbers
 function add :
 read Op1, Op2
@@ -7,7 +17,7 @@ for Op2 do
  Result := ( cons nil Result )
 od
 %
-write Result
+write Result, Res2
 
 function main :
 read Op1, Op2
