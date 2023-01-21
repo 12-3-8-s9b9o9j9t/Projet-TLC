@@ -22,14 +22,18 @@ public class Visitor {
     private void analyseFunc(Tree function) throws CompilationException {
         String funcName = function.getChild(0).getChild(0).getText();
         if (!root.addStack(funcName)) {
-            throw new CompilationException("Error line " + function.getChild(0).getChild(0).getLine() + ": function " + funcName + " already declared");
+            throw new CompilationException("Error line "
+                    + function.getChild(0).getChild(0).getLine() + ": function "
+                    + funcName + " already declared");
         }
 
         Tree input = function.getChild(1).getChild(0);
 
         for (int i = 0; i < input.getChildCount(); i++) {
             if (!root.addInput(input.getChild(i).getText(), funcName)) {
-                throw new CompilationException("Error line " + input.getChild(i).getLine() + ": input " + input.getChild(i).getText() + " already declared");
+                throw new CompilationException("Error line "
+                        + input.getChild(i).getLine() + ": input "
+                        + input.getChild(i).getText() + " already declared");
             }
         }
 
@@ -44,10 +48,10 @@ public class Visitor {
         for (int i = 0; i < commands.getChildCount(); i++) {
             analyseCommand(commands.getChild(i), funcName);
         }
-        
+
     }
 
-    private void analyseCommand(Tree command, String funcName) throws CompilationException{
+    private void analyseCommand(Tree command, String funcName) throws CompilationException {
         switch (command.getText()) {
             case "ASSIGN":
                 assignIsCorrect(command, funcName);
@@ -78,9 +82,12 @@ public class Visitor {
                 root.addLocal(command.getChild(0).getChild(i).getText(), funcName);
             }
         }
-        
+
         else {
-            throw new CompilationException("Error line " + command.getLine() + ": number of variables (" + command.getChild(0).getChildCount() + ") does not match number of assigned values (" + totalAssign + ")");
+            throw new CompilationException(
+                    "Error line " + command.getLine() 
+                    + ": number of variables (" + command.getChild(0).getChildCount()
+                    + ") does not match number of assigned values (" + totalAssign + ")");
         }
     }
 
@@ -123,9 +130,11 @@ public class Visitor {
 
     private void foreachIsCorrect(Tree command, String funcName) throws CompilationException {
         if (!root.addLocal(command.getChild(0).getText(), funcName)) {
-            throw new CompilationException("Error line " + command.getChild(0).getChild(0).getLine() + ": variable " + command.getChild(0).getChild(0).getText() + " already declared");
+            throw new CompilationException("Error line " 
+                    + command.getChild(0).getChild(0).getLine() + ": variable "
+                    + command.getChild(0).getChild(0).getText() + " already declared");
         }
-        
+
         // analyse l'expression pour l'itération
         analyseExpression(command.getChild(1).getChild(0), funcName);
 
@@ -163,14 +172,16 @@ public class Visitor {
 
     private int callIsCorrect(Tree call, String funcName) throws CompilationException {
         String name = call.getChild(0).getText();
-        
+
         if (name.equals("main")) {
-            throw new CompilationException("Error line " + call.getLine() + ": cannot call main function");
+            throw new CompilationException("Error line " + call.getLine() 
+                    + ": cannot call main function");
         }
 
         Tree function = findFunction(name);
         if (function == null) {
-            throw new CompilationException("Error line " + call.getLine() + ": function " + name + " not found");
+            throw new CompilationException("Error line " + call.getLine() 
+                    + ": function " + name + " not found");
         }
 
         int nbInput = function.getChild(1).getChild(0).getChildCount();
@@ -180,12 +191,13 @@ public class Visitor {
         }
 
         if (nbInput != nbGivenInput) {
-            throw new CompilationException("Error line " + call.getLine() + ": function " + name + " takes " + nbInput + " arguments, " + nbGivenInput + " given");
+            throw new CompilationException("Error line " + call.getLine() 
+                    + ": function " + name + " takes " + nbInput
+                    + " arguments, " + nbGivenInput + " given");
         }
-        
+
         return function.getChild(1).getChild(2).getChildCount();
     }
-    
 
     private Tree findFunction(String name) {
         for (int i = 0; i < this.ast.getChildCount(); i++) {

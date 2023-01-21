@@ -15,10 +15,10 @@ public class Table {
 
     private Map<String, Tuple<Set<String>, Set<String>, List<String>>> symbols = 
         new LinkedHashMap<String, Tuple<Set<String>, Set<String>, List<String>>>();
-    
+
     public Set<String> getFunctions() {
         return this.symbols.keySet();
-    }    
+    }
 
     public Set<String> getInputs(String funcName) {
         return this.symbols.get(funcName).inputs;
@@ -36,7 +36,8 @@ public class Table {
         if (this.symbols.containsKey(funcName)) {
             return false;
         }
-        Tuple<Set<String>, Set<String>, List<String>> l = new Tuple<Set<String>, Set<String>, List<String>>();
+        Tuple<Set<String>, Set<String>, List<String>> l = 
+            new Tuple<Set<String>, Set<String>, List<String>>();
         l.inputs = new HashSet<String>();
         l.locals = new HashSet<String>();
         l.outputs = new LinkedList<String>();

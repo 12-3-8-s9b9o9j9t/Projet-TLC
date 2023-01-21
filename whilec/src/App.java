@@ -33,7 +33,7 @@ public class App {
         whileLexer lexer = new whileLexer(in);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         whileParser parser = new whileParser(tokens);
-        
+
         try {
             whileParser.program_return pReturn = parser.program();
             Tree ast = (Tree) pReturn.getTree();
@@ -73,7 +73,7 @@ public class App {
 
             Code3aToCpp c = new Code3aToCpp(code3a);
             c.generate(args[0], table);
-            
+
         } catch (RecognitionException e) {
             System.out.println("Syntax error");
             System.exit(1);

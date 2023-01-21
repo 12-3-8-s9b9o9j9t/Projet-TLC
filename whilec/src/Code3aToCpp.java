@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-
 public class Code3aToCpp {
 
     private BufferedWriter header = null;
@@ -39,13 +38,13 @@ public class Code3aToCpp {
         generateHeader(f.getName());
         generateFunBodies();
         generateSource(f.getName());
-       
+
     }
 
     private void generateHeader(String inputName) throws IOException {
         String guard = "WHILEC_GENERATED_" + inputName.toUpperCase()
-            .replace('.', '_')
-            .replace('-', '_') + "_H";
+                .replace('.', '_')
+                .replace('-', '_') + "_H";
 
         header.write("#ifndef " + guard);
         header.newLine();
@@ -67,8 +66,8 @@ public class Code3aToCpp {
                 if (!fun.equals("main")) {
                     header.write("whilestd::BinTreePtr " + format(fun) + " (");
                     Set<String> inputs = table.getInputs(fun);
-                    
-                    for (int i = inputs.size() -1; i >= 0; i--) {
+
+                    for (int i = inputs.size() - 1; i >= 0; i--) {
                         header.newLine();
                         header.write(indent);
                         header.write("whilestd::BinTreePtr " + format(inputs.toArray()[i].toString()));
@@ -87,7 +86,6 @@ public class Code3aToCpp {
             header.newLine();
             header.newLine();
         }
-
 
         header.write("#endif // " + guard);
         header.newLine();
@@ -111,8 +109,8 @@ public class Code3aToCpp {
                 if (!fun.equals("main")) {
                     source.write("whilestd::BinTreePtr " + format(fun) + " (");
                     Set<String> inputs = table.getInputs(fun);
-                    
-                    for (int i = inputs.size() -1; i >= 0; i--) {
+
+                    for (int i = inputs.size() - 1; i >= 0; i--) {
                         source.newLine();
                         source.write(indent.repeat(2));
                         source.write("whilestd::BinTreePtr " + format(inputs.toArray()[i].toString()));
@@ -146,7 +144,7 @@ public class Code3aToCpp {
         Set<String> inputs = null;
         Set<String> locals = null;
         Queue<String> params = new LinkedList<String>();
-        
+
         for (String[] line : code) {
             switch (line[0]) {
                 case "func":
@@ -170,34 +168,34 @@ public class Code3aToCpp {
                         if (fun.equals("main")) {
                             body.append("int main(int argc, char** argv) {\n");
                             body.append(indent + "if (argc < " + (inputs.size() + 1) + ") {\n");
-                            body.append(indent.repeat(2) 
-                                + "std::cerr << \"Not enough arguments: \" << (argc - 1) << \" given, " 
-                                + inputs.size() + " needed\\n\";\n");
+                            body.append(indent.repeat(2)
+                                    + "std::cerr << \"Not enough arguments: \" << (argc - 1) << \" given, "
+                                    + inputs.size() + " needed\\n\";\n");
                             body.append(indent + "} else if (argc > " + (inputs.size() + 1) + ") {\n");
-                            body.append(indent.repeat(2) 
-                                + "std::cerr << \"Too many arguments: \" << (argc - 1) << \" given, " 
-                                + inputs.size() + " needed\\n\";\n");
+                            body.append(indent.repeat(2)
+                                    + "std::cerr << \"Too many arguments: \" << (argc - 1) << \" given, "
+                                    + inputs.size() + " needed\\n\";\n");
                             body.append(indent + "} else {\n");
                             body.append(indent.repeat(2) + "try {\n");
                             nbIndent += 2;
                         }
                         body.append(indent.repeat(nbIndent) + "// init locals\n");
                         for (String local : locals) {
-                            body.append(indent.repeat(nbIndent) + "whilestd::BinTreePtr " 
-                                + format(local) + " = std::make_unique<whilestd::Node>();\n");
+                            body.append(indent.repeat(nbIndent) + "whilestd::BinTreePtr "
+                                    + format(local) + " = std::make_unique<whilestd::Node>();\n");
                         }
                         body.append("\n");
 
                     }
                     break;
                 case "parse":
-                    body.append(indent.repeat(nbIndent) + "auto " 
-                        + format(line[1]) + " = whilestd::Parser::parse(argv[" 
-                        + (Integer.valueOf(line[2]) + 1) + "]);\n");
+                    body.append(indent.repeat(nbIndent) + "auto "
+                            + format(line[1]) + " = whilestd::Parser::parse(argv["
+                            + (Integer.valueOf(line[2]) + 1) + "]);\n");
                     break;
                 case "print":
-                    body.append(indent.repeat(nbIndent) + "std::cout << *" 
-                        + format(line[1]) + " << \'\\n\';\n");
+                    body.append(indent.repeat(nbIndent) + "std::cout << *"
+                            + format(line[1]) + " << \'\\n\';\n");
                     break;
                 case "param":
                     params.add(line[1]);
@@ -205,8 +203,8 @@ public class Code3aToCpp {
                 case "call":
                     body.append(indent.repeat(nbIndent) + "auto " + line[1] + " = " + format(line[2]) + "(\n");
                     for (int i = Integer.valueOf(line[3]) - 1; i >= 0; i--) {
-                        body.append(indent.repeat(nbIndent + 1) 
-                            + params.poll() + "->clone()");
+                        body.append(indent.repeat(nbIndent + 1)
+                                + params.poll() + "->clone()");
                         if (i > 0) {
                             body.append(",\n");
                         }
@@ -229,7 +227,8 @@ public class Code3aToCpp {
                     body.append(indent.repeat(nbIndent));
                     if (line[1].matches(regexReg) && !locals.contains(line[1])) {
                         body.append(line[2].matches(regexSym)
-                            ? "whilestd::BinTreePtr " : "auto ");
+                                ? "whilestd::BinTreePtr "
+                                : "auto ");
                         locals.add(line[1]);
                     }
                     body.append(format(line[1]) + " = ");
@@ -250,8 +249,8 @@ public class Code3aToCpp {
                         body.append("whilestd::BinTreePtr ");
                         locals.add(line[1]);
                     }
-                    body.append(format(line[1]) + " = std::make_unique<whilestd::Node>(" 
-                        + format(line[2]) + "->clone(), " + format(line[3]) + "->clone());\n");
+                    body.append(format(line[1]) + " = std::make_unique<whilestd::Node>("
+                            + format(line[2]) + "->clone(), " + format(line[3]) + "->clone());\n");
                     break;
                 case "hd":
                     body.append(indent.repeat(nbIndent));
@@ -291,8 +290,7 @@ public class Code3aToCpp {
                     if (line[1].contains("end")) {
                         nbIndent--;
                         body.append(indent.repeat(nbIndent) + "}\n\n");
-                    }
-                    else if (line[1].contains("false")) {
+                    } else if (line[1].contains("false")) {
                         body.append(indent.repeat(nbIndent - 1) + "} else {\n");
                     }
                     break;
@@ -309,8 +307,8 @@ public class Code3aToCpp {
             return str;
         }
         return str.replace("!", "_1")
-            .replace("?", "_2")
-            + '_';
+                .replace("?", "_2")
+                + '_';
     }
 
 }
