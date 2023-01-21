@@ -1,7 +1,5 @@
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import org.antlr.runtime.CommonToken;
+import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
 
 public class Visitor {
@@ -13,27 +11,27 @@ public class Visitor {
         this.ast = ast;
     }
 
-    public Map<String, SpaghettiStack.Tuple<Set<String>, Set<String>, List<String>>> analyse() throws Exception {
+    public SpaghettiStack analyse() throws CompilationException {
         for (int i = 0; i < ast.getChildCount(); i++) {
             analyseFunc(ast.getChild(i));
         }
         if (root.addStack("main")) {
-            throw new Exception("Error: main function was not declared");
+            throw new CompilationException("Error: main function was not declared");
         }
-        return this.root.getSymbols();
+        return this.root;
     }
 
-    private void analyseFunc(Tree function) throws Exception {
+    private void analyseFunc(Tree function) throws CompilationException {
         String funcName = function.getChild(0).getChild(0).getText();
         if (!root.addStack(funcName)) {
-            throw new Exception("Error line " + function.getChild(0).getChild(0).getLine() + ": function " + funcName + " already declared");
+            throw new CompilationException("Error line " + function.getChild(0).getChild(0).getLine() + ": function " + funcName + " already declared");
         }
 
         Tree input = function.getChild(1).getChild(0);
 
         for (int i = 0; i < input.getChildCount(); i++) {
             if (!root.addInput(input.getChild(i).getText(), funcName)) {
-                throw new Exception("Error line " + input.getChild(i).getLine() + ": input " + input.getChild(i).getText() + " already declared");
+                throw new CompilationException("Error line " + input.getChild(i).getLine() + ": input " + input.getChild(i).getText() + " already declared");
             }
         }
 
@@ -51,7 +49,7 @@ public class Visitor {
         
     }
 
-    private void analyseCommand(Tree command, String funcName) throws Exception{
+    private void analyseCommand(Tree command, String funcName) throws CompilationException{
         switch (command.getText()) {
             case "ASSIGN":
                 assignIsCorrect(command, funcName);
@@ -71,7 +69,7 @@ public class Visitor {
         }
     }
 
-    private void assignIsCorrect(Tree command, String funcName) throws Exception {
+    private void assignIsCorrect(Tree command, String funcName) throws CompilationException {
         int totalAssign = 0;
         for (int i = 0; i < command.getChild(1).getChildCount(); i++) {
             totalAssign += analyseExpression(command.getChild(1).getChild(i), funcName);
@@ -84,11 +82,11 @@ public class Visitor {
         }
         
         else {
-            throw new Exception("Error line " + command.getLine() + ": number of variables (" + command.getChild(0).getChildCount() + ") does not match number of assigned values (" + totalAssign + ")");
+            throw new CompilationException("Error line " + command.getLine() + ": number of variables (" + command.getChild(0).getChildCount() + ") does not match number of assigned values (" + totalAssign + ")");
         }
     }
 
-    private void ifIsCorrect(Tree command, String funcName) throws Exception {
+    private void ifIsCorrect(Tree command, String funcName) throws CompilationException {
         // analyse la condition
         analyseExpression(command.getChild(0).getChild(0), funcName);
 
@@ -105,7 +103,7 @@ public class Visitor {
         }
     }
 
-    private void whileIsCorrect(Tree command, String funcName) throws Exception {
+    private void whileIsCorrect(Tree command, String funcName) throws CompilationException {
         // analyse la condition
         analyseExpression(command.getChild(0).getChild(0), funcName);
 
@@ -115,7 +113,7 @@ public class Visitor {
         }
     }
 
-    private void forIsCorrect(Tree command, String funcName) throws Exception {
+    private void forIsCorrect(Tree command, String funcName) throws CompilationException {
         // analyse l'expression pour l'itération
         analyseExpression(command.getChild(0).getChild(0), funcName);
 
@@ -125,9 +123,9 @@ public class Visitor {
         }
     }
 
-    private void foreachIsCorrect(Tree command, String funcName) throws Exception {
+    private void foreachIsCorrect(Tree command, String funcName) throws CompilationException {
         if (!root.addLocal(command.getChild(0).getText(), funcName)) {
-            throw new Exception("Error line " + command.getChild(0).getChild(0).getLine() + ": variable " + command.getChild(0).getChild(0).getText() + " already declared");
+            throw new CompilationException("Error line " + command.getChild(0).getChild(0).getLine() + ": variable " + command.getChild(0).getChild(0).getText() + " already declared");
         }
         
         // analyse l'expression pour l'itération
@@ -139,12 +137,11 @@ public class Visitor {
         }
     }
 
-    private int analyseExpression(Tree expr, String funcName) throws Exception {
+    private int analyseExpression(Tree expr, String funcName) throws CompilationException {
         switch (expr.getText()) {
             case "EQU":
-                if (analyseExpression(expr.getChild(0), funcName) != 1 &&  analyseExpression(expr.getChild(1), funcName) != 1) {
-                    throw new Exception("Error line " + expr.getLine() + ": cannot compare more than one value, tried to compare " + analyseExpression(expr.getChild(0), funcName) + " and " + analyseExpression(expr.getChild(1), funcName) + " values");
-                }
+                analyseExpression(expr.getChild(0), funcName);
+                analyseExpression(expr.getChild(1), funcName);
                 return 1;
             case "VAR":
                 root.addLocal(expr.getChild(0).getText(), funcName);
@@ -166,16 +163,16 @@ public class Visitor {
         }
     }
 
-    private int callIsCorrect(Tree call, String funcName) throws Exception {
+    private int callIsCorrect(Tree call, String funcName) throws CompilationException {
         String name = call.getChild(0).getText();
         
         if (name.equals("main")) {
-            throw new Exception("Error line " + call.getLine() + ": cannot call main function");
+            throw new CompilationException("Error line " + call.getLine() + ": cannot call main function");
         }
 
         Tree function = findFunction(name);
         if (function == null) {
-            throw new Exception("Error line " + call.getLine() + ": function " + name + " not found");
+            throw new CompilationException("Error line " + call.getLine() + ": function " + name + " not found");
         }
 
         int nbInput = function.getChild(1).getChild(0).getChildCount();
@@ -185,7 +182,7 @@ public class Visitor {
         }
 
         if (nbInput != nbGivenInput) {
-            throw new Exception("Error line " + call.getLine() + ": function " + name + " takes " + nbInput + " arguments, " + nbGivenInput + " given");
+            throw new CompilationException("Error line " + call.getLine() + ": function " + name + " takes " + nbInput + " arguments, " + nbGivenInput + " given");
         }
         
         return function.getChild(1).getChild(2).getChildCount();

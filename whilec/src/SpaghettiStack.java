@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class SpaghettiStack {
 
-    public class Tuple<S1, S2, S3> {
+    private class Tuple<S1, S2, S3> {
         public S1 inputs;
         public S2 locals;
         public S3 outputs;
@@ -16,8 +16,20 @@ public class SpaghettiStack {
     private Map<String, Tuple<Set<String>, Set<String>, List<String>>> symbols = 
         new LinkedHashMap<String, Tuple<Set<String>, Set<String>, List<String>>>();
     
-    public Map<String, Tuple<Set<String>, Set<String>, List<String>>> getSymbols() {
-        return this.symbols;
+    public Set<String> getFunctions() {
+        return this.symbols.keySet();
+    }    
+
+    public Set<String> getInputs(String funcName) {
+        return this.symbols.get(funcName).inputs;
+    }
+
+    public Set<String> getLocals(String funcName) {
+        return this.symbols.get(funcName).locals;
+    }
+
+    public List<String> getOutputs(String funcName) {
+        return this.symbols.get(funcName).outputs;
     }
 
     public boolean addStack(String funcName) {
@@ -38,16 +50,22 @@ public class SpaghettiStack {
     }
 
     public boolean addLocal(String varName, String funcName) {
-        Set<String> dec = this.symbols.get(funcName).locals;
         Set<String> in = this.symbols.get(funcName).inputs;
         if (in.contains(varName)) {
             return false;
         }
-        return dec.add(varName);
+        Set<String> loc = this.symbols.get(funcName).locals;
+        return loc.add(varName);
     }
 
     public boolean addOutput(String varName, String funcName) {
         List<String> out = this.symbols.get(funcName).outputs;
         return out.add(varName);
+    }
+
+    public boolean isDeclared(String varName, String funcName) {
+        Set<String> loc = this.symbols.get(funcName).locals;
+        Set<String> in = this.symbols.get(funcName).inputs;
+        return loc.contains(varName) || in.contains(varName);
     }
 }

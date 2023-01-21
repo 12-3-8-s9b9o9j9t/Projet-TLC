@@ -5,7 +5,7 @@
 #include "whilestd/Leaf.h"
 #include "whilestd/Node.h"
 
-using namespace whilestd;
+namespace whilestd {
 
 TEST(leaf, operator_int) {
     auto leaf = std::make_unique<Leaf>("a");
@@ -14,7 +14,7 @@ TEST(leaf, operator_int) {
 
 TEST(leaf, operator_bool) {
     auto leaf = std::make_unique<Leaf>("a");
-    EXPECT_FALSE(static_cast<bool>(*leaf));
+    EXPECT_FALSE(*leaf);
 }
 
 TEST(leaf, operator_string) {
@@ -22,39 +22,40 @@ TEST(leaf, operator_string) {
     EXPECT_EQ("a", static_cast<std::string>(*leaf));
 }
 
-TEST(leaf, equals1) {
+TEST(leaf, operator_comp1) {
     auto leaf1 = std::make_unique<Leaf>("a");
     auto leaf2 = std::make_unique<Leaf>("a");
-    EXPECT_TRUE(leaf1->equals(std::move(leaf2->clone())));
-    EXPECT_FALSE(leaf2 == nullptr);
+    EXPECT_TRUE(*(*leaf1 == *leaf2));
 }
 
-TEST(leaf, equals2) {
+TEST(leaf, operator_comp2) {
     auto leaf1 = std::make_unique<Leaf>("a");
     auto leaf2 = std::make_unique<Leaf>("b");
-    EXPECT_FALSE(leaf1->equals(std::move(leaf2->clone())));
-    EXPECT_FALSE(leaf2 == nullptr);
+    EXPECT_FALSE(*(*leaf1 == *leaf2));
 }
 
-TEST(leaf, equals3) {
+TEST(leaf, operator_comp3) {
     auto leaf = std::make_unique<Leaf>("a");
-    EXPECT_FALSE(leaf->equals(std::make_unique<Node>()));
+    auto nil = std::make_unique<Node>();
+    EXPECT_FALSE(*(*leaf == *nil));
 }
 
 TEST(leaf, hd) {
     auto leaf = std::make_unique<Leaf>("a");
-    EXPECT_TRUE(leaf->hd()->equals(std::make_unique<Node>()));
+    auto nil = std::make_unique<Node>();
+    EXPECT_TRUE(*(*leaf->hd() == *nil));
 }
 
 TEST(leaf, tl) {
     auto leaf = std::make_unique<Leaf>("a");
-    EXPECT_TRUE(leaf->tl()->equals(std::make_unique<Node>()));
+    auto nil = std::make_unique<Node>();
+    EXPECT_TRUE(*(*leaf->tl() == *nil));
 }
 
-TEST(leaf, clone) {
+TEST(leaf, clone1) {
     auto leaf = std::make_unique<Leaf>("a");
     auto clone = leaf->clone();
-    EXPECT_TRUE(leaf->equals(clone));
+    EXPECT_TRUE(*(*leaf == *clone));
 }
 
 TEST(leaf, pp) {
@@ -62,6 +63,7 @@ TEST(leaf, pp) {
     std::stringstream ss;
     leaf->pp(ss);
     EXPECT_EQ("a", ss.str());
+}
 }
 
 #endif

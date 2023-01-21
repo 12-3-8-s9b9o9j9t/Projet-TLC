@@ -1,5 +1,6 @@
 #include "whilestd/Node.h"
 #include "whilestd/Leaf.h"
+#include "whilestd/Bool.h"
 #include <memory>
 #include <string>
 #include <iostream>
@@ -31,33 +32,33 @@ BinTreePtr Node::hd() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
-    return std::move(left->clone());
+    return left->clone();
 }
 
 BinTreePtr Node::tl() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
-    return std::move(right->clone());
+    return right->clone();
 }
 
 BinTreePtr Node::clone() const {
     if(isNil()) {
         return std::make_unique<Node>();
     }
-    return std::make_unique<Node>(std::move(left->clone()), std::move(right->clone()));
+    return std::make_unique<Node>(left->clone(), right->clone());
 }
 
-bool Node::equals(const BinTreePtr& other) const {
-    if (auto otherNode = dynamic_cast<Node*>(other.get())) {
+BinTreePtr Node::operator ==(const BinTree& other) const {
+    if (auto otherNode = dynamic_cast<const Node*>(&other)) {
         if (isNil()) {
-            return otherNode->isNil();
+            return Bool(otherNode->isNil());
         }
-        return !otherNode->isNil()
-            && left == otherNode->left
-            && right == otherNode->right;
+        return Bool(!otherNode->isNil()
+            && *(*left == *otherNode->left)
+            && *(*right == *otherNode->right));
     }
-    return false;
+    return std::make_unique<Node>();
 }
 
 std::ostream& Node::pp(std::ostream& os) const {
@@ -66,28 +67,24 @@ std::ostream& Node::pp(std::ostream& os) const {
         os << "nil";
         printed = true;
     }
-    else if (auto leftLeaf = dynamic_cast<Leaf*>(left.get())) {
+    else if (auto leftLeaf = dynamic_cast<const Leaf*>(left.get())) {
         if (static_cast<std::string>(*leftLeaf) == "int") {
-            return os << static_cast<int>(*right);
+            os << static_cast<int>(*right);
             printed = true;
         }
         else if (static_cast<std::string>(*leftLeaf) == "bool") {
-            return os << std::boolalpha << static_cast<bool>(*right);
+            os << std::boolalpha << static_cast<bool>(*right);
             printed = true;
         }
         else if (static_cast<std::string>(*leftLeaf) == "string") {
-            return os << static_cast<std::string>(*right);
+            os << static_cast<std::string>(*right);
             printed = true;
         }
     }
     if (!printed) {
-        os << "(cons " << left << " "  << right << ")";
+        os << "(cons " << *left << " "  << *right << ")";
     }
     return os;
-}
-
-bool Node::isNil() const {
-    return left == nullptr && right == nullptr;
 }
 
 }

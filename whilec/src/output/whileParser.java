@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g 2023-01-20 16:40:33
+// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g 2023-01-20 19:03:20
 
 package output;
 
@@ -275,7 +275,7 @@ public class whileParser extends Parser {
 
 			stream_definition.add(definition6.getTree());
 			// AST REWRITE
-			// elements: definition, SYMBOL
+			// elements: SYMBOL, definition
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -395,7 +395,7 @@ public class whileParser extends Parser {
 
 			stream_output.add(output13.getTree());
 			// AST REWRITE
-			// elements: commands, input, output
+			// elements: output, commands, input
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -608,7 +608,7 @@ public class whileParser extends Parser {
 			}
 
 			// AST REWRITE
-			// elements: inputsub, VARIABLE
+			// elements: VARIABLE, inputsub
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -709,7 +709,7 @@ public class whileParser extends Parser {
 			}
 
 			// AST REWRITE
-			// elements: output, VARIABLE
+			// elements: VARIABLE, output
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -811,7 +811,7 @@ public class whileParser extends Parser {
 			}
 
 			// AST REWRITE
-			// elements: command, commands
+			// elements: commands, command
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -1457,7 +1457,7 @@ public class whileParser extends Parser {
 					}
 
 					// AST REWRITE
-					// elements: commands, expression
+					// elements: expression, commands
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1527,7 +1527,7 @@ public class whileParser extends Parser {
 					}
 
 					// AST REWRITE
-					// elements: commands, expression
+					// elements: expression, commands
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2130,7 +2130,7 @@ public class whileParser extends Parser {
 					}
 
 					// AST REWRITE
-					// elements: SYMBOL, lexpr
+					// elements: lexpr, SYMBOL
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2245,7 +2245,7 @@ public class whileParser extends Parser {
 
 					stream_exprbase.add(e2.getTree());
 					// AST REWRITE
-					// elements: e2, e1
+					// elements: e1, e2
 					// token labels: 
 					// rule labels: e1, e2, retval
 					// token list labels: 
