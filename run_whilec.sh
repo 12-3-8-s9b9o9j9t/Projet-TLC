@@ -72,11 +72,16 @@ if [ $? -eq 0 ]; then
 
   echo "Compiling into $output_file"
 
-  g++ $input_file.cpp $input_file.h -o $output_file -Iwhilestd/include/ -Lwhilestd/build/ -lwhilestd
+  generated_files="$input_file.cpp"
+  if [ -f "$input_file.h" ]; then
+      generated_files="$generated_files $input_file.h"
+  fi
+
+  g++ $generated_files -o $output_file -Iwhilestd/include/ -Lwhilestd/build/ -lwhilestd
 
   if [ "$remove_temp" = true ] ; then
       echo "Removing temporary files"
-      rm $input_file.cpp $input_file.h
+      rm $generated_files
   fi
   echo "Compilation successful"
 else

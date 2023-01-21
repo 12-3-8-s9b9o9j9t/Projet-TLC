@@ -8,8 +8,6 @@ all: dir $(LIB)
 dir:
 	mkdir -p build
 
-whilestd: dir $(LIB)
-
 build/%.o: src/%.cpp
 	$(CXX) -c $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 

@@ -1,0 +1,7 @@
+function main :
+read
+%
+Res := (cons string (cons hello world!))
+%
+write Res
+

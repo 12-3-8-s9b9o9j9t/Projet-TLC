@@ -235,8 +235,8 @@ public class Generateur3a {
                         for (int i = chcnt - 2; i >= 1; i--) {
                             generateRec(ast.getChild(i));
                             code.add(new String[] { "cons", reg(), reg(-1), tmp_memory.poll() });
-                            tmp_memory.add(reg(-1));
                             regcnt++;
+                            tmp_memory.add(reg(-1));
                         }
                         generateRec(ast.getChild(0));
                         code.add(new String[] { "cons", reg(), reg(-1), tmp_memory.poll() });
@@ -252,11 +252,11 @@ public class Generateur3a {
                         break;
                     default:
                         tmp_memory.add("nil");
-                        for (int i = chcnt - 2; i >= 1; i--) {
+                        for (int i = chcnt - 1; i >= 1; i--) {
                             generateRec(ast.getChild(i));
                             code.add(new String[] { "cons", reg(), reg(-1), tmp_memory.poll() });
-                            tmp_memory.add(reg(-1));
                             regcnt++;
+                            tmp_memory.add(reg(-1));
                         }
                         generateRec(ast.getChild(0));
                         code.add(new String[] { "cons", reg(), reg(-1), tmp_memory.poll() });

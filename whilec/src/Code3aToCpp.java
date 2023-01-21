@@ -31,11 +31,15 @@ public class Code3aToCpp {
 
     public void generate(String inputName, Table table) throws IOException {
         File f = new File(inputName);
-        header = new BufferedWriter(new FileWriter(inputName + ".h"));
-        source = new BufferedWriter(new FileWriter(inputName + ".cpp"));
         this.table = table;
+        
+        if (table.getFunctions().size() > 1) {
+            header = new BufferedWriter(new FileWriter(inputName + ".h"));
+            generateHeader(f.getName());
+        }
 
-        generateHeader(f.getName());
+        source = new BufferedWriter(new FileWriter(inputName + ".cpp"));
+
         generateFunBodies();
         generateSource(f.getName());
 
@@ -56,35 +60,33 @@ public class Code3aToCpp {
 
         Set<String> functions = table.getFunctions();
 
-        if (functions.size() > 1) {
-            header.write("namespace {");
-            header.newLine();
-            header.newLine();
+        header.write("namespace {");
+        header.newLine();
+        header.newLine();
 
-            for (String fun : functions) {
-                if (!fun.equals("main")) {
-                    header.write("whilestd::BinTreePtr " + format(fun) + " (");
-                    Set<String> inputs = table.getInputs(fun);
+        for (String fun : functions) {
+            if (!fun.equals("main")) {
+                header.write("whilestd::BinTreePtr " + format(fun) + " (");
+                Set<String> inputs = table.getInputs(fun);
 
-                    for (int i = inputs.size() - 1; i >= 0; i--) {
-                        header.newLine();
-                        header.write(indent);
-                        header.write("whilestd::BinTreePtr " + format(inputs.toArray()[i].toString()));
-                        if (i > 0) {
-                            header.write(",");
-                        }
+                for (int i = inputs.size() - 1; i >= 0; i--) {
+                    header.newLine();
+                    header.write(indent);
+                    header.write("whilestd::BinTreePtr " + format(inputs.toArray()[i].toString()));
+                    if (i > 0) {
+                        header.write(",");
                     }
-
-                    header.write(");");
-                    header.newLine();
-                    header.newLine();
                 }
-            }
 
-            header.write("} // namespace");
-            header.newLine();
-            header.newLine();
+                header.write(");");
+                header.newLine();
+                header.newLine();
+            }
         }
+
+        header.write("} // namespace");
+        header.newLine();
+        header.newLine();
 
         header.write("#endif // " + guard);
         header.newLine();
@@ -93,11 +95,13 @@ public class Code3aToCpp {
     }
 
     private void generateSource(String inputName) throws IOException {
-        source.write("#include \"" + inputName + ".h\"");
-        source.newLine();
-        source.newLine();
-
         Set<String> functions = table.getFunctions();
+
+        source.write(functions.size() > 1
+                ? "#include \"" + inputName + ".h\""
+                : "#include <whilestd/whilestd.h>");
+        source.newLine();
+        source.newLine();
 
         if (functions.size() > 1) {
             source.write("namespace {");
@@ -130,10 +134,10 @@ public class Code3aToCpp {
             source.write("} // namespace");
             source.newLine();
             source.newLine();
-            source.write(funbody.get("main").toString());
-            source.close();
         }
 
+        source.write(funbody.get("main").toString());
+        source.close();
     }
 
     private void generateFunBodies() {
