@@ -46,22 +46,35 @@ then
     exit 1
 fi
 
+if [ ! -e $input_file ]; then
+    echo "Input file $input_file does not exist"
+    exit 1
+fi
+
+input_file=$(realpath $input_file)
+
 if [ -n "$output_file" ]; then
     echo "Output file will be named $output_file"
-    #your code to rename the output file
+    output_file="$(realpath $PWD/$output_file)"
 else
-    echo "Output file will be named default_output.out"
+    echo "Default output file name will be used"
+    output_file="$PWD/a.out"
 fi
+
+echo "Generating C++ code from $input_file"
+
+java -jar ./whilec/whilec.jar $input_file
+
+if [ ! -e whilestd/build/libwhilestd.a ]; then
+    echo "whilestd library not found, building it"
+    make -C whilestd
+fi
+
+echo "Compiling into $output_file"
+
+g++ $input_file.cpp $input_file.h -o $output_file -Iwhilestd/include/ -Lwhilestd/build/ -lwhilestd
 
 if [ "$remove_temp" = true ] ; then
     echo "Removing temporary files"
-    #your code to remove the temporary files
+    rm $input_file.cpp $input_file.h
 fi
-
-#if [ ! -e ./whilestd/build/libwhilestd.a ]; then
-#    make -C./whilestd
-#fi
-
-
-# java -jar ./whilec/whilec.jar code.txt
-# g++ code.txt.cpp -o code -I. -I./whilestd/include/ -L./whilestd/build/ -lwhilestd

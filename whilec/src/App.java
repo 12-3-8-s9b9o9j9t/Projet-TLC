@@ -19,7 +19,6 @@ public class App {
 
         // Read the file into a string
         String content = "";
-        System.out.println("Reading file " + args[0]);
         try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -41,6 +40,7 @@ public class App {
 
             Visitor v = new Visitor(ast);
             SpaghettiStack table = v.analyse();
+            /*
             for (String fun : table.getFunctions()) {
                 System.out.println(fun +":");
                 Set<String> inputs = table.getInputs(fun);
@@ -59,17 +59,17 @@ public class App {
                     System.out.println("\t" + output);
                 }
                 System.out.println("--------------------");
-            }
+            }*/
 
             Generateur3a g = new Generateur3a(ast, table);
             List<String[]> code3a = g.generate();
-            
+            /*
             for (String[] line : code3a) {
                 for (String s : line) {
                     System.out.print(s + " ");
                 }
                 System.out.println();
-            }
+            }*/
 
             Code3aToCpp c = new Code3aToCpp(code3a);
             c.generate(args[0], table);
