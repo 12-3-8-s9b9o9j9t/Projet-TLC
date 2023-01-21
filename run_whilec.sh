@@ -62,19 +62,23 @@ else
 fi
 
 echo "Generating C++ code from $input_file"
-
 java -jar ./whilec/whilec.jar $input_file
 
-if [ ! -e whilestd/build/libwhilestd.a ]; then
-    echo "whilestd library not found, building it"
-    make -C whilestd
-fi
+if [ $? -eq 0 ]; then
+  if [ ! -e whilestd/build/libwhilestd.a ]; then
+      echo "whilestd library not found, building it"
+      make -C whilestd
+  fi
 
-echo "Compiling into $output_file"
+  echo "Compiling into $output_file"
 
-g++ $input_file.cpp $input_file.h -o $output_file -Iwhilestd/include/ -Lwhilestd/build/ -lwhilestd
+  g++ $input_file.cpp $input_file.h -o $output_file -Iwhilestd/include/ -Lwhilestd/build/ -lwhilestd
 
-if [ "$remove_temp" = true ] ; then
-    echo "Removing temporary files"
-    rm $input_file.cpp $input_file.h
+  if [ "$remove_temp" = true ] ; then
+      echo "Removing temporary files"
+      rm $input_file.cpp $input_file.h
+  fi
+else
+  echo "Compilation failed"
+  exit 1
 fi
