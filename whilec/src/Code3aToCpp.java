@@ -43,8 +43,7 @@ public class Code3aToCpp {
 
     private void generateHeader(String inputName) throws IOException {
         String guard = "WHILEC_GENERATED_" + inputName.toUpperCase()
-                .replace('.', '_')
-                .replace('-', '_') + "_H";
+                .replaceAll("[^A-Za-z0-9_]", "_") + "_H";
 
         header.write("#ifndef " + guard);
         header.newLine();
