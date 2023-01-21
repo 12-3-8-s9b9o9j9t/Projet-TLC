@@ -78,6 +78,7 @@ if [ $? -eq 0 ]; then
       echo "Removing temporary files"
       rm $input_file.cpp $input_file.h
   fi
+  echo "Compilation successful"
 else
   echo "Compilation failed"
   exit 1
