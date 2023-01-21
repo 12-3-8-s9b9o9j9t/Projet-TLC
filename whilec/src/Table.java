@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
 
-public class SpaghettiStack {
+public class Table {
 
     private class Tuple<S1, S2, S3> {
         public S1 inputs;

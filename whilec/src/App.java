@@ -39,7 +39,7 @@ public class App {
             Tree ast = (Tree) pReturn.getTree();
 
             Visitor v = new Visitor(ast);
-            SpaghettiStack table = v.analyse();
+            Table table = v.analyse();
             /*
             for (String fun : table.getFunctions()) {
                 System.out.println(fun +":");

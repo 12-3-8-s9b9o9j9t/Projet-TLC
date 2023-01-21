@@ -20,7 +20,7 @@ public class Code3aToCpp {
     private static final String regexVar = "(?:[A-Z])(?:[A-Z]|[a-z]|[0-9])*(?:[!]|[?])?";
     private static final String regexReg = "(?:_R)(?:[0-9])+";
 
-    private SpaghettiStack table;
+    private Table table;
     private List<String[]> code;
     private static final String indent = "    ";
 
@@ -30,7 +30,7 @@ public class Code3aToCpp {
         this.code = code;
     }
 
-    public void generate(String inputName, SpaghettiStack table) throws IOException {
+    public void generate(String inputName, Table table) throws IOException {
         File f = new File(inputName);
         header = new BufferedWriter(new FileWriter(inputName + ".h"));
         source = new BufferedWriter(new FileWriter(inputName + ".cpp"));

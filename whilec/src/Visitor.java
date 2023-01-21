@@ -3,13 +3,13 @@ import org.antlr.runtime.tree.Tree;
 public class Visitor {
 
     Tree ast;
-    SpaghettiStack root = new SpaghettiStack();
+    Table root = new Table();
 
     public Visitor(Tree ast) {
         this.ast = ast;
     }
 
-    public SpaghettiStack analyse() throws CompilationException {
+    public Table analyse() throws CompilationException {
         for (int i = 0; i < ast.getChildCount(); i++) {
             analyseFunc(ast.getChild(i));
         }

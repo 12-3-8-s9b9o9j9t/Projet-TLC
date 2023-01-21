@@ -26,11 +26,11 @@ public class Generateur3a {
     private Queue<String> tmp_memory = new LinkedList<>();
     private Deque<String[]> code = new LinkedList<>();
 
-    private SpaghettiStack table;
+    private Table table;
 
     private String curfun = "";
 
-    public Generateur3a(Tree ast, SpaghettiStack table) {
+    public Generateur3a(Tree ast, Table table) {
         this.ast = ast;
         this.table = table;
     }
