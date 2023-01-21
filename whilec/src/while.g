@@ -14,6 +14,13 @@ package output;
 package output;
 }
 
+@rulecatch{
+catch (RecognitionException re) {
+    reportError(re);
+    throw re;
+}
+}
+
 program
     :	function+ EOF -> ^(PROGRAM function+)
     ;

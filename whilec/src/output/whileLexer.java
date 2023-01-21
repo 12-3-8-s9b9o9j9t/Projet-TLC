@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g 2023-01-21 15:12:21
+// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g 2023-01-21 16:00:38
 
 package output;
 
@@ -656,12 +656,12 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = VARIABLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:84:5: ( MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )? )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:84:7: MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )?
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:91:5: ( MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )? )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:91:7: MAJ ( MAJ | MIN | DEC )* ( '!' | '?' )?
 			{
 			mMAJ(); 
 
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:84:10: ( MAJ | MIN | DEC )*
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:91:10: ( MAJ | MIN | DEC )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -690,7 +690,7 @@ public class whileLexer extends Lexer {
 				}
 			}
 
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:84:24: ( '!' | '?' )?
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:91:24: ( '!' | '?' )?
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0=='!'||LA2_0=='?') ) {
@@ -729,12 +729,12 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = SYMBOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:89:5: ( MIN ( MAJ | MIN | DEC )* ( '!' | '?' )? )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:89:7: MIN ( MAJ | MIN | DEC )* ( '!' | '?' )?
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:96:5: ( MIN ( MAJ | MIN | DEC )* ( '!' | '?' )? )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:96:7: MIN ( MAJ | MIN | DEC )* ( '!' | '?' )?
 			{
 			mMIN(); 
 
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:89:10: ( MAJ | MIN | DEC )*
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:96:10: ( MAJ | MIN | DEC )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -763,7 +763,7 @@ public class whileLexer extends Lexer {
 				}
 			}
 
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:89:24: ( '!' | '?' )?
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:96:24: ( '!' | '?' )?
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='!'||LA4_0=='?') ) {
@@ -800,7 +800,7 @@ public class whileLexer extends Lexer {
 	// $ANTLR start "MAJ"
 	public final void mMAJ() throws RecognitionException {
 		try {
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:94:5: ( 'A' .. 'Z' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:101:5: ( 'A' .. 'Z' )
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
@@ -823,7 +823,7 @@ public class whileLexer extends Lexer {
 	// $ANTLR start "MIN"
 	public final void mMIN() throws RecognitionException {
 		try {
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:98:5: ( 'a' .. 'z' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:105:5: ( 'a' .. 'z' )
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:
 			{
 			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -846,7 +846,7 @@ public class whileLexer extends Lexer {
 	// $ANTLR start "DEC"
 	public final void mDEC() throws RecognitionException {
 		try {
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:102:5: ( '0' .. '9' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:109:5: ( '0' .. '9' )
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -871,7 +871,7 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:105:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:112:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
 			int alt8=2;
 			int LA8_0 = input.LA(1);
 			if ( (LA8_0=='/') ) {
@@ -905,11 +905,11 @@ public class whileLexer extends Lexer {
 
 			switch (alt8) {
 				case 1 :
-					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:105:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:112:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
 					{
 					match("//"); 
 
-					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:105:14: (~ ( '\\n' | '\\r' ) )*
+					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:112:14: (~ ( '\\n' | '\\r' ) )*
 					loop5:
 					while (true) {
 						int alt5=2;
@@ -938,7 +938,7 @@ public class whileLexer extends Lexer {
 						}
 					}
 
-					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:105:28: ( '\\r' )?
+					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:112:28: ( '\\r' )?
 					int alt6=2;
 					int LA6_0 = input.LA(1);
 					if ( (LA6_0=='\r') ) {
@@ -946,7 +946,7 @@ public class whileLexer extends Lexer {
 					}
 					switch (alt6) {
 						case 1 :
-							// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:105:28: '\\r'
+							// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:112:28: '\\r'
 							{
 							match('\r'); 
 							}
@@ -959,11 +959,11 @@ public class whileLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:106:9: '/*' ( options {greedy=false; } : . )* '*/'
+					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:113:9: '/*' ( options {greedy=false; } : . )* '*/'
 					{
 					match("/*"); 
 
-					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:106:14: ( options {greedy=false; } : . )*
+					// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:113:14: ( options {greedy=false; } : . )*
 					loop7:
 					while (true) {
 						int alt7=2;
@@ -984,7 +984,7 @@ public class whileLexer extends Lexer {
 
 						switch (alt7) {
 						case 1 :
-							// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:106:42: .
+							// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:113:42: .
 							{
 							matchAny(); 
 							}
@@ -1016,8 +1016,8 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:109:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:109:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:116:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:116:9: ( ' ' | '\\t' | '\\r' | '\\n' )
 			{
 			if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 				input.consume();

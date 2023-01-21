@@ -75,7 +75,7 @@ public class App {
             c.generate(args[0], table);
             
         } catch (RecognitionException e) {
-            System.out.println("Syntax error: " + e.getMessage());
+            System.out.println("Syntax error");
             System.exit(1);
         } catch (IOException e) {
             System.out.println("Error: Unable to write output file " + e.getMessage());
