@@ -1,5 +1,3 @@
-import org.antlr.runtime.CommonToken;
-import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
 
 public class Visitor {
