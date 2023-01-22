@@ -1,0 +1,28 @@
+// Multiplication
+function sum :
+read Op1
+%
+foreach X in Op1 do
+ T := (cons X T);
+ S := (add S T)
+od
+%
+write S
+
+// Addition of two numbers
+function add :
+read Op1, Op2
+%
+ Result := Op1 ;
+for Op2 do
+ Result := ( cons nil Result )
+od
+%
+write Result
+
+function main :
+read Op1
+%
+Res := (cons int (sum Op1))
+%
+write Res

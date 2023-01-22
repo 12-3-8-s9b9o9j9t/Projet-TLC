@@ -1,6 +1,6 @@
 #include "whilestd/Node.h"
 #include "whilestd/Leaf.h"
-#include "whilestd/Bool.h"
+#include "whilestd/boolean.h"
 #include <memory>
 #include <string>
 #include <iostream>
@@ -52,9 +52,9 @@ BinTreePtr Node::clone() const {
 BinTreePtr Node::operator ==(const BinTree& other) const {
     if (auto otherNode = dynamic_cast<const Node*>(&other)) {
         if (isNil()) {
-            return Bool(otherNode->isNil());
+            return boolean(otherNode->isNil());
         }
-        return Bool(!otherNode->isNil()
+        return boolean(!otherNode->isNil()
             && *(*left == *otherNode->left)
             && *(*right == *otherNode->right));
     }

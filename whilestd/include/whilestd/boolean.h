@@ -1,12 +1,12 @@
-#ifndef WHILESTD_BOOL_H
-#define WHILESTD_BOOL_H
+#ifndef WHILESTD_BOOLEAN_H
+#define WHILESTD_BOOLEAN_H
 
 #include "whilestd/BinTree.h"
 #include "whilestd/Node.h"
 
 namespace whilestd {
 
-inline BinTreePtr Bool(bool b) {
+inline BinTreePtr boolean(bool b) {
     return b
         ? std::make_unique<Node>(
             std::make_unique<Node>(),

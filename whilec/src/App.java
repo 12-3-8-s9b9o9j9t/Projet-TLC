@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Deque;
 import java.util.List;
 import java.util.Set;
 
@@ -62,7 +63,7 @@ public class App {
             }*/
 
             Generateur3a g = new Generateur3a(ast, table);
-            List<String[]> code3a = g.generate();
+            Deque<String[]> code3a = g.generate();
             /*
             for (String[] line : code3a) {
                 for (String s : line) {
@@ -73,7 +74,6 @@ public class App {
 
             Code3aToCpp c = new Code3aToCpp(code3a);
             c.generate(args[0], table);
-
         } catch (RecognitionException e) {
             System.out.println("Syntax error");
             System.exit(1);

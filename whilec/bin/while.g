@@ -3,8 +3,8 @@ grammar while;
 options{ output=AST; }
 
 tokens{ PROGRAM; FUNCTION; FUNC_NAME; DEFINITION; INPUT; COMMANDS; OUTPUT;
-ASSIGN; VARIABLES; EXPRESSIONS; EQU; IF; THEN; ELSE; WHILE; FOR; FOREACH;
-COND; ITER; BODY; NOP; CALL; CONS; LIST; HD; TL; NIL; VAR; SYM; }
+ASSIGN; VARIABLES; EXPRESSIONS; EQU; IF; WHILE; FOR; FOREACH;
+COND; NOP; CALL; CONS; LIST; HD; TL; NIL; VAR; SYM; }
 
 @lexer::header{
 package output;
@@ -60,12 +60,12 @@ exprs
 command
     :	'nop'-> NOP
     |	(vars ':=' exprs)-> ^(ASSIGN ^(VARIABLES vars) ^(EXPRESSIONS exprs))
-    |	('if' expression 'then' c1=commands ('else' c2=commands  ->^(IF ^(COND expression) ^(THEN $c1) ^(ELSE $c2)) 
-    								| ->^(IF ^(COND expression) ^(THEN $c1)))
+    |	('if' expression 'then' c1=commands ('else' c2=commands  ->^(IF ^(COND expression) ^(COMMANDS $c1) ^(COMMANDS $c2)) 
+    								| ->^(IF ^(COND expression) ^(COMMANDS $c1)))
     	'fi')
-    |	('while' expression 'do' commands 'od')-> ^(WHILE ^(COND expression) ^(BODY commands))
-    |	('for' expression 'do' commands 'od')-> ^(FOR ^(ITER expression) ^(BODY commands))
-    |	('foreach' VARIABLE 'in' expression 'do' commands 'od')-> ^(FOREACH VARIABLE ^(ITER expression) ^(BODY commands))
+    |	('while' expression 'do' commands 'od')-> ^(WHILE ^(COND expression) ^(COMMANDS commands))
+    |	('for' expression 'do' commands 'od')-> ^(FOR ^(COND expression) ^(COMMANDS commands))
+    |	('foreach' VARIABLE 'in' expression 'do' commands 'od')-> ^(FOREACH ^(COND expression) ^(COMMANDS commands) VARIABLE)
     ;
 
 exprbase

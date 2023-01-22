@@ -11,17 +11,17 @@ public class Visitor {
 
     public Table analyse() throws CompilationException {
         for (int i = 0; i < ast.getChildCount(); i++) {
-            analyseFunc(ast.getChild(i));
+            analyseFunction(ast.getChild(i));
         }
-        if (root.addStack("main")) {
+        if (root.addFunction("main")) {
             throw new CompilationException("Error: main function was not declared");
         }
         return this.root;
     }
 
-    private void analyseFunc(Tree function) throws CompilationException {
+    private void analyseFunction(Tree function) throws CompilationException {
         String funcName = function.getChild(0).getChild(0).getText();
-        if (!root.addStack(funcName)) {
+        if (!root.addFunction(funcName)) {
             throw new CompilationException("Error line "
                     + function.getChild(0).getChild(0).getLine() + ": function "
                     + funcName + " already declared");
@@ -60,10 +60,8 @@ public class Visitor {
                 ifIsCorrect(command, funcName);
                 break;
             case "WHILE":
-                whileIsCorrect(command, funcName);
-                break;
             case "FOR":
-                forIsCorrect(command, funcName);
+                loopIsCorrect(command, funcName);
                 break;
             case "FOREACH":
                 foreachIsCorrect(command, funcName);
@@ -81,9 +79,7 @@ public class Visitor {
             for (int i = 0; i < command.getChild(0).getChildCount(); i++) {
                 root.addLocal(command.getChild(0).getChild(i).getText(), funcName);
             }
-        }
-
-        else {
+        } else {
             throw new CompilationException(
                     "Error line " + command.getLine() 
                     + ": number of variables (" + command.getChild(0).getChildCount()
@@ -108,18 +104,8 @@ public class Visitor {
         }
     }
 
-    private void whileIsCorrect(Tree command, String funcName) throws CompilationException {
-        // analyse la condition
-        analyseExpression(command.getChild(0).getChild(0), funcName);
-
-        // analyse les commandes
-        for (int i = 0; i < command.getChild(1).getChildCount(); i++) {
-            analyseCommand(command.getChild(1).getChild(i), funcName);
-        }
-    }
-
-    private void forIsCorrect(Tree command, String funcName) throws CompilationException {
-        // analyse l'expression pour l'itération
+    private void loopIsCorrect(Tree command, String funcName) throws CompilationException {
+        // analyse la condition/l'expression pour l'itération
         analyseExpression(command.getChild(0).getChild(0), funcName);
 
         // analyse les commandes
@@ -129,19 +115,13 @@ public class Visitor {
     }
 
     private void foreachIsCorrect(Tree command, String funcName) throws CompilationException {
-        if (!root.addLocal(command.getChild(0).getText(), funcName)) {
+        if (!root.addLocal(command.getChild(2).getText(), funcName)) {
             throw new CompilationException("Error line " 
                     + command.getChild(0).getChild(0).getLine() + ": variable "
                     + command.getChild(0).getChild(0).getText() + " already declared");
         }
 
-        // analyse l'expression pour l'itération
-        analyseExpression(command.getChild(1).getChild(0), funcName);
-
-        // analyse les commandes
-        for (int i = 0; i < command.getChild(2).getChildCount(); i++) {
-            analyseCommand(command.getChild(2).getChild(i), funcName);
-        }
+        loopIsCorrect(command, funcName);
     }
 
     private int analyseExpression(Tree expr, String funcName) throws CompilationException {
@@ -149,25 +129,26 @@ public class Visitor {
             case "EQU":
                 analyseExpression(expr.getChild(0), funcName);
                 analyseExpression(expr.getChild(1), funcName);
-                return 1;
+                break;
             case "VAR":
                 root.addLocal(expr.getChild(0).getText(), funcName);
-                return 1;
+                break;
             case "CONS":
             case "LIST":
                 for (int i = 0; i < expr.getChildCount(); i++) {
                     analyseExpression(expr.getChild(i), funcName);
                 }
-                return 1;
+                break;
             case "HD":
             case "TL":
                 analyseExpression(expr.getChild(0), funcName);
-                return 1;
+                break;
             case "CALL":
                 return callIsCorrect(expr, funcName);
             default:
-                return 1;
+                break;
         }
+        return 1;
     }
 
     private int callIsCorrect(Tree call, String funcName) throws CompilationException {

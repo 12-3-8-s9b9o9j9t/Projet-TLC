@@ -1,6 +1,6 @@
 #include "whilestd/Leaf.h"
 #include "whilestd/Node.h"
-#include "whilestd/Bool.h"
+#include "whilestd/boolean.h"
 #include <memory>
 #include <string>
 #include <iostream>
@@ -23,7 +23,7 @@ Leaf::operator std::string() const {
 
 BinTreePtr Leaf::operator ==(const BinTree& other) const {
     if (auto otherLeaf = dynamic_cast<const Leaf*>(&other)) {
-        return Bool(symbol == otherLeaf->symbol);
+        return boolean(symbol == otherLeaf->symbol);
     }
     return std::make_unique<Node>();
 }

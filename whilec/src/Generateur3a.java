@@ -1,6 +1,5 @@
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 import org.antlr.runtime.tree.Tree;
@@ -35,10 +34,9 @@ public class Generateur3a {
         this.table = table;
     }
 
-    @SuppressWarnings("unchecked")
-    public List<String[]> generate() {
+    public Deque<String[]> generate() {
         generateRec(ast);
-        return (List<String[]>) code;
+        return code;
     }
 
     private void generateRec(Tree ast) {
@@ -48,9 +46,6 @@ public class Generateur3a {
         switch (txt) {
             case "PROGRAM":
             case "COMMANDS":
-            case "THEN":
-            case "ELSE":
-            case "BODY":
                 for (int i = 0; i < chcnt; i++) {
                     generateRec(ast.getChild(i));
                 }
@@ -81,10 +76,13 @@ public class Generateur3a {
             case "OUTPUT":
                 if (curfun.equals("main")) {
                     for (int i = chcnt - 1; i >= 0; i--) {
-                        code.add(new String[] {
-                                "print", table.isDeclared(ast.getChild(i).getText(), curfun)
-                                        ? ast.getChild(i).getText()
-                                        : "nil" });
+                        if (table.isDeclared(ast.getChild(i).getText(), curfun)) {
+                            code.add(new String[] { "print", ast.getChild(i).getText() });
+                        } else {
+                            code.add(new String[] { "store", reg(), "nil" });
+                            regcnt++;
+                            code.add(new String[] { "print", reg(-1) });
+                        }
                     }
                 } else {
                     code.add(new String[] { "store", reg(), "" });
@@ -188,29 +186,28 @@ public class Generateur3a {
             }
                 break;
             case "FOREACH":
-                generateRec(ast.getChild(1)); // iter
+                generateRec(ast.getChild(0)); // iter
             {
                 String iter = reg(-1);
                 code.add(new String[] { "label", "loop" + curlab });
                 labcnt++;
                 code.add(new String[] { "ifz", iter, "end_loop" + curlab });
                 code.add(new String[] { "hd", "", iter });
-                generateRec(ast.getChild(0));
+                generateRec(ast.getChild(2));
                 code.add(new String[] { "tl", iter, iter });
-                generateRec(ast.getChild(2)); // body
+                generateRec(ast.getChild(1)); // body
                 code.add(new String[] { "goto", "loop" + curlab });
                 code.add(new String[] { "label", "end_loop" + curlab });
             }
                 break;
             case "COND":
-            case "ITER":
                 generateRec(ast.getChild(0)); // expression
                 break;
             case "NOP":
                 code.add(new String[] { "nop" });
                 break;
             case "CALL":
-                for (int i = 1; i < chcnt; i++) {
+                for (int i = chcnt - 1; i >= 1; i--) {
                     generateRec(ast.getChild(i));
                     code.add(new String[] { "param", reg(-1) });
                 }

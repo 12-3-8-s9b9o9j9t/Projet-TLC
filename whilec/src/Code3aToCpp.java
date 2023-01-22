@@ -2,13 +2,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 
 public class Code3aToCpp {
 
@@ -20,12 +19,12 @@ public class Code3aToCpp {
     private static final String regexReg = "(?:_R)(?:[0-9])+";
 
     private Table table;
-    private List<String[]> code;
+    private Deque<String[]> code;
     private static final String indent = "    ";
 
     private Map<String, StringBuilder> funbody = new HashMap<String, StringBuilder>();
 
-    public Code3aToCpp(List<String[]> code) {
+    public Code3aToCpp(Deque<String[]> code) {
         this.code = code;
     }
 
@@ -66,7 +65,7 @@ public class Code3aToCpp {
 
         for (String fun : functions) {
             if (!fun.equals("main")) {
-                header.write("whilestd::BinTreePtr " + format(fun) + " (");
+                header.write("whilestd::BinTreePtr " + format(fun) + "(");
                 Set<String> inputs = table.getInputs(fun);
 
                 for (int i = inputs.size() - 1; i >= 0; i--) {
@@ -110,7 +109,7 @@ public class Code3aToCpp {
 
             for (String fun : functions) {
                 if (!fun.equals("main")) {
-                    source.write("whilestd::BinTreePtr " + format(fun) + " (");
+                    source.write("whilestd::BinTreePtr " + format(fun) + "(");
                     Set<String> inputs = table.getInputs(fun);
 
                     for (int i = inputs.size() - 1; i >= 0; i--) {
@@ -146,7 +145,7 @@ public class Code3aToCpp {
         StringBuilder body = new StringBuilder();
         Set<String> inputs = null;
         Set<String> locals = null;
-        Queue<String> params = new LinkedList<String>();
+        Stack<String> params = new Stack<String>();
 
         for (String[] line : code) {
             switch (line[0]) {
@@ -207,7 +206,7 @@ public class Code3aToCpp {
                     body.append(indent.repeat(nbIndent) + "auto " + line[1] + " = " + format(line[2]) + "(\n");
                     for (int i = Integer.valueOf(line[3]) - 1; i >= 0; i--) {
                         body.append(indent.repeat(nbIndent + 1)
-                                + params.poll() + "->clone()");
+                                + params.pop() + "->clone()");
                         if (i > 0) {
                             body.append(",\n");
                         }

@@ -4,7 +4,7 @@
 #include "whilestd/BinTree.h"
 #include "whilestd/Node.h"
 #include "whilestd/Leaf.h"
-#include "whilestd/Bool.h"
+#include "whilestd/boolean.h"
 #include "whilestd/Parser.h"
 
 #endif

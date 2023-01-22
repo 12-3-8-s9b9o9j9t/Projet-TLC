@@ -40,7 +40,7 @@ then
     exit 1
 fi
 
-if [ "$#" -ge 2 ]
+if [ "$#" -gt 1 ]
 then
     echo "You must provide only one input file, but you provided $#:\n$@"
     exit 1

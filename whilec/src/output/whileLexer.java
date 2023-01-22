@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g 2023-01-21 16:00:38
+// $ANTLR 3.5.1 C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g 2023-01-22 17:54:55
 
 package output;
 
@@ -11,6 +11,10 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class whileLexer extends Lexer {
 	public static final int EOF=-1;
+	public static final int T__36=36;
+	public static final int T__37=37;
+	public static final int T__38=38;
+	public static final int T__39=39;
 	public static final int T__40=40;
 	public static final int T__41=41;
 	public static final int T__42=42;
@@ -34,46 +38,38 @@ public class whileLexer extends Lexer {
 	public static final int T__60=60;
 	public static final int T__61=61;
 	public static final int T__62=62;
-	public static final int T__63=63;
-	public static final int T__64=64;
-	public static final int T__65=65;
-	public static final int T__66=66;
 	public static final int ASSIGN=4;
-	public static final int BODY=5;
-	public static final int CALL=6;
-	public static final int COMMANDS=7;
-	public static final int COMMENT=8;
-	public static final int COND=9;
-	public static final int CONS=10;
-	public static final int DEC=11;
-	public static final int DEFINITION=12;
-	public static final int ELSE=13;
-	public static final int EQU=14;
-	public static final int EXPRESSIONS=15;
-	public static final int FOR=16;
-	public static final int FOREACH=17;
-	public static final int FUNCTION=18;
-	public static final int FUNC_NAME=19;
-	public static final int HD=20;
-	public static final int IF=21;
-	public static final int INPUT=22;
-	public static final int ITER=23;
-	public static final int LIST=24;
-	public static final int MAJ=25;
-	public static final int MIN=26;
-	public static final int NIL=27;
-	public static final int NOP=28;
-	public static final int OUTPUT=29;
-	public static final int PROGRAM=30;
-	public static final int SYM=31;
-	public static final int SYMBOL=32;
-	public static final int THEN=33;
-	public static final int TL=34;
-	public static final int VAR=35;
-	public static final int VARIABLE=36;
-	public static final int VARIABLES=37;
-	public static final int WHILE=38;
-	public static final int WS=39;
+	public static final int CALL=5;
+	public static final int COMMANDS=6;
+	public static final int COMMENT=7;
+	public static final int COND=8;
+	public static final int CONS=9;
+	public static final int DEC=10;
+	public static final int DEFINITION=11;
+	public static final int EQU=12;
+	public static final int EXPRESSIONS=13;
+	public static final int FOR=14;
+	public static final int FOREACH=15;
+	public static final int FUNCTION=16;
+	public static final int FUNC_NAME=17;
+	public static final int HD=18;
+	public static final int IF=19;
+	public static final int INPUT=20;
+	public static final int LIST=21;
+	public static final int MAJ=22;
+	public static final int MIN=23;
+	public static final int NIL=24;
+	public static final int NOP=25;
+	public static final int OUTPUT=26;
+	public static final int PROGRAM=27;
+	public static final int SYM=28;
+	public static final int SYMBOL=29;
+	public static final int TL=30;
+	public static final int VAR=31;
+	public static final int VARIABLE=32;
+	public static final int VARIABLES=33;
+	public static final int WHILE=34;
+	public static final int WS=35;
 
 	// delegates
 	// delegators
@@ -90,15 +86,95 @@ public class whileLexer extends Lexer {
 	}
 	@Override public String getGrammarFileName() { return "C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g"; }
 
-	// $ANTLR start "T__40"
-	public final void mT__40() throws RecognitionException {
+	// $ANTLR start "T__36"
+	public final void mT__36() throws RecognitionException {
 		try {
-			int _type = T__40;
+			int _type = T__36;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:6:7: ( '%' )
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:6:9: '%'
 			{
 			match('%'); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__36"
+
+	// $ANTLR start "T__37"
+	public final void mT__37() throws RecognitionException {
+		try {
+			int _type = T__37;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:7:7: ( '(' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:7:9: '('
+			{
+			match('('); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__37"
+
+	// $ANTLR start "T__38"
+	public final void mT__38() throws RecognitionException {
+		try {
+			int _type = T__38;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:8:7: ( ')' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:8:9: ')'
+			{
+			match(')'); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__38"
+
+	// $ANTLR start "T__39"
+	public final void mT__39() throws RecognitionException {
+		try {
+			int _type = T__39;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:9:7: ( ',' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:9:9: ','
+			{
+			match(','); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__39"
+
+	// $ANTLR start "T__40"
+	public final void mT__40() throws RecognitionException {
+		try {
+			int _type = T__40;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:10:7: ( ':' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:10:9: ':'
+			{
+			match(':'); 
 			}
 
 			state.type = _type;
@@ -115,10 +191,11 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__41;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:7:7: ( '(' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:7:9: '('
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:11:7: ( ':=' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:11:9: ':='
 			{
-			match('('); 
+			match(":="); 
+
 			}
 
 			state.type = _type;
@@ -135,10 +212,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__42;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:8:7: ( ')' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:8:9: ')'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:12:7: ( ';' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:12:9: ';'
 			{
-			match(')'); 
+			match(';'); 
 			}
 
 			state.type = _type;
@@ -155,10 +232,11 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__43;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:9:7: ( ',' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:9:9: ','
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:13:7: ( '=?' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:13:9: '=?'
 			{
-			match(','); 
+			match("=?"); 
+
 			}
 
 			state.type = _type;
@@ -175,10 +253,11 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__44;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:10:7: ( ':' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:10:9: ':'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:14:7: ( 'cons' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:14:9: 'cons'
 			{
-			match(':'); 
+			match("cons"); 
+
 			}
 
 			state.type = _type;
@@ -195,10 +274,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__45;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:11:7: ( ':=' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:11:9: ':='
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:15:7: ( 'do' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:15:9: 'do'
 			{
-			match(":="); 
+			match("do"); 
 
 			}
 
@@ -216,10 +295,11 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__46;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:12:7: ( ';' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:12:9: ';'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:16:7: ( 'else' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:16:9: 'else'
 			{
-			match(';'); 
+			match("else"); 
+
 			}
 
 			state.type = _type;
@@ -236,10 +316,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__47;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:13:7: ( '=?' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:13:9: '=?'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:17:7: ( 'fi' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:17:9: 'fi'
 			{
-			match("=?"); 
+			match("fi"); 
 
 			}
 
@@ -257,10 +337,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__48;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:14:7: ( 'cons' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:14:9: 'cons'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:18:7: ( 'for' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:18:9: 'for'
 			{
-			match("cons"); 
+			match("for"); 
 
 			}
 
@@ -278,10 +358,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__49;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:15:7: ( 'do' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:15:9: 'do'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:19:7: ( 'foreach' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:19:9: 'foreach'
 			{
-			match("do"); 
+			match("foreach"); 
 
 			}
 
@@ -299,10 +379,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__50;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:16:7: ( 'else' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:16:9: 'else'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:20:7: ( 'function' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:20:9: 'function'
 			{
-			match("else"); 
+			match("function"); 
 
 			}
 
@@ -320,10 +400,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__51;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:17:7: ( 'fi' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:17:9: 'fi'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:21:7: ( 'hd' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:21:9: 'hd'
 			{
-			match("fi"); 
+			match("hd"); 
 
 			}
 
@@ -341,10 +421,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__52;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:18:7: ( 'for' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:18:9: 'for'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:22:7: ( 'if' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:22:9: 'if'
 			{
-			match("for"); 
+			match("if"); 
 
 			}
 
@@ -362,10 +442,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__53;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:19:7: ( 'foreach' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:19:9: 'foreach'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:23:7: ( 'in' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:23:9: 'in'
 			{
-			match("foreach"); 
+			match("in"); 
 
 			}
 
@@ -383,10 +463,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__54;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:20:7: ( 'function' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:20:9: 'function'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:24:7: ( 'list' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:24:9: 'list'
 			{
-			match("function"); 
+			match("list"); 
 
 			}
 
@@ -404,10 +484,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__55;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:21:7: ( 'hd' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:21:9: 'hd'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:25:7: ( 'nil' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:25:9: 'nil'
 			{
-			match("hd"); 
+			match("nil"); 
 
 			}
 
@@ -425,10 +505,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__56;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:22:7: ( 'if' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:22:9: 'if'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:26:7: ( 'nop' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:26:9: 'nop'
 			{
-			match("if"); 
+			match("nop"); 
 
 			}
 
@@ -446,10 +526,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__57;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:23:7: ( 'in' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:23:9: 'in'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:27:7: ( 'od' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:27:9: 'od'
 			{
-			match("in"); 
+			match("od"); 
 
 			}
 
@@ -467,10 +547,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__58;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:24:7: ( 'list' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:24:9: 'list'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:28:7: ( 'read' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:28:9: 'read'
 			{
-			match("list"); 
+			match("read"); 
 
 			}
 
@@ -488,10 +568,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__59;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:25:7: ( 'nil' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:25:9: 'nil'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:29:7: ( 'then' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:29:9: 'then'
 			{
-			match("nil"); 
+			match("then"); 
 
 			}
 
@@ -509,10 +589,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__60;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:26:7: ( 'nop' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:26:9: 'nop'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:30:7: ( 'tl' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:30:9: 'tl'
 			{
-			match("nop"); 
+			match("tl"); 
 
 			}
 
@@ -530,10 +610,10 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__61;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:27:7: ( 'od' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:27:9: 'od'
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:31:7: ( 'while' )
+			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:31:9: 'while'
 			{
-			match("od"); 
+			match("while"); 
 
 			}
 
@@ -551,90 +631,6 @@ public class whileLexer extends Lexer {
 		try {
 			int _type = T__62;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:28:7: ( 'read' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:28:9: 'read'
-			{
-			match("read"); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "T__62"
-
-	// $ANTLR start "T__63"
-	public final void mT__63() throws RecognitionException {
-		try {
-			int _type = T__63;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:29:7: ( 'then' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:29:9: 'then'
-			{
-			match("then"); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "T__63"
-
-	// $ANTLR start "T__64"
-	public final void mT__64() throws RecognitionException {
-		try {
-			int _type = T__64;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:30:7: ( 'tl' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:30:9: 'tl'
-			{
-			match("tl"); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "T__64"
-
-	// $ANTLR start "T__65"
-	public final void mT__65() throws RecognitionException {
-		try {
-			int _type = T__65;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:31:7: ( 'while' )
-			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:31:9: 'while'
-			{
-			match("while"); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "T__65"
-
-	// $ANTLR start "T__66"
-	public final void mT__66() throws RecognitionException {
-		try {
-			int _type = T__66;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:32:7: ( 'write' )
 			// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:32:9: 'write'
 			{
@@ -649,7 +645,7 @@ public class whileLexer extends Lexer {
 			// do for sure before leaving
 		}
 	}
-	// $ANTLR end "T__66"
+	// $ANTLR end "T__62"
 
 	// $ANTLR start "VARIABLE"
 	public final void mVARIABLE() throws RecognitionException {
@@ -1041,196 +1037,196 @@ public class whileLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:8: ( T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | VARIABLE | SYMBOL | COMMENT | WS )
+		// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:8: ( T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | VARIABLE | SYMBOL | COMMENT | WS )
 		int alt9=31;
 		alt9 = dfa9.predict(input);
 		switch (alt9) {
 			case 1 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:10: T__40
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:10: T__36
+				{
+				mT__36(); 
+
+				}
+				break;
+			case 2 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:16: T__37
+				{
+				mT__37(); 
+
+				}
+				break;
+			case 3 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:22: T__38
+				{
+				mT__38(); 
+
+				}
+				break;
+			case 4 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:28: T__39
+				{
+				mT__39(); 
+
+				}
+				break;
+			case 5 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:34: T__40
 				{
 				mT__40(); 
 
 				}
 				break;
-			case 2 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:16: T__41
+			case 6 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:40: T__41
 				{
 				mT__41(); 
 
 				}
 				break;
-			case 3 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:22: T__42
+			case 7 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:46: T__42
 				{
 				mT__42(); 
 
 				}
 				break;
-			case 4 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:28: T__43
+			case 8 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:52: T__43
 				{
 				mT__43(); 
 
 				}
 				break;
-			case 5 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:34: T__44
+			case 9 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:58: T__44
 				{
 				mT__44(); 
 
 				}
 				break;
-			case 6 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:40: T__45
+			case 10 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:64: T__45
 				{
 				mT__45(); 
 
 				}
 				break;
-			case 7 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:46: T__46
+			case 11 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:70: T__46
 				{
 				mT__46(); 
 
 				}
 				break;
-			case 8 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:52: T__47
+			case 12 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:76: T__47
 				{
 				mT__47(); 
 
 				}
 				break;
-			case 9 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:58: T__48
+			case 13 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:82: T__48
 				{
 				mT__48(); 
 
 				}
 				break;
-			case 10 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:64: T__49
+			case 14 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:88: T__49
 				{
 				mT__49(); 
 
 				}
 				break;
-			case 11 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:70: T__50
+			case 15 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:94: T__50
 				{
 				mT__50(); 
 
 				}
 				break;
-			case 12 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:76: T__51
+			case 16 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:100: T__51
 				{
 				mT__51(); 
 
 				}
 				break;
-			case 13 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:82: T__52
+			case 17 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:106: T__52
 				{
 				mT__52(); 
 
 				}
 				break;
-			case 14 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:88: T__53
+			case 18 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:112: T__53
 				{
 				mT__53(); 
 
 				}
 				break;
-			case 15 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:94: T__54
+			case 19 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:118: T__54
 				{
 				mT__54(); 
 
 				}
 				break;
-			case 16 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:100: T__55
+			case 20 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:124: T__55
 				{
 				mT__55(); 
 
 				}
 				break;
-			case 17 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:106: T__56
+			case 21 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:130: T__56
 				{
 				mT__56(); 
 
 				}
 				break;
-			case 18 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:112: T__57
+			case 22 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:136: T__57
 				{
 				mT__57(); 
 
 				}
 				break;
-			case 19 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:118: T__58
+			case 23 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:142: T__58
 				{
 				mT__58(); 
 
 				}
 				break;
-			case 20 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:124: T__59
+			case 24 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:148: T__59
 				{
 				mT__59(); 
 
 				}
 				break;
-			case 21 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:130: T__60
+			case 25 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:154: T__60
 				{
 				mT__60(); 
 
 				}
 				break;
-			case 22 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:136: T__61
+			case 26 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:160: T__61
 				{
 				mT__61(); 
 
 				}
 				break;
-			case 23 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:142: T__62
+			case 27 :
+				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:166: T__62
 				{
 				mT__62(); 
-
-				}
-				break;
-			case 24 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:148: T__63
-				{
-				mT__63(); 
-
-				}
-				break;
-			case 25 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:154: T__64
-				{
-				mT__64(); 
-
-				}
-				break;
-			case 26 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:160: T__65
-				{
-				mT__65(); 
-
-				}
-				break;
-			case 27 :
-				// C:\\Users\\yanis\\Desktop\\TLC\\Projet\\whilec\\src\\while.g:1:166: T__66
-				{
-				mT__66(); 
 
 				}
 				break;
@@ -1428,7 +1424,7 @@ public class whileLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | VARIABLE | SYMBOL | COMMENT | WS );";
+			return "1:1: Tokens : ( T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | VARIABLE | SYMBOL | COMMENT | WS );";
 		}
 	}
 

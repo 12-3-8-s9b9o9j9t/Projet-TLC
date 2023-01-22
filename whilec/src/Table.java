@@ -32,7 +32,7 @@ public class Table {
         return this.symbols.get(funcName).outputs;
     }
 
-    public boolean addStack(String funcName) {
+    public boolean addFunction(String funcName) {
         if (this.symbols.containsKey(funcName)) {
             return false;
         }
