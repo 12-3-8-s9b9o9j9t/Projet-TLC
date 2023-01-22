@@ -1,12 +1,12 @@
 #!/bin/sh
 
 help_message() {
-    echo "Usage: ./run_whilec.sh [options] input_file"
-    echo "Options:"
-    echo "   -r    Remove temporary files"
-    echo "   -o    Output file name"
-    echo "   -h    Show this help message"
-    exit 0
+  echo "Usage: run_whilec.sh [options] input_file"
+  echo "Options:"
+  echo "   -r    Remove temporary files"
+  echo "   -o    Output file name"
+  echo "   -h    Show this help message"
+  exit 0
 }
 
 while getopts ":rho:" opt; do
@@ -36,52 +36,84 @@ input_file="$1"
 
 if [ -z "$input_file" ]
 then
-    echo "You must provide an input file"
-    exit 1
+  echo "You must provide an input file"
+  exit 1
 fi
 
 if [ "$#" -gt 1 ]
 then
-    echo "You must provide only one input file, but you provided $#:\n$@"
-    exit 1
+  echo "You must provide only one input file, but you provided $#:"
+  for i in "$@"
+  do
+    echo "  $i"
+  done
+  exit 1
 fi
 
 if [ ! -e $input_file ]; then
-    echo "Input file $input_file does not exist"
-    exit 1
+  echo "Input file $input_file does not exist"
+  exit 1
 fi
 
 input_file=$(realpath $input_file)
 
 if [ -n "$output_file" ]; then
-    echo "Output file will be named $output_file"
-    output_file="$(realpath $PWD/$output_file)"
+  output_file="$(realpath $PWD/$output_file)"
 else
-    echo "Default output file name will be used"
-    output_file="$PWD/a.out"
+  output_file="$PWD/a.out"
 fi
 
+output_dir=$(dirname $output_file)
+input_name=$(basename $input_file)
+
+echo "Output file will be found at $output_file"
+
+script_dir=$(dirname $(realpath $0))
+
 echo "Generating C++ code from $input_file"
-java -jar ./whilec/whilec.jar $input_file
+
+if [ ! -e $script_dir/whilec/whilec.jar ]; then
+  echo "whilec.jar not found, building it"
+  build_dir="$script_dir/whilec"
+
+  cd $build_dir
+  mkdir -p bin
+  javac src/*.java -cp lib/antlr-3.5.3-runtime.jar:src/ -d bin/
+  cd bin
+  jar xfv ../lib/antlr-3.5.3-runtime.jar
+  jar cvfe ../whilec.jar App .
+
+  cd $scipt_dir
+fi
+
+java -jar $script_dir/whilec/whilec.jar $input_file
+
+if ! cmp -s "$input_file.cpp" "$output_dir/$input_name.cpp"; then
+  mv "$input_file.cpp" $output_dir
+fi
+
+generated_files="$output_dir/$input_name.cpp"
+
+if [ -f "$input_file.h" ]; then
+  if ! cmp -s "$input_file.h" "$output_dir/$input_name.h"; then
+    mv "$input_file.h" $output_dir
+  fi
+  generated_files="$generated_files $output_dir/$input_name.h"
+fi
 
 if [ $? -eq 0 ]; then
-  if [ ! -e whilestd/build/libwhilestd.a ]; then
-      echo "whilestd library not found, building it"
-      make -C whilestd
+  if [ ! -e $script_dir/whilestd/build/libwhilestd.a ]; then
+    echo "libwhilestd.a not found, building it"
+    make -C $script_dir/whilestd
   fi
 
   echo "Compiling into $output_file"
 
-  generated_files="$input_file.cpp"
-  if [ -f "$input_file.h" ]; then
-      generated_files="$generated_files $input_file.h"
-  fi
-
-  g++ $generated_files -o $output_file -Iwhilestd/include/ -Lwhilestd/build/ -lwhilestd
+  g++ $generated_files -o $output_file -I$script_dir/whilestd/include/ -L$script_dir/whilestd/build/ -lwhilestd
 
   if [ "$remove_temp" = true ] ; then
-      echo "Removing temporary files"
-      rm $generated_files
+    echo "Removing temporary files"
+    rm $generated_files
   fi
   echo "Compilation successful"
 else

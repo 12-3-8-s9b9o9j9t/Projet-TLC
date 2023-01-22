@@ -304,7 +304,7 @@ public class Code3aToCpp {
         }
     }
 
-    private String format(String str) {
+    private static String format(String str) {
         if (str.matches(regexReg)) {
             return str;
         }
