@@ -154,4 +154,4 @@ Les outputs du main sont affichée dans la sortie standard. Et le format de sort
 
 ## Exemples
 
-Des exemples de programmes sont fournis dans le dossier `examples`.
+Des exemples de programmes sont fournis dans le dossier `exemples`.
