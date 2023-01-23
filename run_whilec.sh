@@ -109,7 +109,7 @@ if [ $? -eq 0 ]; then
 
   echo "Compiling into $output_file"
 
-  g++ $generated_files -o $output_file -I$script_dir/whilestd/include/ -L$script_dir/whilestd/build/ -lwhilestd
+  g++ $generated_files -o $output_file -I$script_dir/whilestd/include/ -Wall -Werror -O3 -std=c++20 -L$script_dir/whilestd/build/ -lwhilestd
 
   if [ "$remove_temp" = true ] ; then
     echo "Removing temporary files"
