@@ -49,6 +49,12 @@ TEST(parser, parse_cons4) {
     EXPECT_TRUE(*(*tree == *node));
 }
 
+TEST(parser, parse_cons5) {
+    BinTreePtr tree = Parser::parse("(cons (cons (cons)))");
+    BinTreePtr nil = std::make_unique<Node>();
+    EXPECT_TRUE(*(*tree == *nil));
+}
+
 }
 
 #endif

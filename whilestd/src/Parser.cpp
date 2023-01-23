@@ -64,7 +64,17 @@ BinTreePtr Parser::consParseRec(const std::deque<std::string>& tokens) {
 
         while (it != tokens.end() - 1) {
             if (*it == "(") {
-                auto it2 = std::find(it, tokens.end() -1 , ")");
+                int depth = 1;
+                auto it2 = it;
+                while (depth > 0 && it2 != tokens.end() - 1) {
+                    it2++;
+                    if (*it2 == "(") {
+                        depth++;
+                    }
+                    else if (*it2 == ")") {
+                        depth--;
+                    }
+                }
                 if (it2 == tokens.end() - 1) {
                     list.push_front(nullptr);
                     break;

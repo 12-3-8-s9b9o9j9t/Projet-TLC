@@ -30,7 +30,7 @@ Le script `run_whilec.sh` permet de lancer le compilateur. À la première exéc
 Les options de compilation sont les suivantes :
  - `-h` : affiche l'aide
  - `-r` : permet de supprimer les fichiers temporaires (`.cpp`, `.h`) générés par le compilateur
-- `-o <fichier>` : permet de spécifier le nom du fichier exécutable généré
+ - `-o <fichier>` : permet de spécifier le nom du fichier exécutable généré
 
 Les fichiers sont générés dans le dossier depuis lequel le script est lancé.
 
@@ -55,8 +55,8 @@ Pour ensuite exécuter le programme, il suffit de donner le chemin vers le fichi
 Si le programme nécessite des valeurs en entrée, il suffit de les donner en argument de la commande, sous la forme d'un entier ou d'une expression à base de cons :
 
 ```bash
-./run_whilec.sh -r -o sum examples/add.txt
-./add 10 (cons nil (cons nil (cons nil nil)))
+./run_whilec.sh -r -o mul exemples/mul.txt
+./mul 10 "(cons nil (cons nil nil))"
 ```
 
 ## Écrire un programme
@@ -138,6 +138,19 @@ Les expressions permettant de manipuler les arbres binaires sont les suivantes :
     - `(f <expression1> ... <expressionN>)` : appelle la fonction f avec les expressions en paramètres. Il est possible d'appeler une fonction avant qu'elle ne soit définie. Il est impossible d'appeler la fonction main.
 
 L'utilisation d'une variable non définie l'initialise à nil. Il n'y a pas de variable globale, mais les variables sont visibles partout dans la fonction dans laquelle elles sont définies.
+
+Les outputs du main sont affichée dans la sortie standard. Et le format de sortie est le suivant :
+ - si l'output est `nil` : "nil"
+
+ - si l'output est un symbole : le symbole
+
+ - si l'output est un arbre dont le fils gauche est le symbole `int` : l'entier représenté par le fils droit
+
+ - si l'output est un arbre dont le fils gauche est le symbole `bool` : le booléen représenté par le fils droit
+
+ - si l'output est un arbre dont le fils gauche est le symbole `string` : la chaîne de caractères représentée par le fils droit
+
+ - sinon : `(cons` \<output_fils_gauche> \<output_fils_droit>`)`
 
 ## Exemples
 
